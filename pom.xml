@@ -14,27 +14,27 @@
   <properties>
     <!-- Used in build -->
     <redbox.version>1.6.2-SNAPSHOT</redbox.version>
-    <package.finalname>${project.build.finalName}</package.finalname>
-    <!-- Runtime values, will replace placeholders in config and control scripts -->
-    <app.location.windows>${project.home}</app.location.windows>
-    <app.location.linux>${project.home}</app.location.linux>
-    <server.port>9000</server.port>
-    <amq.port>9101</amq.port>
-    <amq.stomp.port>9102</amq.stomp.port>
-    <server.url.base>http://${ip.address}:${server.port}/redbox/</server.url.base>
-    <mint.proxy.server>http://localhost:9001</mint.proxy.server>
-    <mint.amq.broker>tcp://localhost:9201</mint.amq.broker>
-    <dir.home>${project.home}/home</dir.home>
-    <dir.portal>${project.home}/portal</dir.portal>
-    <dir.server>${project.home}/server</dir.server>
-    <dir.solr>${project.home}/solr</dir.solr>
-    <dir.storage>${project.home}/storage</dir.storage>
-    <smtp.host>localhost</smtp.host>
-    <admin.email>admin@localhost</admin.email>
-    <packaging>pom</packaging>
+	  <package.finalname>${project.build.finalName}</package.finalname>
+	  <!-- Runtime values, will replace placeholders in config and control scripts -->
+	  <app.location.windows>${project.home}</app.location.windows>
+	  <app.location.linux>${project.home}</app.location.linux>
+	  <server.port>9000</server.port>
+	  <amq.port>9101</amq.port>
+	  <amq.stomp.port>9102</amq.stomp.port>
+	  <server.url.base>${redboxServer.url.base}</server.url.base>
+	  <mint.proxy.server>${mintServer.url.base}</mint.proxy.server>
+	  <mint.amq.broker>tcp://${mintAmqBroker.hostname}:9201</mint.amq.broker>
+	  <dir.home>${project.home}/home</dir.home>
+	  <dir.portal>${project.home}/portal</dir.portal>
+	  <dir.server>${project.home}/server</dir.server>
+	  <dir.solr>${project.home}/solr</dir.solr>
+	  <dir.storage>${project.home}/storage</dir.storage>
+	  <smtp.host>mailfilter.itd.uts.edu.au</smtp.host>
+	  <admin.email>redbox.admin@uts.edu.au</admin.email>
+	  <packaging>pom</packaging>
     <!-- Control scripts try to auto-detect proxy. Use this value if you want 
 			Java to specifically exclude certain hosts from proxying. -->
-    <non.proxy.hosts>localhost</non.proxy.hosts>
+    <non.proxy.hosts>${redboxServer.hostname}</non.proxy.hosts>
   </properties>
   <dependencies>
     <!-- ReDBox Core - We want to explicitly define versions here because ReDBox 
