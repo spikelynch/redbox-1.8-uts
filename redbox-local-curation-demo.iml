@@ -30,9 +30,9 @@
     <orderEntry type="library" name="Maven: geronimo-spec:geronimo-spec-jta:1.0.1B-rc4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring:1.2.8" level="project" />
     <orderEntry type="library" name="Maven: org.mortbay.jetty:start:6.1.24" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.redbox-mint:redbox-secure-api:1.6.2-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.redbox-mint:redbox-config:1.6.2-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.redbox-mint:plugin-transaction-curation-redbox:1.6.2-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="redbox-secure-api" />
+    <orderEntry type="module" module-name="redbox-config" />
+    <orderEntry type="module" module-name="plugin-transaction-curation-redbox" />
     <orderEntry type="library" name="Maven: com.googlecode.the-fascinator:fascinator-core:1.1.4" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.the-fascinator:fascinator-common:1.1.4" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.the-fascinator:fascinator-vocabulary:1.1.4" level="project" />
@@ -178,7 +178,7 @@
     <orderEntry type="library" name="Maven: org.xhtmlrenderer:flying-saucer-pdf-itext5:9.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.itextpdf:itextpdf:5.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.xhtmlrenderer:flying-saucer-core:9.0.1" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.redbox-mint:plugin-transformer-local:1.6.2-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.redbox-mint:plugin-transformer-local:1.6.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.sun.jersey:jersey-server:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: com.sun.jersey:jersey-core:1.0.3" level="project" />
     <orderEntry type="library" name="Maven: javax.ws.rs:jsr311-api:1.0" level="project" />

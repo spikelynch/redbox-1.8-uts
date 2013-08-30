@@ -1,7 +1,7 @@
 target/
-.project
-.settings
-/.classpath
-/.pydevproject
-
-.DS_Store
+/.settings
+/.project
+.idea/
+*.iml
+*.ipr
+*.iws

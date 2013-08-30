@@ -1,0 +1,10 @@
+<metadata><header><source>MIF</source><id>2</id><file>/home/mike/workspace/RDC Data Capture/src/t/Test/Capture/MIF/20130423_P1_E3/20130404_P1_E3.csv</file><location></location><repositoryURL>http://0.0.0.0:3000/data/</repositoryURL><dateconverted>2013-06-26T13:48:12+1000</dateconverted></header><projectname>Project 1</projectname><creator>http://hdl.handle.net/11057/idb1e5f066</creator><datecreated>2013-04-04T00:00:00</datecreated><supervisor>Paul Nguyen</supervisor><title>Experiment 1</title><description>Cell Type/Tissue: &lt;span id="celltype"&gt;cell&lt;/span&gt;&lt;br /&gt;
+Experiment Type: &lt;span id="experimenttype"&gt;Fixed&lt;/span&gt;&lt;br /&gt;
+Slides: &lt;span id="slides"&gt;Yes&lt;/span&gt;&lt;br /&gt;
+Dishes: &lt;span id="dishes"&gt;Yes&lt;/span&gt;&lt;br /&gt;
+Multiwell Chambers: &lt;span id="multiwell"&gt;Yes&lt;/span&gt;&lt;br /&gt;
+Other Equipment: &lt;span id=""&gt;other&lt;/span&gt;&lt;br /&gt;
+Fluorescent Proteins: &lt;span id="fluorescentproteins"&gt;YFP; CFP; RFP&lt;/span&gt;&lt;br /&gt;
+Has Specific Dyes: &lt;span id="hasspecificdyes"&gt;No&lt;/span&gt;&lt;br /&gt;
+Immunofluorescence: &lt;span id="immunofluorescence"&gt;Goat anti-Rabbit IgG AF488; Goat anti-Mouse IgG AF405&lt;/span&gt;&lt;br /&gt;
+</description><service>MIF.service.1</service></metadata>
