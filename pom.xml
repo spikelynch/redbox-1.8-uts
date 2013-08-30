@@ -73,6 +73,11 @@
       <artifactId>plugin-transformer-local</artifactId>
       <version>1.6.1-SNAPSHOT</version>
     </dependency>
+	  <dependency>
+		  <groupId>fascinator-shibboleth</groupId>
+		  <artifactId>fascinator-shibboleth</artifactId>
+		  <version>0.0.1-SNAPSHOT</version>
+	  </dependency>
     <!-- Clean up a dependency error raised during 1.6.1 redbox release -->
     <dependency>
           <groupId>com.googlecode.the-fascinator</groupId>
@@ -237,6 +242,26 @@
               </artifactItems>
             </configuration>
           </execution>
+
+			<!-- Shibboleth Resources -->
+			<execution>
+				<id>unpack-shib-conf</id>
+				<phase>process-resources</phase>
+				<goals>
+					<goal>unpack</goal>
+				</goals>
+				<configuration>
+					<outputDirectory>${project.home}</outputDirectory>
+					<artifactItems>
+						<artifactItem>
+							<groupId>fascinator-shibboleth</groupId>
+							<artifactId>fascinator-shibboleth</artifactId>
+							<classifier>redbox-config</classifier>
+							<type>zip</type>
+						</artifactItem>
+					</artifactItems>
+				</configuration>
+			</execution>
         </executions>
       </plugin>
       <!-- 2nd - Deploy Institutional build over default ReDBox -->

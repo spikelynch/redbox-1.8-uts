@@ -24,7 +24,7 @@
     "urlBase": "${server.url.base}",
     "email": "DO_NOT_CHANGE",
     "sso": {
-        "plugins": [],
+        "plugins": ["Shibboleth"],
         "urlExclusions": {
             "startsWith": [
                 "css/",
@@ -42,6 +42,88 @@
         },
         "trustTokens": {}
     },
+	"Shibboleth":{
+		"use_headers":"false",
+		"username_attribute":"auEduPersonSharedToken",
+		"cn_attribute":"displayName",
+		"session_attribute":"Shib-Session-ID",
+		"idp_attribute":"Shib-Identity-Provider",
+		"attributes":["eduPersonAffiliation", "commonName"],
+		"delimiter":";",
+		"rolePlugins":["SimpleShibbolethRoleManager"],
+		"SimpleShibbolethRoleManager":{
+			"reviewer":[
+				[
+					["auEduPersonSharedToken", "is", "5pgKpM8-mxw2QTi9jSVgbobQe4c"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "OjB_85bSX4yBXyQDZ7Ry_U5soN8"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
+				]
+			],
+			"admin":[
+				[
+					["auEduPersonSharedToken", "is", "5pgKpM8-mxw2QTi9jSVgbobQe4c"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "OjB_85bSX4yBXyQDZ7Ry_U5soN8"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "XqMBJT6CScmguPkk893vrDepYuk"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
+				]
+			],
+			"librarian":[
+				[
+					["auEduPersonSharedToken", "is", "5pgKpM8-mxw2QTi9jSVgbobQe4c"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "z0lo1gkbDXFMcBQpf3EqHkog9IY"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "SPQ3DSww4-B3D8kPvk4AVzlNHnA"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
+				]
+			],
+			"researcher":[
+				[
+					["auEduPersonSharedToken", "is", "dnxiXK7FEMq1UGv2TWmMJnlVC4w"]
+				]
+				,
+				[
+					["Shib-Identity-Provider", "is", "https://test-aaf-login.uts.edu.au/idp/shibboleth"],
+					["eduPersonAffiliation", "is", "staff"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
+				]
+				,
+				[
+					["Shib-Identity-Provider", "is", "https://idptest.intersect.org.au/idp/shibboleth"],
+					["eduPersonAffiliation", "is", "staff"]
+				]
+			]
+		}
+	},
     "accesscontrol": {
         "type": "derby",
         "derby": {}
@@ -142,8 +224,8 @@
     "curation": {
         "curationEmailAddress": "${admin.email}",
         "curationRequiresConfirmation": false,
-        "pidProperty": "localPid",
-        "pidType": "local",
+        "pidProperty": "handle",
+        "pidType": "handle",
         "mintBroker": "${mint.amq.broker}",
         "relations": {
             "dc:relation.vivo:Dataset.0.dc:identifier": {
@@ -302,10 +384,15 @@
         }
     },
     "transformerDefaults": {
-        "local": {
-            "id": "local",
-            "useIncrements": false
-        },
+		"handle": {
+			"id": "handle",
+			"namingAuthority": "11057",
+			"privateKeyPath": "${fascinator.home}/handle/admpriv.bin",
+			"passPhrase": "none",
+			"useIncrements": false,
+			"incrementingFile": "${fascinator.home}/handle/index.txt",
+			"publishedDomain": "hdl.handle.net"
+		},
         "jsonVelocity": {
             "id": "jsonVelocity",
             "sourcePayload": ".tfpackage",
@@ -485,7 +572,7 @@
 					{
 					  "name": "transitionWorkflow",
 					  "type": "external",
-					  "url": "http://localhost:${jetty.port}/redbox/default/hkjobs/transitionWorkflow.ajax",
+					  "url": "http://localhost:${jetty.port}/redbox/default/hkjobs/transitionWorkflow.script",
 					  "timing": "0 0/15 * * * ?"
 					},
                     {
