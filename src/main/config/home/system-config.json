@@ -566,19 +566,19 @@
                     {
                         "name": "alerts-poll",
                         "type": "external",
-						"url": "${server.url.base}/default/hkjobs/alerts.script",
+						"url": "${server.url.base}default/hkjobs/alerts.script",
                         "timing": "0 0/15 * * * ?"
                     },
 					{
 					  "name": "transitionWorkflow",
 					  "type": "external",
-						"url": "${server.url.base}/default/hkjobs/transitionWorkflow.script",
-					  "timing": "0 0/15 * * * ?"
+						"url": "${server.url.base}default/hkjobs/transitionWorkflow.script",
+					  "timing": "0 0-59/5 * * * ?"
 					},
                     {
                         "name": "process-set-notifyNewRecords",
                         "type": "external",
-						"url": "${server.url.base}/default/process/launch.script?processingSet=notifyNewRecords",
+						"url": "${server.url.base}default/process/launch.script?processingSet=notifyNewRecords",
                         "timing": "0 0/15 * * * ?"
                     }                
 				 ]
