@@ -566,19 +566,19 @@
                     {
                         "name": "alerts-poll",
                         "type": "external",
-                        "url": "http://localhost:${jetty.port}/redbox/default/hkjobs/alerts.script",
+						"url": "${server.url.base}/default/hkjobs/alerts.script",
                         "timing": "0 0/15 * * * ?"
                     },
 					{
 					  "name": "transitionWorkflow",
 					  "type": "external",
-					  "url": "http://localhost:${jetty.port}/redbox/default/hkjobs/transitionWorkflow.script",
+						"url": "${server.url.base}/default/hkjobs/transitionWorkflow.script",
 					  "timing": "0 0/15 * * * ?"
 					},
                     {
                         "name": "process-set-notifyNewRecords",
                         "type": "external",
-                        "url": "http://localhost:${jetty.port}/redbox/default/process/launch.script?processingSet=notifyNewRecords",
+						"url": "${server.url.base}/default/process/launch.script?processingSet=notifyNewRecords",
                         "timing": "0 0/15 * * * ?"
                     }                
 				 ]
