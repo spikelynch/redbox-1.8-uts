@@ -1,0 +1,65 @@
+<script type="text/javascript">
+
+	$(function() {
+		
+		$('.admin-clone-link').click(function () {
+		
+		var recordId = $(this).attr("rel");
+		var processing = false;
+        	if (processing) return;
+        	processing = true;
+        	jQuery("#admin-clone-link" + recordId).append('<img class="right" src="$portalPath/images/icons/loading.gif" />');
+        	jQuery.ajax({
+            	type: "POST",
+            	url: "$portalPath/actions/packaging.ajax",
+            	data: {
+                	ajax: 1,
+                	func: "create-new",
+                	packageType: "self-submission",
+                	metaList: ["redbox:newForm", "redbox:formVersion"],
+                	"redbox:newForm": "true",
+                	"redbox:formVersion": "$systemConfig.getString("Unknown", "redbox.version.string")"
+            	}, success: function(data) {
+                if (data.status == "ok") {
+                    function copyMetadata() {
+                    	var oid = recordId;
+                    	jQuery.ajax({
+			            	type: "POST",
+			            	url: "$portalPath/copyTfPackage.ajax",
+			            	data: {
+			                	ajax: 1,
+			                	fromOid: oid,
+			                	toOid: data.oid,
+			                	tfMetaPropertyValue: "dmpToSelfSub"
+			            	}, 
+			            	success: function(data) {
+			            		if (data.status == "ok") {
+				                    function redirect() {
+				                        window.location.href = data.url;
+				                    }
+				                    setTimeout(redirect, 1500);
+				                } else {
+				                    alert("Failed to transfer record! " + data.message);
+				                }
+			            	},
+			            	error:  function(xhr, status, e) {
+			                		alert("Failed to complete transferring record!"); 
+			           		 },
+			            	dataType: "json"
+			        		});
+                    }
+                    setTimeout(copyMetadata, 1500);
+                } else {
+                    alert("Failed to create record!");
+                }
+            },
+            error: function(xhr, status, e) {
+                alert("Failed to complete creating record!");
+            },
+            dataType: "json"
+        });
+        	return false;
+		});
+
+	});
+</script>

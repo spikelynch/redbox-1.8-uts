@@ -3,9 +3,9 @@
     "redbox.version.string": "${redbox.version}",
     "version.string": "${redbox.version}",
     "redbox.identity": {
-        "institution": "University of Examples",
-        "RIF-CS Group": "The University of Examples, Australia",
-        "internalGrantString": "urn:uoe:internal"
+        "institution": "The University of Technology, Sydney",
+        "RIF-CS Group": "The University of Technology, Sydney, Australia",
+        "internalGrantString": "urn:uts:internal"
     },
     "transitionWorkflow": {
         "transitions": [

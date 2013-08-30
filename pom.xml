@@ -2,39 +2,39 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.googlecode.redbox-mint</groupId>
-  <artifactId>redbox-local-curation-demo</artifactId>
+  <artifactId>redbox-UTS</artifactId>
   <version>1.6.2-SNAPSHOT</version>
   <packaging>${packaging}</packaging>
-  <name>ReDBox - Local Curation Demo</name>
+  <name>UTS Redbox</name>
   <parent>
     <groupId>com.googlecode.redbox-mint</groupId>
     <artifactId>redbox</artifactId>
     <version>1.6.2-SNAPSHOT</version>
   </parent>
   <properties>
-    <!-- Used in build -->
-    <redbox.version>1.6.2-SNAPSHOT</redbox.version>
-    <package.finalname>${project.build.finalName}</package.finalname>
-    <!-- Runtime values, will replace placeholders in config and control scripts -->
-    <app.location.windows>${project.home}</app.location.windows>
-    <app.location.linux>${project.home}</app.location.linux>
-    <server.port>9000</server.port>
-    <amq.port>9101</amq.port>
-    <amq.stomp.port>9102</amq.stomp.port>
-    <server.url.base>http://${ip.address}:${server.port}/redbox/</server.url.base>
-    <mint.proxy.server>http://localhost:9001</mint.proxy.server>
-    <mint.amq.broker>tcp://localhost:9201</mint.amq.broker>
-    <dir.home>${project.home}/home</dir.home>
-    <dir.portal>${project.home}/portal</dir.portal>
-    <dir.server>${project.home}/server</dir.server>
-    <dir.solr>${project.home}/solr</dir.solr>
-    <dir.storage>${project.home}/storage</dir.storage>
-    <smtp.host>localhost</smtp.host>
-    <admin.email>admin@localhost</admin.email>
-    <packaging>pom</packaging>
-    <!-- Control scripts try to auto-detect proxy. Use this value if you want 
-			Java to specifically exclude certain hosts from proxying. -->
-    <non.proxy.hosts>localhost</non.proxy.hosts>
+	  <!-- Used in build -->
+	  <redbox.version>1.6.2-SNAPSHOT</redbox.version>
+	  <package.finalname>${project.build.finalName}</package.finalname>
+	  <!-- Runtime values, will replace placeholders in config and control scripts -->
+	  <app.location.windows>${project.home}</app.location.windows>
+	  <app.location.linux>${project.home}</app.location.linux>
+	  <server.port>9000</server.port>
+	  <amq.port>9101</amq.port>
+	  <amq.stomp.port>9102</amq.stomp.port>
+	  <server.url.base>${redboxServer.url.base}</server.url.base>
+	  <mint.proxy.server>${mintServer.url.base}</mint.proxy.server>
+	  <mint.amq.broker>tcp://${mintAmqBroker.hostname}:9201</mint.amq.broker>
+	  <dir.home>${project.home}/home</dir.home>
+	  <dir.portal>${project.home}/portal</dir.portal>
+	  <dir.server>${project.home}/server</dir.server>
+	  <dir.solr>${project.home}/solr</dir.solr>
+	  <dir.storage>${project.home}/storage</dir.storage>
+	  <smtp.host>mailfilter.itd.uts.edu.au</smtp.host>
+	  <admin.email>redbox.admin@uts.edu.au</admin.email>
+	  <packaging>pom</packaging>
+	  <!-- Control scripts try to auto-detect proxy. Use this value if you
+		 want Java to specifically exclude certain hosts from proxying. -->
+	  <non.proxy.hosts>${redboxServer.hostname}</non.proxy.hosts>
   </properties>
   <dependencies>
     <!-- ReDBox Core - We want to explicitly define versions here because ReDBox 
@@ -44,34 +44,34 @@
       <groupId>com.googlecode.redbox-mint</groupId>
       <artifactId>redbox-project</artifactId>
       <type>pom</type>
-      <version>1.6.2-SNAPSHOT</version>
+      <version>${redbox.version}</version>
     </dependency>
     <dependency>
       <groupId>com.googlecode.redbox-mint</groupId>
       <artifactId>redbox</artifactId>
       <type>pom</type>
-      <version>1.6.2-SNAPSHOT</version>
+      <version>${redbox.version}</version>
     </dependency>
     <dependency>
       <groupId>com.googlecode.redbox-mint</groupId>
       <artifactId>redbox-config</artifactId>
-      <version>1.6.2-SNAPSHOT</version>
+      <version>${redbox.version}</version>
     </dependency>
     <dependency>
       <groupId>com.googlecode.redbox-mint</groupId>
       <artifactId>redbox-secure-api</artifactId>
-      <version>1.6.2-SNAPSHOT</version>
+      <version>${redbox.version}</version>
     </dependency>
     <dependency>
       <groupId>com.googlecode.redbox-mint</groupId>
       <artifactId>plugin-transaction-curation-redbox</artifactId>
-      <version>1.6.2-SNAPSHOT</version>
+      <version>${redbox.version}</version>
     </dependency>
     <!-- Local Curation Plugin (from Mint) -->
     <dependency>
       <groupId>com.googlecode.redbox-mint</groupId>
       <artifactId>plugin-transformer-local</artifactId>
-      <version>1.6.1-SNAPSHOT</version>
+      <version>${redbox.version}</version>
     </dependency>
     <!-- Clean up a dependency error raised during 1.6.1 redbox release -->
     <dependency>
@@ -82,121 +82,134 @@
         </dependency>
   </dependencies>
   <profiles>
-    <profile>
-      <id>build-package</id>
-      <properties>
-        <server.url.base>http://localhost:${server.port}/redbox/</server.url.base>
-        <app.location.windows>c:/tf2/redbox</app.location.windows>
-    	<app.location.linux>/opt/redbox</app.location.linux>
-      </properties>
-      <!-- clean up the deploy directory first -->
-      <build>
-        <plugins>
-            <plugin>                
-                <artifactId>maven-clean-plugin</artifactId>              
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>../home</directory>                            
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>../portal</directory>                            
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>../server</directory>                            
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>../solr</directory>                            
-                            <includes>
-                                <include>**/*</include>
-                            </includes>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                    </filesets>
-                </configuration>
-            </plugin>        
-      <!-- Used for creating an install - omits local build system settings -->              
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>make-assembly</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-                <configuration>
-                <classifier>${classifier.value}</classifier>
-                <finalName>${package.finalname}</finalName>
-                  <descriptors>
-                    <descriptor>package.xml</descriptor>
-                  </descriptors>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>ide</id>
-      <properties>
-        <packaging>jar</packaging>
-        <project.home>../</project.home>
-      </properties>
-      <build>
-      	<resources>
-      		<resource>
-                  <directory>src/main/config/home</directory>
-                  <filtering>false</filtering>
-                </resource>
-                <resource>
-                   <directory>src/main/config/home</directory>
-					<includes>
-						<include>system-config.json</include>
-					</includes>
-                  <filtering>false</filtering>
-                </resource>
-                <resource>
-                  <directory>src/main/config/portal</directory>
-                  <filtering>false</filtering>
-                </resource>
-                 <resource>
-                  <directory>src/main/config/server</directory>
-                  <filtering>false</filtering>
-                  <excludes>
-                    <exclude>**/*.bat</exclude>
-                    <exclude>**/*.sh</exclude>
-                  </excludes>
-                </resource>
-                <resource>
-                  <directory>src/main/config/server</directory>
-                  <filtering>true</filtering>
-                  <includes>
-                    <include>**/*.bat</include>
-                    <include>**/*.sh</include>
-                  </includes>
-                </resource>
-                <resource>
-                  <directory>src/main/config/solr</directory>
-                  <filtering>true</filtering>
-                </resource>
-      	</resources>
-      </build>
-    </profile>
+	  <profile>
+		  <id>build-package</id>
+		  <properties>
+			  <redboxServer.hostname>localhost</redboxServer.hostname>
+			  <mintServer.hostname>localhost</mintServer.hostname>
+			  <mintAmqBroker.hostname>localhost</mintAmqBroker.hostname>
+			  <mintServer.url.base>http://${mintServer.hostname}:9001</mintServer.url.base>
+			  <redboxServer.url.base>http://${redboxServer.hostname}:${server.port}/redbox/</redboxServer.url.base>
+			  <app.location.windows>c:/tf2/redbox</app.location.windows>
+			  <app.location.linux>${project.home}</app.location.linux>
+		  </properties>
+
+		  <!-- Used for creating an install - omits local build system settings -->
+		  <build>
+			  <plugins>
+				  <plugin>
+					  <groupId>org.apache.maven.plugins</groupId>
+					  <artifactId>maven-assembly-plugin</artifactId>
+					  <executions>
+						  <execution>
+							  <id>make-assembly</id>
+							  <phase>package</phase>
+							  <goals>
+								  <goal>single</goal>
+							  </goals>
+							  <configuration>
+								  <descriptors>
+									  <descriptor>package.xml</descriptor>
+								  </descriptors>
+							  </configuration>
+						  </execution>
+					  </executions>
+				  </plugin>
+			  </plugins>
+		  </build>
+	  </profile>
+
+	  <!-- DEV-Default profile -->
+	  <profile>
+		  <id>dev</id>
+		  <activation>
+			  <activeByDefault>true</activeByDefault>
+			  <property>
+				  <name>env</name>
+				  <value>dev</value>
+			  </property>
+		  </activation>
+		  <properties>
+			  <redboxServer.hostname>localhost</redboxServer.hostname>
+			  <mintServer.hostname>localhost</mintServer.hostname>
+			  <mintAmqBroker.hostname>localhost</mintAmqBroker.hostname>
+			  <mintServer.url.base>http://${mintServer.hostname}:9001</mintServer.url.base>
+			  <redboxServer.url.base>http://${redboxServer.hostname}:${server.port}/redbox/</redboxServer.url.base>
+		  </properties>
+	  </profile>
+
+	  <!-- QA -->
+	  <profile>
+		  <id>qa</id>
+		  <activation>
+			  <property>
+				  <name>env</name>
+				  <value>qa</value>
+			  </property>
+		  </activation>
+		  <properties>
+			  <mintServer.hostname>ic2-redbox-vm.intersect.org.au</mintServer.hostname>
+			  <redboxServer.hostname>ic2-redbox-vm.intersect.org.au</redboxServer.hostname>
+			  <mintAmqBroker.hostname>ic2-redbox-vm.intersect.org.au</mintAmqBroker.hostname>
+			  <mintServer.url.base>https://${mintServer.hostname}</mintServer.url.base>
+			  <redboxServer.url.base>https://${redboxServer.hostname}/redbox/</redboxServer.url.base>
+		  </properties>
+	  </profile>
+
+	  <!-- Staging -->
+	  <profile>
+		  <id>staging</id>
+		  <activation>
+			  <property>
+				  <name>env</name>
+				  <value>staging</value>
+			  </property>
+		  </activation>
+		  <properties>
+			  <mintServer.hostname>ic2-ms22-staging1-vm.intersect.org.au</mintServer.hostname>
+			  <redboxServer.hostname>ic2-ms22-staging1-vm.intersect.org.au</redboxServer.hostname>
+			  <mintAmqBroker.hostname>ic2-ms22-staging1-vm.intersect.org.au</mintAmqBroker.hostname>
+			  <mintServer.url.base>https://${mintServer.hostname}</mintServer.url.base>
+			  <redboxServer.url.base>https://${redboxServer.hostname}/redbox/</redboxServer.url.base>
+		  </properties>
+	  </profile>
+
+	  <!-- UTS Test -->
+	  <profile>
+		  <id>test</id>
+		  <activation>
+			  <property>
+				  <name>env</name>
+				  <value>test</value>
+			  </property>
+		  </activation>
+		  <properties>
+			  <mintServer.hostname>test-redbox.research.uts.edu.au</mintServer.hostname>
+			  <redboxServer.hostname>test-redbox.research.uts.edu.au</redboxServer.hostname>
+			  <mintAmqBroker.hostname>test-redbox.research.uts.edu.au</mintAmqBroker.hostname>
+			  <mintServer.url.base>https://${mintServer.hostname}</mintServer.url.base>
+			  <redboxServer.url.base>https://${redboxServer.hostname}/redbox/</redboxServer.url.base>
+		  </properties>
+	  </profile>
+
+	  <!-- Production -->
+	  <profile>
+		  <id>production</id>
+		  <activation>
+			  <property>
+				  <name>env</name>
+				  <value>production</value>
+			  </property>
+		  </activation>
+		  <properties>
+			  <mintServer.hostname>redbox.research.uts.edu.au</mintServer.hostname>
+			  <redboxServer.hostname>redbox.research.uts.edu.au</redboxServer.hostname>
+			  <mintAmqBroker.hostname>redbox.research.uts.edu.au</mintAmqBroker.hostname>
+			  <mintServer.url.base>https://${mintServer.hostname}</mintServer.url.base>
+			  <redboxServer.url.base>https://${redboxServer.hostname}/redbox/</redboxServer.url.base>
+		  </properties>
+	  </profile>
+
   </profiles>
   <!-- The standard build/deploy process for making a server -->
   <build>
