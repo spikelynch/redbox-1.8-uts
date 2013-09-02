@@ -68,6 +68,14 @@
 				[
 					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
 				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "bzZvUwtCB1OXRFi4ZV0ERnH0Hf0"]
+				]
 			],
 			"admin":[
 				[
@@ -85,6 +93,10 @@
 				[
 					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
 				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
+				]
 			],
 			"librarian":[
 				[
@@ -101,6 +113,14 @@
 				,
 				[
 					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "bzZvUwtCB1OXRFi4ZV0ERnH0Hf0"]
 				]
 			],
 			"researcher":[
@@ -120,6 +140,18 @@
 				[
 					["Shib-Identity-Provider", "is", "https://idptest.intersect.org.au/idp/shibboleth"],
 					["eduPersonAffiliation", "is", "staff"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "bzZvUwtCB1OXRFi4ZV0ERnH0Hf0"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "oJ2iHnXZ52k-uJHTGePxfJlvtzk"]
 				]
 			]
 		}
