@@ -256,8 +256,8 @@
     "curation": {
         "curationEmailAddress": "${admin.email}",
         "curationRequiresConfirmation": false,
-        "pidProperty": "handle",
-        "pidType": "handle",
+        "pidProperty": "localPid",
+	    "pidType": "local",
         "mintBroker": "${mint.amq.broker}",
         "relations": {
             "dc:relation.vivo:Dataset.0.dc:identifier": {
@@ -416,15 +416,10 @@
         }
     },
     "transformerDefaults": {
-		"handle": {
-			"id": "handle",
-			"namingAuthority": "11057",
-			"privateKeyPath": "${fascinator.home}/handle/admpriv.bin",
-			"passPhrase": "none",
-			"useIncrements": false,
-			"incrementingFile": "${fascinator.home}/handle/index.txt",
-			"publishedDomain": "hdl.handle.net"
-		},
+	    "local": {
+		    "id": "local",
+		    "useIncrements": false
+	    },
         "jsonVelocity": {
             "id": "jsonVelocity",
             "sourcePayload": ".tfpackage",
@@ -602,10 +597,10 @@
                         "timing": "0 0/15 * * * ?"
                     },
 					{
-					  "name": "transitionWorkflow",
-					  "type": "external",
+						"name": "transitionWorkflow",
+						"type": "external",
 						"url": "${server.url.base}default/hkjobs/transitionWorkflow.script",
-					  "timing": "0 0-59/5 * * * ?"
+						"timing": "0 0-59/5 * * * ?"
 					},
                     {
                         "name": "process-set-notifyNewRecords",
