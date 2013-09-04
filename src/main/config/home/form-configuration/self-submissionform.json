@@ -177,7 +177,85 @@
                         }
                     ]
                 },
-                {
+	            {
+		            "heading": "Identifier",
+		            "fields": [
+			            {
+				            "component-type": "text-block",
+				            "type": "h1",
+				            "content": "self-submission.header.label.dc-identifier"
+			            },
+			            {
+				            "component-type": "checkbox",
+				            "field-name": "self-submission.field.dc-identifier.redboxdmpt-doirequest",
+				            "help": "self-submission.field.help.dc-identifier.redboxdmpt-doirequest",
+				            "box-for": "",
+				            "boxes": [
+					            {
+						            "label": "self-submission.field.label.dc-identifier.redboxdmpt-doirequest",
+						            "value": "Yes"
+					            }
+				            ]
+			            },
+			            {
+				            "component-type": "text-block",
+				            "type": "label",
+				            "content": "self-submission.field.label.dc-identifier.rdf-PlainLiteral",
+				            "help": "self-submission.field.help.dc-identifier.rdf-PlainLiteral"
+			            },
+			            {
+				            "component-type": "text-input",
+				            "field-name": "dc:identifier.rdf:PlainLiteral",
+				            "label": "",
+				            "additional-classes": ""
+			            },
+			            {
+				            "component-type": "text-block",
+				            "type": "h1",
+				            "content": "self-submission.heading.label.location"
+			            },
+			            {
+				            "component-type": "repeatable-container",
+				            "containter-for": "bibo:DataLocation",
+				            "sub-elements":{"settings":[
+					            {
+						            "jaffaDatalocation": {
+							            "label": "",
+							            "class-list": "jaffa-field",
+							            "suffix": ""
+						            }
+					            }
+				            ]
+				            },
+				            "additional-classes": ""
+			            },
+			            {
+				            "component-type": "transition-control",
+				            "transitions": [
+					            { "name": "Back", "type": "button" },
+					            { "name": "Next" , "type": "button"}
+				            ]
+			            },
+			            {
+				            "component-type": "transition-control",
+				            "transitions": [
+					            {
+						            "name": "Save",
+						            "form-submit-action": "save",
+						            "type": "button"
+					            },
+					            {
+						            "name": "Save and close",
+						            "form-submit-action": "save",
+						            "type": "button",
+						            "close": true,
+						            "closeUrl": "dmpt/details"
+					            }
+				            ]
+			            }
+		            ]
+	            },
+	            {
                     "heading": "Subjects",
                     "fields": [
                         {
@@ -730,84 +808,6 @@
                     ]
                 },
 				{
-					"heading": "Identifier",
-					"fields": [
-						{
-							"component-type": "text-block",
-							"type": "h1",
-							"content": "self-submission.header.label.dc-identifier"
-						},
-						{
-							"component-type": "checkbox",
-							"field-name": "self-submission.field.dc-identifier.redboxdmpt-doirequest",
-							"help": "self-submission.field.help.dc-identifier.redboxdmpt-doirequest",
-							"box-for": "",
-							"boxes": [
-								{
-								"label": "self-submission.field.label.dc-identifier.redboxdmpt-doirequest",
-								"value": "Yes"
-								}
-							]
-						},
-						{
-							"component-type": "text-block",
-							"type": "label",
-							"content": "self-submission.field.label.dc-identifier.rdf-PlainLiteral",
-							"help": "self-submission.field.help.dc-identifier.rdf-PlainLiteral"
-						},
-						{
-							"component-type": "text-input",
-							"field-name": "dc:identifier.rdf:PlainLiteral",
-							"label": "",
-							"additional-classes": ""
-						},
-						{
-							"component-type": "text-block",
-							"type": "h1",
-							"content": "self-submission.heading.label.location"
-						},
-						{
-							"component-type": "repeatable-container",
-							"containter-for": "bibo:DataLocation",
-							"sub-elements":{"settings":[
-									{
-										"jaffaDatalocation": {
-										"label": "",
-										"class-list": "jaffa-field",
-										"suffix": ""
-										}
-									}
-								]
-							},
-							"additional-classes": ""
-						},
-						{
-							"component-type": "transition-control",
-							"transitions": [
-								{ "name": "Back", "type": "button" },
-								{ "name": "Next" , "type": "button"}
-							]
-						},
-						{
-							"component-type": "transition-control",
-							"transitions": [
-								{
-									"name": "Save",
-									"form-submit-action": "save",
-									"type": "button"
-								},
-								{
-									"name": "Save and close",
-									"form-submit-action": "save",
-									"type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
-								}
-							]
-						}
-					]
-				},
-                {
                     "heading": "UserSubmit",
                     "fields": [
                         {
