@@ -85,8 +85,9 @@
 		##displayMintLabelByLookup("dc:language.dc:identifier" "#displayMessage('self-submission.field.label.dc-language')" "Languages" "results" "dc:title") 
         #displayRow("self-submission.field.dc-identifier.redboxdmpt-doirequest.1" "#displayMessage('self-submission.field.label.dc-identifier.redboxdmpt-doirequest')")
         #displayRow("dc:identifier.rdf:PlainLiteral" "#displayMessage('self-submission.field.label.dc-identifier.rdf-PlainLiteral')")
-        #displayRow("vivo:Location.vivo:GeographicLocation.gn:name" "#displayMessage('self-submission.heading.label.location')")
-		#displayRowList("#displayMessage('self-submission.field.label.bibo-Website')" "bibo:DataLocation" "dc:location")
+        ##displayRow("vivo:Location.vivo:GeographicLocation.gn:name" "#displayMessage('self-submission.heading.label
+        ## .location')")
+		#displayRowList("#displayMessage('self-submission.heading.label.location')" "bibo:DataLocation" "dc:location")
 		#set($v = $metadata.get("redbox:ManagementPlan.oid"))
 	    #if ($v && "$!v" != "")
 			<tr>
