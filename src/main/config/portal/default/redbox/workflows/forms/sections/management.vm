@@ -74,11 +74,8 @@
         </div>
 		<p> <input type="text" size="120" placeholder="urls" id="vivo:Location.vivo:webaddress" class="vlocation"
 				/></p>
-		#set ($privateUrlLocation = $util.get($item, "vivo:Location.vivo:webaddress:private"))
-		#if ("$!privateUrlLocation" != "")
-			<p><input type="text" size="120" placeholder="urls" id="vivo:Location.vivo:webaddress:private"
+	    <p><input type="text" size="120" placeholder="urls" id="vivo:Location.vivo:webaddress:private"
 			          class="vlocation" /> Private Data item</p>
-		#end
 
 	    #fieldTitle("Physical location" "Stored At" false)
         <div class="help-content" id="help-vivo:Location.vivo:physcials">
@@ -88,11 +85,8 @@
         </div>
 		<p> <input type="text" size="120" placeholder="University of X" id="vivo:Location.vivo:physcials"
 		           class="vlocation" /></p>
-		#set ($privatePhysicalLocation = $util.get($item, "vivo:Location.vivo:physcials:private"))
-		#if ("$!privatePhysicalLocation" != "")
-			<p><input type="text" size="120" placeholder="University of X" id="vivo:Location.vivo:physcials:private"
+	    <p><input type="text" size="120" placeholder="University of X" id="vivo:Location.vivo:physcials:private"
 					  class="vlocation" /> Private Data item</p>
-		#end
 
 	    #fieldTitle("files" "File(s)" false)
 		<div class="help-content" id="help-vivo:Location.vivo:files">
@@ -102,11 +96,8 @@
 		</div>
 		<p> <input type="text" size="120" placeholder="c:/" id="vivo:Location.vivo:files"
 				   class="vlocation" /></p>
-		#set ($privateFileLocation = $util.get($item, "vivo:Location.vivo:files:private"))
-		#if ("$!privateFileLocation" != "")
-			<p><input type="text" size="120" placeholder="c:/" id="vivo:Location.vivo:files:private"
+		<p><input type="text" size="120" placeholder="c:/" id="vivo:Location.vivo:files:private"
 					  class="vlocation" /> Private Data item</p>
-		#end
     </div>
 
     #fieldTitle("redbox:retentionPeriod" "Retention Period" true)

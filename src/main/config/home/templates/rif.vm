@@ -179,36 +179,116 @@
                 <rif:namePart>$util.encodeXml($util.get($item, "dc:title"))</rif:namePart>
             </rif:name>
 
-        ## Location
-        #set($valueMap = $util.getList($item, "bibo:Website"))
-        #set($firstValue = "")
-        #if ($valueMap.size() > 0)
-            #set($firstValue = $valueMap.get("1").get("dc:identifier"))
-        #end
-        #set ($physicalLocation = $util.get($item, "vivo:Location.vivo:GeographicLocation.gn:name"))
-        #if ("$!physicalLocation" != "" || "$!firstValue" != "")
-            <rif:location>
-            #foreach($key in $valueMap.keySet())
-                #set ($value = $valueMap.get($key).get("dc:identifier"))
-                #if ("$!value" != "")
-                <rif:address>
-                    <rif:electronic type="url">
-                        <rif:value>$util.encodeXml($value)</rif:value>
-                    </rif:electronic>
-                </rif:address>
-                #end
-            #end
+	    ## Data Item locations
+		<rif:location>
 
-            #### Physical location
-            #if ("$!physicalLocation" != "")
-                <rif:address>
-                    <rif:physical>
-                        <rif:addressPart type="text">$util.encodeXml($physicalLocation)</rif:addressPart>
-                    </rif:physical>
-                </rif:address>
-            #end
-            </rif:location>
-        #end
+			## get data item locations from self-submission form
+			#set($valueMap = $util.getList($item, "bibo:DataLocation"))
+			#foreach($key in $valueMap.keySet())
+				#set ($privacy = $valueMap.get($key).get("dc:privacy"))
+			    #if ("$!privacy" == "public")
+				    #set($type = $valueMap.get($key).get("dc:type"))
+				    #set($location = $valueMap.get($key).get("dc:location"))
+				    #if($!type == "url")
+						<rif:address>
+							<rif:electronic type="url">
+								<rif:value>$location</rif:value>
+							</rif:electronic>
+						</rif:address>
+					#elseif($!type == "physical")
+						<rif:address>
+							<rif:physical>
+								<rif:addressPart type="text">$util.encodeXml($location)</rif:addressPart>
+							</rif:physical>
+						</rif:address>
+					#elseif($!type == "file")
+						<rif:address>
+							<rif:electronic type="file">
+								<rif:value>$location</rif:value>
+							</rif:electronic>
+						</rif:address>
+					#else
+					#end
+				#end
+			#end
+
+			## get data item locations from reviewing data set form
+##			## URL(s)
+##			#set ($urlLocation = $util.get($item, "vivo:Location.vivo:webaddress"))
+##			#if ("$!urlLocation" != "")
+##				#set($urls = $urlLocation.split('}'))
+##				#foreach($url in $urls)
+##					#set($url = $url.replaceAll('{',''))
+##
+##					<rif:address>
+##						<rif:electronic type="url">
+##							<rif:value>$url</rif:value>
+##						</rif:electronic>
+##					</rif:address>
+##				#end
+##			#end
+##
+##			## File(s)
+##			#set ($fileLocation = $util.get($item, "vivo:Location.vivo:files"))
+##			#if ("$!fileLocation" != "")
+##				#set($files = $fileLocation.split('}'))
+##				#foreach($file in $files)
+##					#set($file = $file.replaceAll('{',''))
+##
+##					<rif:address>
+##						<rif:electronic type="file">
+##							<rif:value>$file</rif:value>
+##						</rif:electronic>
+##					</rif:address>
+##				#end
+##			#end
+##
+##			## physicals
+##			#set ($physcialLocation = $util.get($item, "vivo:Location.vivo:physcials"))
+##			#if ("$!physcialLocation" != "")
+##				#set($physcials = $physcialLocation.split('}'))
+##				#foreach($physcial in $physcials)
+##					#set($physcial = $physcial.replaceAll('{',''))
+##
+##					<rif:address>
+##						<rif:physical>
+##							<rif:addressPart type="text">$util.encodeXml($physcial)</rif:addressPart>
+##                    </rif:physical>
+##					</rif:address>
+##				#end
+##			#end
+		</rif:location>
+
+##        ## Location
+##        #set($valueMap = $util.getList($item, "bibo:Website"))
+##        #set($firstValue = "")
+##        #if ($valueMap.size() > 0)
+##            #set($firstValue = $valueMap.get("1").get("dc:identifier"))
+##        #end
+##        #set ($physicalLocation = $util.get($item, "vivo:Location.vivo:GeographicLocation.gn:name"))
+##        #if ("$!physicalLocation" != "" || "$!firstValue" != "")
+##            <rif:location>
+##            #foreach($key in $valueMap.keySet())
+##                #set ($value = $valueMap.get($key).get("dc:identifier"))
+##                #if ("$!value" != "")
+##                <rif:address>
+##                    <rif:electronic type="url">
+##                        <rif:value>$util.encodeXml($value)</rif:value>
+##                    </rif:electronic>
+##                </rif:address>
+##                #end
+##            #end
+##
+##            #### Physical location
+##            #if ("$!physicalLocation" != "")
+##                <rif:address>
+##                    <rif:physical>
+##                        <rif:addressPart type="text">$util.encodeXml($physicalLocation)</rif:addressPart>
+##                    </rif:physical>
+##                </rif:address>
+##            #end
+##            </rif:location>
+##        #end
 
         #set ($covFrom = $util.get($item, "dc:coverage.vivo:DateTimeInterval.vivo:start"))
         #set ($covTo = $util.get($item, "dc:coverage.vivo:DateTimeInterval.vivo:end"))

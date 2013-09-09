@@ -17,9 +17,20 @@
             #displayFirst("vivo:Location.vivo:physcials" "Stored At")
             #displayFirst("vivo:Location.vivo:files" "Files")
 			#if($page.authentication.is_logged_in())
-		        #displayFirst("vivo:Location.vivo:webaddress:private" "URL (Private)")
-		        #displayFirst("vivo:Location.vivo:physcials:private" "Stored At (Private)")
-		        #displayFirst("vivo:Location.vivo:files:private" "Files (Private)")
+	            #set ($privateUrlLocation = $self.getFirst("vivo:Location.vivo:webaddress:private"))
+				#if ("$!privateUrlLocation" != "")
+		            #displayFirst("vivo:Location.vivo:webaddress:private" "URL (Private)")
+				#end
+
+		        #set ($privatePhyscialLocation = $self.getFirst("vivo:Location.vivo:physcials:private"))
+		        #if ("$!privatePhyscialLocation" != "")
+			        #displayFirst("vivo:Location.vivo:physcials:private" "Stored At (Private)")
+		        #end
+
+		        #set ($privateFileLocation = $self.getFirst("vivo:Location.vivo:files:private"))
+		        #if ("$!privateFileLocation" != "")
+			        #displayFirst("vivo:Location.vivo:files:private" "Files (Private)")
+		        #end
             #end
         </div>
         #displayFirst("redbox:retentionPeriod" "Retention Period")

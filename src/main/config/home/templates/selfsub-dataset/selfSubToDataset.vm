@@ -196,16 +196,13 @@
 	#set($datalocation-urls-private = "")
 	#set($datalocation-files-private = "")
 	#set($datalocation-physcials-private = "")
-	#set($index = 1)
-	#foreach($index in  [1..10000])
-		#if (! $util.get($item, "bibo:DataLocation.${index}.dc:location") )
-			#break
-		#end
+	#set($valueMap = $util.getList($item, "bibo:DataLocation"))
+	#foreach($key in $valueMap.keySet())
 
-		#set($privacy = $util.get($item, "bibo:DataLocation.${index}.dc:privacy"))
-		#set($type = $util.get($item, "bibo:DataLocation.${index}.dc:type"))
-		#set($location = $util.get($item, "bibo:DataLocation.${index}.dc:location"))
-		#set($notes = $util.get($item, "bibo:DataLocation.${index}.dc:notes"))
+		#set($privacy = $valueMap.get($key).get("dc:privacy"))
+		#set($type = $valueMap.get($key).get("dc:type"))
+		#set($location = $valueMap.get($key).get("dc:location"))
+		#set($notes = $valueMap.get($key).get("dc:notes"))
 		#set($datalocation = "{$location, description:$notes}")
 
 		#if($privacy == "private")
