@@ -203,7 +203,7 @@
 		#set($type = $valueMap.get($key).get("dc:type"))
 		#set($location = $valueMap.get($key).get("dc:location"))
 		#set($notes = $valueMap.get($key).get("dc:notes"))
-		#set($datalocation = "{$location, description:$notes}")
+		#set($datalocation = "$location -- $notes}")
 
 		#if($privacy == "private")
 			#if ($type && $type == "physical")

@@ -182,6 +182,8 @@
 	    ## Data Item locations
 		<rif:location>
 
+			#set($locationNotes = "&lt;p&gt;NOTE:&lt;/p&gt;")
+
 			## get data item locations from self-submission form （before publish）
 			#set($valueMap = $util.getList($item, "bibo:DataLocation"))
 			#foreach($key in $valueMap.keySet())
@@ -189,6 +191,7 @@
 			    #if ("$!privacy" == "public")
 				    #set($type = $valueMap.get($key).get("dc:type"))
 				    #set($location = $valueMap.get($key).get("dc:location"))
+				    #set($note = $valueMap.get($key).get("dc:notes"))
 				    #if($!type == "url")
 						<rif:address>
 							<rif:electronic type="url">
@@ -209,6 +212,8 @@
 						</rif:address>
 					#else
 					#end
+
+				    #set($locationNotes = $locationNotes + "&lt;p&gt;" + $location + " -- " + $note + "&lt;/p&gt;")
 				#end
 			#end
 
@@ -217,44 +222,42 @@
 			#set ($urlLocation = $util.get($item, "vivo:Location.vivo:webaddress"))
 			#if ("$!urlLocation" != "")
 				#set($urls = $urlLocation.split('}'))
-				#foreach($url in $urls)
-					#set($url = $url.replaceAll('{',''))
-
+				#foreach($webaddress in $urls)
 					<rif:address>
 						<rif:electronic type="url">
-							<rif:value>$url</rif:value>
+							<rif:value>$webaddress</rif:value>
 						</rif:electronic>
 					</rif:address>
+
+					#set($locationNotes = $locationNotes + "&lt;p&gt;" + $webaddress + "&lt;/p&gt;")
 				#end
 			#end
-
 			## File(s)
 			#set ($fileLocation = $util.get($item, "vivo:Location.vivo:files"))
 			#if ("$!fileLocation" != "")
 				#set($files = $fileLocation.split('}'))
 				#foreach($file in $files)
-					#set($file = $file.replaceAll('{',''))
-
 					<rif:address>
 						<rif:electronic type="file">
 							<rif:value>$file</rif:value>
 						</rif:electronic>
 					</rif:address>
+
+					#set($locationNotes = $locationNotes + "&lt;p&gt;" + $file + "&lt;/p&gt;")
 				#end
 			#end
-
 			## physicals
 			#set ($physcialLocation = $util.get($item, "vivo:Location.vivo:physcials"))
 			#if ("$!physcialLocation" != "")
 				#set($physcials = $physcialLocation.split('}'))
 				#foreach($physcial in $physcials)
-					#set($physcial = $physcial.replaceAll('{',''))
-
 					<rif:address>
 						<rif:physical>
 							<rif:addressPart type="text">$util.encodeXml($physcial)</rif:addressPart>
-                    </rif:physical>
+                        </rif:physical>
 					</rif:address>
+
+					#set($locationNotes = $locationNotes + "&lt;p&gt;" + $physcial + "&lt;/p&gt;")
 				#end
 			#end
 		</rif:location>
@@ -362,8 +365,8 @@
         #end
 
         #set ($value = $util.get($item, "dc:description"))
-        #if ("$!value" != "")
-            <rif:description type="full" $lang>$util.encodeXml($value)</rif:description>
+        #if ("$!value" != "" || "$!locationNotes" != "")
+            <rif:description type="full" $lang>&lt;p&gt;$util.encodeXml($value)&lt;/p&gt;$locationNotes</rif:description>
         #end
 
         #################
