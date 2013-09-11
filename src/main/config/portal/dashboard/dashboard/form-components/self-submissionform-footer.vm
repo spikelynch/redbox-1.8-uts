@@ -27,12 +27,14 @@ div[id^="dc:coverage.vivo:GeographicLocation"] select { display:none }
 				// cloud not be larger than 10000.
 				for (var i=1;i<10000;i++)
 				{
-					var variable = "bibo:DataLocation." + i + ".dc:privacy";
-					if (document.getElementById(variable) == null ) {
+					var privacy = "bibo:DataLocation." + i + ".dc:privacy";
+					var location = "bibo:DataLocation." + i + ".dc:location";
+					if (document.getElementById(privacy) == null || document.getElementById(location) == null) {
 						break;
 					}
 
-					if('public' == document.getElementById(variable).value) {
+					if('public' == document.getElementById(privacy).value &&
+							'' != document.getElementById(location).value) {
 						privateDateSet = false;
 						break;
 					}
