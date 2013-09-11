@@ -1,20 +1,20 @@
 #macro(showElementRifCS $tag $field $attr $label $anzsrc)
     #set($valueMap = $util.getList($item, $field))
     #foreach($key in $valueMap.keySet())
-        #set($value = $valueMap.get($key))     
-            #if ($label != "" && $value.get($label)!= "")				
-                #set($labelVal = $value.get($label))				
+        #set($value = $valueMap.get($key))
+            #if ($label != "" && $value.get($label)!= "")
+                #set($labelVal = $value.get($label))
                 #if ($anzsrc == "anzsrc")
                     #set($lastIndex = $labelVal.lastIndexOf('/') + 1 )
                     #set($labelVal = $labelVal.substring($lastIndex) )
                 #end
-    			<$tag$attr>$util.encodeXml($labelVal)</$tag> 
+    			<$tag$attr>$util.encodeXml($labelVal)</$tag>
         	#end
     #end
 #end
 
 #macro(showRelatedInfo $field $relatedInfoType $identifierType)
-    
+
     #set($valueMap = $util.getList($item, $field))
     #foreach($key in $valueMap.keySet())
         #set ($row = $valueMap.get($key))
@@ -37,7 +37,7 @@
 #end
 
 #macro(showRelatedObject $field $relatedInfoType $identifierType)
-    
+
     #set($valueMap = $util.getList($item, $field))
     #foreach($key in $valueMap.keySet())
         #set ($row = $valueMap.get($key))
@@ -182,7 +182,7 @@
 	    ## Data Item locations
 		<rif:location>
 
-			#set($locationNotes = "&lt;p&gt;NOTE:&lt;/p&gt;")
+			#set($locationNotes = [""])
 
 			## get data item locations from self-submission form （before publish）
 			#set($valueMap = $util.getList($item, "bibo:DataLocation"))
@@ -213,7 +213,8 @@
 					#else
 					#end
 
-				    #set($locationNotes = $locationNotes + "&lt;p&gt;" + $location + " -- " + $note + "&lt;/p&gt;")
+				    #set($locationNote = $location + " -- " + $note)
+				    $locationNotes.add($locationNote)
 				#end
 			#end
 
@@ -223,14 +224,14 @@
 			#if ("$!urlLocation" != "")
 				#set($urls = $urlLocation.split('}'))
 				#foreach($webaddress in $urls)
-					#set($locationValue = $webaddress.split('--')[0])
 					<rif:address>
 						<rif:electronic type="url">
-							<rif:value>$locationValue</rif:value>
+							<rif:value>$webaddress</rif:value>
 						</rif:electronic>
 					</rif:address>
 
-					#set($locationNotes = $locationNotes + "&lt;p&gt;" + $webaddress + "&lt;/p&gt;")
+					#set($locationNote = $webaddress)
+					$locationNotes.add($locationNote)
 				#end
 			#end
 			## File(s)
@@ -238,14 +239,14 @@
 			#if ("$!fileLocation" != "")
 				#set($files = $fileLocation.split('}'))
 				#foreach($file in $files)
-					#set($locationValue = $file.split('--')[0])
 					<rif:address>
 						<rif:electronic type="file">
-							<rif:value>$locationValue</rif:value>
+							<rif:value>$file</rif:value>
 						</rif:electronic>
 					</rif:address>
 
-					#set($locationNotes = $locationNotes + "&lt;p&gt;" + $file + "&lt;/p&gt;")
+					#set($locationNote = $file)
+					$locationNotes.add($locationNote)
 				#end
 			#end
 			## physicals
@@ -253,14 +254,14 @@
 			#if ("$!physcialLocation" != "")
 				#set($physcials = $physcialLocation.split('}'))
 				#foreach($physcial in $physcials)
-					#set($locationValue = $physcial.split('--')[0])
 					<rif:address>
 						<rif:physical>
-							<rif:addressPart type="text">$util.encodeXml($locationValue)</rif:addressPart>
+							<rif:addressPart type="text">$util.encodeXml($physcial)</rif:addressPart>
                         </rif:physical>
 					</rif:address>
 
-					#set($locationNotes = $locationNotes + "&lt;p&gt;" + $physcial + "&lt;/p&gt;")
+					#set($locationNote = $physcial)
+					$locationNotes.add($locationNote)
 				#end
 			#end
 		</rif:location>
@@ -352,16 +353,16 @@
             </rif:relatedObject>
                 #end
             #end
-			
-			
-			
+
+
+
            	#showElementRifCS ("rif:subject"  "dc:subject.vivo:keyword"  " type=${quote}local${quote} $lang"  "rdf:PlainLiteral"  "")
             #showElementRifCS ("rif:subject"  "dc:subject.anzsrc:for"  " type=${quote}anzsrc-for${quote} $lang"  "rdf:resource"  "anzsrc")
             #showElementRifCS ("rif:subject"  "dc:subject.anzsrc:seo"  " type=${quote}anzsrc-seo${quote} $lang"  "rdf:resource"  "anzsrc")
-            
 
-			
-            
+
+
+
         #set ($value = $util.get($item, "dc:subject.anzsrc:toa.skos:prefLabel"))
         #if ("$!value" != "")
             <rif:subject type="anzsrc-toa">$util.encodeXml($value)</rif:subject>
@@ -372,8 +373,8 @@
             <rif:description type="full" $lang>$util.encodeXml($value)</rif:description>
         #end
 
-        #if ("$!locationNotes" != "")
-		<rif:description type="note" $lang>$locationNotes</rif:description>
+        #foreach($locationNote in $locationNotes)
+			<rif:description type="note" $lang>$locationNote</rif:description>
         #end
 
         #################
@@ -417,7 +418,7 @@
             </rif:rights>
         #end
         #################
-		
+
         #showRelatedInfo("dc:relation.swrc:Publication", "publication", "uri")
         #showRelatedInfo("dc:relation.bibo:Website", "website", "uri")
         #showRelatedInfo("dc:relation.vivo:Service", "service", "uri")
