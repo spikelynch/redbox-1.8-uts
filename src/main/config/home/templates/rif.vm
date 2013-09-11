@@ -182,7 +182,7 @@
 	    ## Data Item locations
 		<rif:location>
 
-			#set($locationNotes = [""])
+			#set($locationNotes = [])
 
 			## get data item locations from self-submission form （before publish）
 			#set($valueMap = $util.getList($item, "bibo:DataLocation"))
