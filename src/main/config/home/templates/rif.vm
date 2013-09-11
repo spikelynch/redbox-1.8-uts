@@ -223,9 +223,10 @@
 			#if ("$!urlLocation" != "")
 				#set($urls = $urlLocation.split('}'))
 				#foreach($webaddress in $urls)
+					#set($locationValue = $webaddress.split('--')[0])
 					<rif:address>
 						<rif:electronic type="url">
-							<rif:value>$webaddress</rif:value>
+							<rif:value>$locationValue</rif:value>
 						</rif:electronic>
 					</rif:address>
 
@@ -237,9 +238,10 @@
 			#if ("$!fileLocation" != "")
 				#set($files = $fileLocation.split('}'))
 				#foreach($file in $files)
+					#set($locationValue = $file.split('--')[0])
 					<rif:address>
 						<rif:electronic type="file">
-							<rif:value>$file</rif:value>
+							<rif:value>$locationValue</rif:value>
 						</rif:electronic>
 					</rif:address>
 
@@ -251,9 +253,10 @@
 			#if ("$!physcialLocation" != "")
 				#set($physcials = $physcialLocation.split('}'))
 				#foreach($physcial in $physcials)
+					#set($locationValue = $physcial.split('--')[0])
 					<rif:address>
 						<rif:physical>
-							<rif:addressPart type="text">$util.encodeXml($physcial)</rif:addressPart>
+							<rif:addressPart type="text">$util.encodeXml($locationValue)</rif:addressPart>
                         </rif:physical>
 					</rif:address>
 
@@ -365,8 +368,12 @@
         #end
 
         #set ($value = $util.get($item, "dc:description"))
-        #if ("$!value" != "" || "$!locationNotes" != "")
-            <rif:description type="full" $lang>&lt;p&gt;$util.encodeXml($value)&lt;/p&gt;$locationNotes</rif:description>
+        #if ("$!value" != "")
+            <rif:description type="full" $lang>$util.encodeXml($value)</rif:description>
+        #end
+
+        #if ("$!locationNotes" != "")
+		<rif:description type="note" $lang>$locationNotes</rif:description>
         #end
 
         #################
