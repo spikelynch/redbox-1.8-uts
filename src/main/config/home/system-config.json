@@ -494,6 +494,7 @@
         "skins": {
             "default": "default",
             "order": [
+	            "uts",
                 "local",
                 "dashboard",
                 "redbox"

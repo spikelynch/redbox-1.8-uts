@@ -1,0 +1,73 @@
+#macro(pluginList $plugins $type)
+    #foreach($plugin in $plugins)
+        <div class="pluginAbout" id="$plugin.id">
+            <h3>$plugin.name</h3>
+            $self.getAboutPage($plugin.id, $type)
+        </div>
+    #end
+#end
+#set($pageTitle = "About")
+<h2 id="page-heading"><span>About</span></h2>
+<div class="grid_16">
+    #set($contentTitle = "Description")
+    #parseTemplate("wrapping/content-block-open.vm")
+    <div class="article first">
+        <p><b>ReDBox version:</b> $systemConfig.getString("Unknown", "redbox.version.string")</p>
+		<p>ReDBox provides description and curation funtionality for the UTS Research Data Catalogue. The review workflow supported here allows Metadata Librarians and designated Faculty Reviewers to ensure that UTS research data collections are well described so that UTS publishes accurate, discoverable and usable information to the Australian National Data Commons <a href="http://researchdata.ands.org.au" style="color: #0099cc" target="_blank">Research Data Australia (RDA)</a>. </p>
+     	<p><b>Advice for Faculty Reviewers</b></p>
+		<p>Your role is primarily to ensure, as far as possible, that <ul>
+		<li>the Description of the data is accurate and sensible to a reader who has general familiarity with the research area but is not a specialist. Specialist acronyms or obscure jargon should be avoided or explained. </li>
+		<li>the Keywords include words that may be implicit within your disciplinary context, but will act as finding aids in a generalist collection like RDA.</li>
+		<li>Attribution has been given to all key project contributors, including (but not limited to) researchers and third party data providers (if any).</li>
+		</ul></p>
+	<p>To learn more about how to describe data collections, visit <a href="http://ands.org.au/guides/content-providers-guide.html" style="color: #0099cc" target="_blank"> the ANDS Content Providers Guide</a>.</p>	
+    </div>
+    <p/>
+    #parseTemplate("wrapping/content-block-close.vm")
+    #set($contentTitle = "Plugins")
+    #parseTemplate("wrapping/content-block-open.vm")
+    <div id="plugin-tabs">
+        <ul>
+            <li><a href="#indexer">Indexer</a></li>
+            <li><a href="#storage">Storage</a></li>
+            <li><a href="#harvester">Harvester</a></li>
+            <li><a href="#transformer">Transformer</a></li>
+            <li><a href="#access-control">Access control</a></li>
+            <li><a href="#authentication">Authentication</a></li>
+            <li><a href="#roles">Roles</a></li>
+            <li><a href="#subscriber">Subscriber</a></li>
+        </ul>
+        <div id="indexer">
+            #pluginList($self.indexerPlugins, "indexer")
+        </div>
+        <div id="storage">
+            #pluginList($self.storagePlugins, "storage")
+        </div>
+        <div id="harvester">
+            #pluginList($self.harvesterPlugins, "harvester")
+        </div>
+        <div id="transformer">
+            #pluginList($self.transformerPlugins, "transformer")
+        </div>
+        <div id="access-control">
+            #pluginList($self.accessControlPlugins, "access")
+        </div>
+        <div id="authentication">
+            #pluginList($self.authenticationPlugins, "authentication")
+        </div>
+        <div id="roles">
+            #pluginList($self.rolesPlugins, "roles")
+        </div>
+        <div id="subscriber">
+            #pluginList($self.subscriberPlugins, "subscriber")
+        </div>
+    </div>
+    #parseTemplate("wrapping/content-block-close.vm")
+</div>
+<script type="text/javascript">
+<!--
+    $(function() {
+        $("#plugin-tabs").tabs();
+    });
+-->
+</script>

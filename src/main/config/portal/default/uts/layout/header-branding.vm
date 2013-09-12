@@ -1,0 +1,13 @@
+#parse($page.getTemplate('layout/header-right.vm'))
+
+<div class="header">
+  <h1 id="branding">
+    <a href="$portalPath/home">
+	  <img alt="UTS Logo" src="$portalPath/images/utslogo.gif" align="left" height="30" /> 
+      UTS Research Data Catalogue: $page.portalName #if($pageTitle) - $pageTitle#end 
+	<img id="banner" alt="Think Change Do" src="$portalPath/images/right_banner.gif" align="right" height="30" /> 
+  </a>
+  </h1>
+</div>
+
+<div class="clear"></div>
