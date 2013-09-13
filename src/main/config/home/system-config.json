@@ -76,6 +76,10 @@
 				[
 					["auEduPersonSharedToken", "is", "bzZvUwtCB1OXRFi4ZV0ERnH0Hf0"]
 				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "gzgqT6mXfI2xCDkJe4C5MbI1WKs"]
+				]
 			],
 			"admin":[
 				[
@@ -122,6 +126,10 @@
 				[
 					["auEduPersonSharedToken", "is", "bzZvUwtCB1OXRFi4ZV0ERnH0Hf0"]
 				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "oJ2iHnXZ52k-uJHTGePxfJlvtzk"]
+				]
 			],
 			"researcher":[
 				[
@@ -147,11 +155,7 @@
 				]
 				,
 				[
-					["auEduPersonSharedToken", "is", "bzZvUwtCB1OXRFi4ZV0ERnH0Hf0"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "oJ2iHnXZ52k-uJHTGePxfJlvtzk"]
+					["auEduPersonSharedToken", "is", "SrOthXd2coVXqBD7LysG_uMRNYc"]
 				]
 			]
 		}
