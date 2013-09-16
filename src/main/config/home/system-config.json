@@ -52,6 +52,27 @@
 		"delimiter":";",
 		"rolePlugins":["SimpleShibbolethRoleManager"],
 		"SimpleShibbolethRoleManager":{
+			"admin":[
+				[
+					["auEduPersonSharedToken", "is", "5pgKpM8-mxw2QTi9jSVgbobQe4c"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "OjB_85bSX4yBXyQDZ7Ry_U5soN8"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "XqMBJT6CScmguPkk893vrDepYuk"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
+				]
+				,
+				[
+					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
+				]
+			],
 			"reviewer":[
 				[
 					["auEduPersonSharedToken", "is", "5pgKpM8-mxw2QTi9jSVgbobQe4c"]
@@ -79,27 +100,6 @@
 				,
 				[
 					["auEduPersonSharedToken", "is", "gzgqT6mXfI2xCDkJe4C5MbI1WKs"]
-				]
-			],
-			"admin":[
-				[
-					["auEduPersonSharedToken", "is", "5pgKpM8-mxw2QTi9jSVgbobQe4c"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "OjB_85bSX4yBXyQDZ7Ry_U5soN8"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "XqMBJT6CScmguPkk893vrDepYuk"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
 				]
 			],
 			"librarian":[
@@ -157,6 +157,8 @@
 				[
 					["auEduPersonSharedToken", "is", "SrOthXd2coVXqBD7LysG_uMRNYc"]
 				]
+			],
+			"guest":[
 			]
 		}
 	},
