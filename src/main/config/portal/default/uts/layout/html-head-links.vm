@@ -1,4 +1,6 @@
 ## placeholder for additional link elements
-<link rel="stylesheet" type="text/css" href="$portalPath/uts.css" />
-
+<link rel="stylesheet" type="text/css" href="$portalPath/css/uts.css" />
 <link rel="stylesheet" type="text/css" href="$portalPath/js/autocomplete/jquery.autocomplete.css" />
+<!--[if gte IE 6]>
+<link rel="stylesheet" type="text/css" href="$portalPath/css/uts-ie.css" />
+<![endif]-->
