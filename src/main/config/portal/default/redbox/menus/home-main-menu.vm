@@ -10,7 +10,7 @@
         #end
         #end
         <li>
-            #if($page.authentication.is_logged_in())
+            #if($page.authentication.is_admin() || $page.authentication.is_reviewer() || $page.authentication.is_librarian())
             <a id="new-record" href="#">Add a new dataset</a>
 			#else
             <a id="notify-record" href="$portalPath/workflows/submission">Notify us about a dataset</a>
