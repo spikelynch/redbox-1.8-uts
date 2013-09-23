@@ -189,9 +189,9 @@
 			  </property>
 		  </activation>
 		  <properties>
-			  <mintServer.hostname>test-redbox.research.uts.edu.au</mintServer.hostname>
+			  <mintServer.hostname>test-mint.research.uts.edu.au</mintServer.hostname>
 			  <redboxServer.hostname>test-redbox.research.uts.edu.au</redboxServer.hostname>
-			  <mintAmqBroker.hostname>test-redbox.research.uts.edu.au</mintAmqBroker.hostname>
+			  <mintAmqBroker.hostname>test-mint.research.uts.edu.au</mintAmqBroker.hostname>
 			  <mintServer.url.base>https://${mintServer.hostname}</mintServer.url.base>
 			  <redboxServer.url.base>https://${redboxServer.hostname}/redbox/</redboxServer.url.base>
 		  </properties>
@@ -207,9 +207,9 @@
 			  </property>
 		  </activation>
 		  <properties>
-			  <mintServer.hostname>redbox.research.uts.edu.au</mintServer.hostname>
+			  <mintServer.hostname>mint.research.uts.edu.au</mintServer.hostname>
 			  <redboxServer.hostname>redbox.research.uts.edu.au</redboxServer.hostname>
-			  <mintAmqBroker.hostname>redbox.research.uts.edu.au</mintAmqBroker.hostname>
+			  <mintAmqBroker.hostname>mint.research.uts.edu.au</mintAmqBroker.hostname>
 			  <mintServer.url.base>https://${mintServer.hostname}</mintServer.url.base>
 			  <redboxServer.url.base>https://${redboxServer.hostname}/redbox/</redboxServer.url.base>
 		  </properties>
