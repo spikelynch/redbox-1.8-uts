@@ -231,7 +231,7 @@
 					</rif:address>
 
 					#set($locationNote = $webaddress)
-					$locationNotes.add($locationNote)
+					#set($locationAdded = $locationNotes.add($locationNote))
 				#end
 			#end
 			## File(s)
