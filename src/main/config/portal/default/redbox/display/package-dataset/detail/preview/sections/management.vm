@@ -13,15 +13,40 @@
         </div>
         <dt>Location</dt>
         <div class="group">
-            #displayFirst("vivo:Location.vivo:webaddress" "URL")
-            #displayFirst("vivo:Location.vivo:physcials" "Stored At")
-            #displayFirst("vivo:Location.vivo:files" "Files")
-			#if($page.authentication.is_admin() || $page.authentication.is_reviewer() || $page.authentication.is_librarian())
-		        #displayFirst("vivo:Location.vivo:webaddress:private" "URL (Private)")
-		        #displayFirst("vivo:Location.vivo:physcials:private" "Stored At (Private)")
-		        #displayFirst("vivo:Location.vivo:files:private" "Files (Private)")
-			#end
+
+			<table>
+				<thead>
+					<tr>
+						<th>Privacy</th>
+						<th>Type</th>
+						<th>Location</th>
+						<th>Notes</th>
+					</tr>
+				</thead>
+				<tbody>
+					#set($locationList = $self.getList("bibo:DataLocation"))
+					#foreach($key in $locationList.keySet())
+						#set($locationValue = $locationList.get($key))
+						#set($privacy = $locationValue.get("dc:privacy"))
+						#set($type = $locationValue.get("dc:type"))
+						#set($location = $locationValue.get("dc:location"))
+						#set($note = $locationValue.get("dc:notes"))
+
+						#if ("$!privacy" == "public" ||
+						("$!privacy" == "private" && ($page.authentication.is_admin() || $page.authentication.is_reviewer() || $page.authentication.is_librarian()) ))
+							<tr>
+								<td> <label>$privacy</label> </td>
+								<td> <label>$type</label> </td>
+								<td> <label>$location</label> </td>
+								<td> <label>$note</label> </td>
+							</tr>
+						#end
+					#end
+
+				</tbody>
+			</table>
         </div>
+
         #displayFirst("redbox:retentionPeriod" "Retention Period")
         #displayFirst("dc:extent" "Extent or Quantity")
         #displayFirst("redbox:disposalDate" "Disposal Date")

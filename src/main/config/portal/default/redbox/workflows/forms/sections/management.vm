@@ -52,53 +52,92 @@
         'URL' or 'Stored At' fields must be entered. The 'Notes'
         field is optional.
     </div>
-    <div class="group">
-        <label class="validation-err-msg"
-            for="url"
-            data-validation-rule="test(notEmpty);when(blur,change,submit);
-                                    jsTest(
-                                        var url = ctx.find('input[id=vivo:Location.vivo:webaddress]').val();
-                                        var stored = ctx.find('input[id=vivo:Location.vivo:physcials]').val();
-                                        url = jQ.trim(url); stored = jQ.trim(stored);
-                                        r = (url == '') && (stored == '');
-                                    );
-                                    liveFor(.vlocation);">
-            At least one 'URL' or 'Stored At' value is required!
-        </label>
-        #fieldTitle("url" "URL(s)" false)
-        <div class="help-content" id="help-url">
-            <p>
-                A web address(es) where the research dataset/collection,
-                registry/repository, catalogue or index can be found.
-            </p>
-        </div>
-		<p> <input type="text" size="120" placeholder="urls" id="vivo:Location.vivo:webaddress" class="vlocation"
-				/></p>
-	    <p><input type="text" size="120" placeholder="urls" id="vivo:Location.vivo:webaddress:private"
-			          class="vlocation" /> Private Data item</p>
 
-	    #fieldTitle("Physical location" "Stored At" false)
-        <div class="help-content" id="help-vivo:Location.vivo:physcials">
-            Record physical location of the research dataset/collection,
-            registry/repository, catalogue or index, if applicable, eg.
-            University of X.
-        </div>
-		<p> <input type="text" size="120" placeholder="University of X" id="vivo:Location.vivo:physcials"
-		           class="vlocation" /></p>
-	    <p><input type="text" size="120" placeholder="University of X" id="vivo:Location.vivo:physcials:private"
-					  class="vlocation" /> Private Data item</p>
-
-	    #fieldTitle("files" "File(s)" false)
-		<div class="help-content" id="help-vivo:Location.vivo:files">
-			A File(s) where the research dataset/collection,
-			registry/repository, catalogue or index be stored, eg.
-			c:/
-		</div>
-		<p> <input type="text" size="120" placeholder="c:/" id="vivo:Location.vivo:files"
-				   class="vlocation" /></p>
-		<p><input type="text" size="120" placeholder="c:/" id="vivo:Location.vivo:files:private"
-					  class="vlocation" /> Private Data item</p>
-    </div>
+	<div>
+		<table class="input-list sortable">
+			<tbody>
+			<tr class="item-input-display sortable-item">
+				<td class="valign-middle">
+					<img class="facets-grip" src="$portalPath/images/icons/grippy.png" />
+				</td>
+				<td>
+					<table class="lookup">
+						<tbody>
+						<tr>
+							<td>
+								<label for="bibo:DataLocation.0.dc:privacy">Privacy:</label>
+							</td>
+							<td>
+								<select id="bibo:DataLocation.0.dc:privacy">
+									<option value="public" selected="selected">Public</option>
+									<option value="private">Private</option>
+								</select>
+							</td>
+							<td>
+								<label for="bibo:DataLocation.0.dc:type">Type:</label>
+							</td>
+							<td>
+								<select id="bibo:DataLocation.0.dc:type">
+									<option value="url" selected="selected">URL</option>
+									<option value="file">File</option>
+									<option value="physical">Physical location</option>
+								</select>
+							</td>
+							<td>
+								<label for="bibo:DataLocation.0.dc:location">Location:</label>
+							</td>
+							<td>
+								<input type="text" placeholder="location" size="25"
+									   id="bibo:DataLocation.0.dc:location" />
+							</td>
+							<td>
+								<label for="bibo:DataLocation.0.dc:notes">Notes:</label>
+							</td>
+							<td>
+								<input type="text" placeholder="notes" size="25"
+									   id="bibo:DataLocation.0.dc:notes" />
+							</td>
+						</tr>
+						##				<tr>
+						##					<td colspan="6">
+						##						<label class="validation-err-msg"
+						##							   id="dc:creator.foaf:Person.0.foaf:givenNameErrMsg"
+						##							   for="dc:creator.foaf:Person.0.foaf:givenName"
+						##							   data-validation-rule="test(notEmpty);when(blur,change,submit);
+						##                                                                jsTest(
+						##                                                                    var fid, gid, f, g, lid;
+						##                                                                    fid=id.replace('given', 'family');
+						##                                                                    gid=id.replace('family', 'given');
+						##                                                                    f=ctx.find('input[id='+fid+']').val();
+						##                                                                    g=ctx.find('input[id='+gid+']').val();
+						##                                                                    f=jQ.trim(f); g=jQ.trim(g);
+						##                                                                    r=(g=='')&&(f=='');
+						##                                                                    id=gid;
+						##																	lid=id+'ErrMsg';
+						##                                                                );
+						##                                                                liveFor(.creatorName);">
+						##							A creator's given name or family name is required!
+						##						</label>
+						##					</td>
+						##				</tr>
+						</tbody>
+					</table>
+				</td>
+				<td>
+				</td>
+				<td class="valign-middle"><a class="delete-item" href="#">delete</a></td>
+			</tr>
+			</tbody>
+			<tfoot>
+			<tr>
+				<td colspan="3"></td>
+				<td colspan="6">
+					<input type="button" class="button add-another-item" value="Add URL" />
+				</td>
+			</tr>
+			</tfoot>
+		</table>
+	</div>
 
     #fieldTitle("redbox:retentionPeriod" "Retention Period" true)
     <div class="help-content" id="help-redbox:retentionPeriod">
