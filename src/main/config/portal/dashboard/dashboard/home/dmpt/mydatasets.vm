@@ -23,7 +23,8 @@
 	            <!--<a href="#" onclick="change_owner('$oid');" title="Delete Plan"><img alt="Delete Record" src="$portalPath/images/icons/delete.png" title="Delete Record"></a>-->
 	            <a onclick="manage_access('$oid');" href="#" title="#displayMessage('researcher-dashboard.home.mydatasets.manage.access')"><img alt="#displayMessage('researcher-dashboard.home.mydatasets.manage.access')" src="$portalPath/images/icons/application_key.png" title="Manage Record"></a>
 				<a id="admin-clone-link$oid" class="admin-clone-link" rel="$oid" href="#"><img alt="#displayMessage('researcher-dashboard.home.mydatasets.manage.clone')" src="$portalPath/images/icons/comments_add.png" title="#displayMessage('researcher-dashboard.home.mydatasets.manage.clone')"></a>
-	       </td>
+				<a class="admin-delete-link" rel="$oid" title="$page.escapeHtml($item.get("dc_title"))" href="#">Delete Object</a>
+	        </td>
 	    </tr>
 	#end
     </tbody>
