@@ -133,7 +133,7 @@
 	#set($ciGivenName = $util.get($item, "dc:creator.foaf:Person.foaf:givenName"))
 	"dc:creator.foaf:Person.1.foaf:name": "$ciFamilyName, $ciGivenName",
 	"dc:creator.foaf:Person.1.redbox:isPrimaryInvestigator": "on",
-	
+
 	#set($cList = $util.getList($item, "dc:contributor.locrel:clb"))
 	#set($order = 2)
 	#if ($cList.size() > 0)
@@ -144,11 +144,17 @@
     	#multiValuedMappedProperty($slot "dc:creator.foaf:Person" "foaf:Agent.foaf:givenName" "foaf:givenName" $order)
     	#multiValuedMappedProperty($slot "dc:creator.foaf:Person" "foaf:Agent.foaf:familyName" "foaf:familyName" $order)
     	#multiValuedMappedProperty($slot "dc:creator.foaf:Person" "foaf:Agent.dc:identifier" "dc:identifier" $order)
-    	
+
+		#set($titleValue = $slot.get("foaf:Agent.foaf:title"))
 		#set($familyNameValue = $slot.get("foaf:Agent.foaf:familyName"))
 		#set($givenNameValue = $slot.get("foaf:Agent.foaf:givenName"))
 		#if ("$!familyNameValue" != "") 
 			"dc:creator.foaf:Person.${order}.foaf:name": "$familyNameValue, $givenNameValue",
+			#set($order1 = $order - 1)
+			"dc:contributor.locrel:clb.${order1}.foaf:Agent": "$titleValue $givenNameValue $familyNameValue"
+##			"dc:contributor.locrel:clb.${order1}.foaf:Agent.foaf:title": "$titleValue"
+##			"dc:contributor.locrel:clb.${order1}.foaf:Agent.foaf:familyName": "$familyNameValue"
+##			"dc:contributor.locrel:clb.${order1}.foaf:Agent.foaf:givenName": "$givenNameValue"
 		#end
     	#set($order = $order + 1)
     #end
