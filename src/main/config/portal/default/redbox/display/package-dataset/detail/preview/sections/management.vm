@@ -71,7 +71,20 @@
 
         #displayFirst("locrel:dtm.foaf:Agent.foaf:name" "Data Custodian")
         #displayFirst("foaf:Organization.skos:prefLabel" "Data Affiliation")
-        #displayUrlList("foaf:fundedBy.foaf:Agent" "Funding Body/s" "dc:identifier" "skos:prefLabel")
+
+		<dt>Funding Body/s</dt>
+		<dd>
+		    #set($fundingBodyList = $self.getList("foaf:fundedBy.foaf:Agent"))
+			<ol>
+			    #foreach($key in $fundingBodyList.keySet())
+				    #set($fundingBody = $fundingBodyList.get($key))
+					<li>
+						#set($fundingBodyLabel = $fundingBody.get("skos:prefLabel"))
+						$fundingBodyLabel
+					</li>
+			    #end
+			</ol>
+		</dd>
 
         <dt>Grant Numbers</dt>
         <dd>
