@@ -195,6 +195,11 @@
 
 	#mapTo('redbox:retentionPeriod.dc:date', 'redbox:retentionPeriod')
 
+	## Embargo
+	#mapTo('redbox:embargo.dc:date', 'redbox:embargo.dc:date')
+	#mapTo('redbox:embargo.skos:note', 'redbox:embargo.skos:note')
+	"redbox:embargo.redbox:isEmbargoed": "redbox:embargo.redbox:isEmbargoed"
+
 	## Data item locations
 	#set($order = 1)
 	#set($valueMap = $util.getList($item, "bibo:DataLocation"))

@@ -815,6 +815,33 @@
                             "type": "h1",
                             "content": "self-submission.heading.label.submission"
                         },
+						{
+							"component-type": "text-block",
+							"type": "h4",
+							"content": "dataset.embargo.heading"
+						},
+						{
+							"component-type": "checkbox",
+							"field-name": "redbox:embargo.redbox:isEmbargoed",
+							"box-for": "",
+							"boxes": [
+								{
+									"label": "dataset.embargo.checkbox.label",
+								}
+							]
+						},
+						{
+							"component-type": "text-input",
+							"field-name": "redbox:embargo.dc:date",
+							"label": "dataset.embargo.date.label",
+							"additional-classes":"dateYMD"
+						},
+						{
+							"component-type": "textarea",
+							"field-name": "redbox:embargo.skos:note",
+							"label": "dataset.embargo.notes.label",
+							"content":""
+						},
                         {
                             "component-type": "textarea",
                             "field-name": "skos:note.0.dc:description",
