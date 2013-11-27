@@ -462,3 +462,330 @@ var DatalocationWidgetBuilder = function($, jaffa) {
 	jaffa.widgets.registerWidget("jaffaDatalocation", textClass);
 }
 $.requestWidgetLoad(DatalocationWidgetBuilder);
+
+
+
+var RelatedURLInfoWidgetBuilder = function($, jaffa) {
+	var textClass = jaffa.widgets.baseWidget.extend({
+		field: null,
+		oldField: null,
+		v2rules: {},
+
+		deleteWidget: function() {
+			var idFieldId= this.field+"dc:identifier";
+			var titleFieldId= this.field+"dc:title";
+			var noteFieldId= this.field+"skos:note";
+			jaffa.form.ignoreField(idFieldId);
+			jaffa.form.ignoreField(titleFieldId);
+			jaffa.form.ignoreField(noteFieldId);
+			this.getContainer().remove();
+		},
+		// Identity has been altered, adjust the DOM for all fields
+		domUpdate: function(from, to, depth) {
+			this._super(from, to, depth);
+			// Store, we'll need them to notify Jaffa later
+			this.oldField = this.field;
+			// Replace the portion of the ID that changed
+			this.field = this.oldField.domUpdate(from, to, depth);
+			// Update DOM but constrain searches to container, since there may
+			//  be very temporary duplicate IDs as sort orders swap
+			var container = this.getContainer();
+			container.find("input[id=\""+this.oldField+"dc:identifier\"]").attr("id", this.field+"dc:identifier");
+			container.find("input[id=\""+this.oldField+"dc:title\"]").attr("id", this.field+"dc:title");
+			container.find("input[id=\""+this.oldField+"skos:note\"]").attr("id", this.field+"skos:note");
+			container.attr("id", container.attr("id").replace(from, to));
+
+			// Tell Jaffa to ignore the field's this widget used to manage
+			var idFieldId= this.oldField+"dc:identifier";
+			var titleFieldId= this.oldField+"dc:title";
+			var noteFieldId= this.oldField+"skos:note";
+			jaffa.form.ignoreField(idFieldId);
+			jaffa.form.ignoreField(titleFieldId);
+			jaffa.form.ignoreField(noteFieldId);
+
+			idFieldId= this.field+"dc:identifier";
+			titleFieldId= this.field+"dc:title";
+			noteFieldId= this.field+"skos:note";
+			jaffa.form.addField(idFieldId, this.id());
+			jaffa.form.addField(titleFieldId, this.id());
+			jaffa.form.addField(noteFieldId, this.id());
+
+		},
+		// Notify Jaffa that field <=> widget relations need to be updated
+		//  This is called separately from above to avoid duplicate IDs that
+		//   may occur whilst DOM alterations are occuring
+		jaffaUpdate: function() {
+			// Only synch if an update has effected this widget
+			if (this.oldField != null) {
+				this._super();
+				var idFieldId= this.field+"dc:identifier";
+				var titleFieldId= this.field+"dc:title";
+				var noteFieldId= this.field+"skos:note";
+				jaffa.form.addField(idFieldId, this.id());
+				jaffa.form.addField(titleFieldId, this.id());
+				jaffa.form.addField(noteFieldId, this.id());
+				this.oldField = null;
+			}
+			// TODO: Validation alterations ?? Doesn't seem to matter
+		},
+
+		// Whereas init() is the constructor, this method is called after Jaffa
+		// knows about us and needs us to build UI elements and modify the form.
+		buildUi: function() {
+			var ui = this.getContainer();
+			ui.html("");
+
+			// Field
+			this.field = this.getConfig("field");
+			if (this.field == null) {
+				// TODO: Testing
+				jaffa.logError("No field name provided for widget '"+this.id()+"'. This is mandatory!");
+				return;
+			}
+			if(this.field.indexOf(".", this.field.length - 1) == -1) {
+				this.field = this.field+".";
+			}
+
+			var idFieldId = this.field + "dc:identifier";
+			ui.append("<label for=\"" + idFieldId + "\" class=\"widgetLabel peopleWidgetLabel\">URL</label>");
+			ui.append("<input type=\"text\" id=\"" + idFieldId + "\" class=\"jaffa-field\" />");
+
+			var titleFieldId= this.field+"dc:title";
+			ui.append("<label for=\""+titleFieldId+"\" class=\"widgetLabel peopleWidgetLabel\">Title</label>");
+			ui.append("<input type=\"text\" id=\""+titleFieldId+"\" class=\"jaffa-field\" />");
+
+			var noteFieldId= this.field+"skos:note";
+			ui.append("<label for=\""+noteFieldId+"\" class=\"widgetLabel peopleWidgetLabel\">Notes</label>");
+			ui.append("<input type=\"text\" id=\""+noteFieldId+"\" class=\"jaffa-field\" />");
+
+			jaffa.form.addField(idFieldId,  this.id());
+			jaffa.form.addField(titleFieldId,  this.id());
+			jaffa.form.addField(noteFieldId,  this.id());
+
+			// Add our custom classes
+			this.applyBranding(ui);
+		},
+
+		// If any of the fields we told Jaffa we manage
+		//   are changed it will call this.
+		change: function(fieldName, isValid) {
+			if (fieldName == this.field && this.labelField != null) {
+				var label = jaffa.form.field(fieldName).find(":selected").text();
+				jaffa.form.value(this.labelField, label);
+			}
+		},
+
+		// Constructor... any user provided config and the
+		//    jQuery container this was called against.
+		init: function(config, container) {
+			this._super(config, container);
+		}
+	});
+
+	jaffa.widgets.registerWidget("jaffaRelatedURLInfo", textClass);
+}
+$.requestWidgetLoad(RelatedURLInfoWidgetBuilder);
+
+
+
+
+var RelatedDataWidgetBuilder = function($, jaffa) {
+	var textClass = jaffa.widgets.baseWidget.extend({
+		field: null,
+		oldField: null,
+		v2rules: {},
+
+		deleteWidget: function() {
+			var relationshipFieldId= this.field+"vivo:Relationship.rdf:PlainLiteral";
+			var titleFieldId= this.field+"dc:title";
+			var identifierFieldId= this.field+"dc:identifier";
+			var notesFieldId= this.field+"skos:note";
+			var originFieldId= this.field+"redbox:origin";
+			var publishToRDAFieldId= this.field+"redbox:publish";
+			jaffa.form.ignoreField(relationshipFieldId);
+			jaffa.form.ignoreField(titleFieldId);
+			jaffa.form.ignoreField(identifierFieldId);
+			jaffa.form.ignoreField(notesFieldId);
+			jaffa.form.ignoreField(originFieldId);
+			jaffa.form.ignoreField(publishToRDAFieldId);
+			this.getContainer().remove();
+		},
+		// Identity has been altered, adjust the DOM for all fields
+		domUpdate: function(from, to, depth) {
+			this._super(from, to, depth);
+			// Store, we'll need them to notify Jaffa later
+			this.oldField = this.field;
+			// Replace the portion of the ID that changed
+			this.field = this.oldField.domUpdate(from, to, depth);
+			// Update DOM but constrain searches to container, since there may
+			//  be very temporary duplicate IDs as sort orders swap
+			var container = this.getContainer();
+			container.find("input[id=\""+this.oldField+"vivo:Relationship.rdf:PlainLiteral\"]").attr("id", this.field+"vivo:Relationship.rdf:PlainLiteral");
+			container.find("input[id=\""+this.oldField+"dc:title\"]").attr("id", this.field+"dc:title");
+			container.find("input[id=\""+this.oldField+"dc:identifier\"]").attr("id", this.field+"dc:identifier");
+			container.find("input[id=\""+this.oldField+"skos:note\"]").attr("id", this.field+"skos:note");
+			container.find("input[id=\"" + this.oldField + "redbox:origin\"]").attr("id", this.field + "redbox:origin");
+			container.find("input[id=\"" + this.oldField + "redbox:publish\"]").attr("id", this.field + "redbox:publish");
+			container.attr("id", container.attr("id").replace(from, to));
+
+			// Tell Jaffa to ignore the field's this widget used to manage
+			var relationshipFieldId = this.oldField + "vivo:Relationship.rdf:PlainLiteral";
+			var titleFieldId = this.oldField + "dc:title";
+			var identifierFieldId = this.oldField + "dc:identifier";
+			var notesFieldId = this.oldField + "skos:note";
+			var originFieldId = this.oldField + "redbox:origin";
+			var publishToRDAFieldId = this.oldField + "redbox:publish";
+			jaffa.form.ignoreField(relationshipFieldId);
+			jaffa.form.ignoreField(titleFieldId);
+			jaffa.form.ignoreField(identifierFieldId);
+			jaffa.form.ignoreField(notesFieldId);
+			jaffa.form.ignoreField(originFieldId);
+			jaffa.form.ignoreField(publishToRDAFieldId);
+
+			relationshipFieldId = this.field + "vivo:Relationship.rdf:PlainLiteral";
+			titleFieldId = this.field + "dc:title";
+			identifierFieldId = this.field + "dc:identifier";
+			notesFieldId = this.field + "skos:note";
+			originFieldId = this.field + "redbox:origin";
+			publishToRDAFieldId = this.field + "redbox:publish";
+			jaffa.form.addField(relationshipFieldId, this.id());
+			jaffa.form.addField(titleFieldId, this.id());
+			jaffa.form.addField(identifierFieldId, this.id());
+			jaffa.form.addField(notesFieldId, this.id());
+			jaffa.form.addField(originFieldId, this.id());
+			jaffa.form.addField(publishToRDAFieldId, this.id());
+
+		},
+		// Notify Jaffa that field <=> widget relations need to be updated
+		//  This is called separately from above to avoid duplicate IDs that
+		//   may occur whilst DOM alterations are occuring
+		jaffaUpdate: function() {
+			// Only synch if an update has effected this widget
+			if (this.oldField != null) {
+				this._super();
+				var relationshipFieldId = this.field + "vivo:Relationship.rdf:PlainLiteral";
+				var titleFieldId = this.field + "dc:title";
+				var identifierFieldId = this.field + "dc:identifier";
+				var notesFieldId = this.field + "skos:note";
+				var originFieldId = this.field + "redbox:origin";
+				var publishToRDAFieldId = this.field + "redbox:publish";
+				jaffa.form.addField(relationshipFieldId, this.id());
+				jaffa.form.addField(titleFieldId, this.id());
+				jaffa.form.addField(identifierFieldId, this.id());
+				jaffa.form.addField(notesFieldId, this.id());
+				jaffa.form.addField(originFieldId, this.id());
+				jaffa.form.addField(publishToRDAFieldId, this.id());
+				this.oldField = null;
+			}
+			// TODO: Validation alterations ?? Doesn't seem to matter
+		},
+
+		// Whereas init() is the constructor, this method is called after Jaffa
+		// knows about us and needs us to build UI elements and modify the form.
+		buildUi: function() {
+			var ui = this.getContainer();
+			ui.html("");
+
+			// Field
+			this.field = this.getConfig("field");
+			if (this.field == null) {
+				// TODO: Testing
+				jaffa.logError("No field name provided for widget '"+this.id()+"'. This is mandatory!");
+				return;
+			}
+			if(this.field.indexOf(".", this.field.length - 1) == -1) {
+				this.field = this.field+".";
+			}
+
+			var relationshipFieldId = this.field + "vivo:Relationship.rdf:PlainLiteral";
+			ui.append("<label for=\""+relationshipFieldId+"\" class=\"widgetLabel peopleWidgetLabel\">Relationship:</label>");
+			ui.append("<select name=\"relationship\" id=\""+relationshipFieldId+"\" class=\"jaffa-field\" />");
+
+			var option = document.createElement("option");
+			option.text = "Has association with:";
+			option.value = "hasAssociationWith";
+			var select = document.getElementById(relationshipFieldId);
+			select.appendChild(option);
+
+			var option1 = document.createElement("option");
+			option1.text = "Describes";
+			option1.value = "describes";
+			select.appendChild(option1);
+
+			var option11 = document.createElement("option");
+			option11.text = "Described by:";
+			option11.value = "isDescribedBy";
+			select.appendChild(option11);
+
+			var option12 = document.createElement("option");
+			option12.text = "Has part:";
+			option12.value = "hasPart";
+			select.appendChild(option12);
+
+			var option13 = document.createElement("option");
+			option13.text = "Part of:";
+			option13.value = "isPartOf";
+			select.appendChild(option13);
+
+			var option15 = document.createElement("option");
+			option15.text = "Derived from:";
+			option15.value = "isDerivedFrom";
+			select.appendChild(option15);
+
+			var option14 = document.createElement("option");
+			option14.text = "Has derivation:";
+			option14.value = "hasDerivedCollection";
+			select.appendChild(option14);
+
+			var titleFieldId = this.field + "dc:title";
+			ui.append("<label for=\""+titleFieldId+"\" class=\"widgetLabel peopleWidgetLabel\">Title:</label>");
+			ui.append("<input type=\"text\" id=\""+titleFieldId+"\" class=\"jaffa-field\" />");
+
+			var identifierFieldId = this.field + "dc:identifier";
+			ui.append("<label for=\"" + identifierFieldId + "\" class=\"widgetLabel peopleWidgetLabel\">Data URL:</label>");
+			ui.append("<input type=\"text\" id=\"" + identifierFieldId + "\" class=\"jaffa-field\" />");
+
+			ui.append("<br>");
+
+			var notesFieldId = this.field + "skos:note";
+			ui.append("<label for=\""+notesFieldId+"\" class=\"widgetLabel peopleWidgetLabel\">Notes:</label>");
+			ui.append("<input type=\"text\" id=\""+notesFieldId+"\" class=\"jaffa-field\" />");
+
+			var originFieldId = this.field + "redbox:origin";
+			ui.append("<label for=\"" + originFieldId + "\" class=\"widgetLabel peopleWidgetLabel\">Local related data:</label>");
+			ui.append("<input type=\"checkbox\" id=\"" + originFieldId + "\" class=\"jaffa-field\" />");
+
+			var publishToRDAFieldId = this.field + "redbox:publish";
+			ui.append("<label for=\"" + publishToRDAFieldId + "\" class=\"widgetLabel peopleWidgetLabel\">Publish to RDA:</label>");
+			ui.append("<input type=\"checkbox\" id=\"" + publishToRDAFieldId + "\" class=\"jaffa-field\" />");
+
+			jaffa.form.addField(relationshipFieldId,  this.id());
+			jaffa.form.addField(titleFieldId,  this.id());
+			jaffa.form.addField(identifierFieldId,  this.id());
+			jaffa.form.addField(notesFieldId,  this.id());
+			jaffa.form.addField(originFieldId, this.id());
+			jaffa.form.addField(publishToRDAFieldId, this.id());
+
+			// Add our custom classes
+			this.applyBranding(ui);
+		},
+
+		// If any of the fields we told Jaffa we manage
+		//   are changed it will call this.
+		change: function(fieldName, isValid) {
+			if (fieldName == this.field && this.labelField != null) {
+				var label = jaffa.form.field(fieldName).find(":selected").text();
+				jaffa.form.value(this.labelField, label);
+			}
+		},
+
+		// Constructor... any user provided config and the
+		//    jQuery container this was called against.
+		init: function(config, container) {
+			this._super(config, container);
+		}
+	});
+
+	jaffa.widgets.registerWidget("jaffaRelatedData", textClass);
+}
+$.requestWidgetLoad(RelatedDataWidgetBuilder);

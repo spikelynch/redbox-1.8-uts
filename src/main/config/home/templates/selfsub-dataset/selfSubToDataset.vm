@@ -200,6 +200,60 @@
 	#mapTo('redbox:embargo.skos:note', 'redbox:embargo.skos:note')
 	"redbox:embargo.redbox:isEmbargoed": "redbox:embargo.redbox:isEmbargoed"
 
+	## Related Publications
+	#set($order = 1)
+	#set($valueMap = $util.getList($item, "dc:relation.swrc:Publication"))
+	#foreach($key in $valueMap.keySet())
+
+		#set($id = $valueMap.get($key).get("dc:identifier"))
+		#set($title = $valueMap.get($key).get("dc:title"))
+		#set($note = $valueMap.get($key).get("skos:note"))
+
+		"dc:relation.swrc:Publication.${order}.dc:identifier": "$id"
+		"dc:relation.swrc:Publication.${order}.dc:title": "$title"
+		"dc:relation.swrc:Publication.${order}.skos:note": "$note"
+
+		#set($order = $order + 1)
+	#end
+
+	## Related Websites
+	#set($order = 1)
+	#set($valueMap = $util.getList($item, "dc:relation.bibo:Website"))
+	#foreach($key in $valueMap.keySet())
+
+		#set($id = $valueMap.get($key).get("dc:identifier"))
+		#set($title = $valueMap.get($key).get("dc:title"))
+		#set($note = $valueMap.get($key).get("skos:note"))
+
+		"dc:relation.bibo:Website.${order}.dc:identifier": "$id"
+		"dc:relation.bibo:Website.${order}.dc:title": "$title"
+		"dc:relation.bibo:Website.${order}.skos:note": "$note"
+
+		#set($order = $order + 1)
+	#end
+
+	## Related Data
+	#set($order = 1)
+	#set($valueMap = $util.getList($item, "dc:relation.vivo:Dataset"))
+	#foreach($key in $valueMap.keySet())
+
+		#set($relationship = $valueMap.get($key).get("vivo:Relationship.rdf:PlainLiteral"))
+		#set($title = $valueMap.get($key).get("dc:title"))
+		#set($note = $valueMap.get($key).get("skos:note"))
+		#set($id = $valueMap.get($key).get("dc:identifier"))
+		#set($origin = $valueMap.get($key).get("redbox:origin"))
+		#set($publish = $valueMap.get($key).get("redbox:publish"))
+
+		"dc:relation.vivo:Dataset.${order}.vivo:Relationship.rdf:PlainLiteral": "$relationship"
+		"dc:relation.vivo:Dataset.${order}.dc:title": "$title"
+		"dc:relation.vivo:Dataset.${order}.skos:note": "$note"
+		"dc:relation.vivo:Dataset.${order}.dc:identifier": "$id"
+		"dc:relation.vivo:Dataset.${order}.redbox:origin": "$origin"
+		"dc:relation.vivo:Dataset.${order}.redbox:publish": "$publish"
+
+		#set($order = $order + 1)
+	#end
+
 	## Data item locations
 	#set($order = 1)
 	#set($valueMap = $util.getList($item, "bibo:DataLocation"))

@@ -1,0 +1,26 @@
+{
+    "steps": {
+        "About": {
+            "Next": "Aim"
+        },
+        "Aim": {
+            "Back": "About",
+            "Next": "Associates"
+        },
+        "Associates": {
+            "Back": "Aim",
+            "Next": "Archive"
+        },
+        "Archive": {
+            "Back": "Associates",
+            "Next": "Affiliations"
+        },
+        "Affiliations": {
+        	"Back": "Archive",
+            "Next": "Access and Publication"
+        },
+        "Access and Publication": {
+        	"Back": "Affiliations"
+        }
+    }
+}
