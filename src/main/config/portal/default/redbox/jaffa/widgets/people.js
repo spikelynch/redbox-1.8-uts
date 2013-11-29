@@ -789,3 +789,169 @@ var RelatedDataWidgetBuilder = function($, jaffa) {
 	jaffa.widgets.registerWidget("jaffaRelatedData", textClass);
 }
 $.requestWidgetLoad(RelatedDataWidgetBuilder);
+
+var CitationDatesWidgetBuilder = function($, jaffa) {
+	var textClass = jaffa.widgets.baseWidget.extend({
+		field: null,
+		oldField: null,
+		v2rules: {},
+
+		deleteWidget: function() {
+			var dateFieldId= this.field+"rdf:PlainLiteral";
+			var typeFieldId= this.field+"dc:type.rdf:PlainLiteral";
+//			var identifierFieldId= this.field+"dc:identifier";
+			jaffa.form.ignoreField(typeFieldId);
+			jaffa.form.ignoreField(dateFieldId);
+//			jaffa.form.ignoreField(identifierFieldId);
+			this.getContainer().remove();
+		},
+		// Identity has been altered, adjust the DOM for all fields
+		domUpdate: function(from, to, depth) {
+			this._super(from, to, depth);
+			// Store, we'll need them to notify Jaffa later
+			this.oldField = this.field;
+			// Replace the portion of the ID that changed
+			this.field = this.oldField.domUpdate(from, to, depth);
+			// Update DOM but constrain searches to container, since there may
+			//  be very temporary duplicate IDs as sort orders swap
+			var container = this.getContainer();
+			container.find("input[id=\""+this.oldField+"rdf:PlainLiteral\"]").attr("id", this.field+"rdf:PlainLiteral");
+			container.find("input[id=\""+this.oldField+"dc:type.rdf:PlainLiteral\"]").attr("id", this.field+"dc:type.rdf:PlainLiteral");
+//			container.find("input[id=\""+this.oldField+"dc:identifier\"]").attr("id", this.field+"dc:identifier");
+			container.attr("id", container.attr("id").replace(from, to));
+
+			// Tell Jaffa to ignore the field's this widget used to manage
+			var dateFieldId = this.oldField + "rdf:PlainLiteral";
+			var typeFieldId = this.oldField + "dc:type.rdf:PlainLiteral";
+//			var identifierFieldId = this.oldField + "dc:identifier";
+			jaffa.form.ignoreField(dateFieldId);
+			jaffa.form.ignoreField(typeFieldId);
+//			jaffa.form.ignoreField(identifierFieldId);
+
+			dateFieldId = this.field + "rdf:PlainLiteral";
+			typeFieldId = this.field + "dc:type.rdf:PlainLiteral";
+//			identifierFieldId = this.field + "dc:identifier";
+			jaffa.form.addField(dateFieldId, this.id());
+			jaffa.form.addField(typeFieldId, this.id());
+//			jaffa.form.addField(identifierFieldId, this.id());
+		},
+		// Notify Jaffa that field <=> widget relations need to be updated
+		//  This is called separately from above to avoid duplicate IDs that
+		//   may occur whilst DOM alterations are occuring
+		jaffaUpdate: function() {
+			// Only synch if an update has effected this widget
+			if (this.oldField != null) {
+				this._super();
+				var dateFieldId = this.field + "rdf:PlainLiteral";
+				var typeFieldId = this.field + "dc:type.rdf:PlainLiteral";
+//				var identifierFieldId = this.field + "dc:identifier";
+				jaffa.form.addField(dateFieldId, this.id());
+				jaffa.form.addField(typeFieldId, this.id());
+//				jaffa.form.addField(identifierFieldId, this.id());
+				this.oldField = null;
+			}
+			// TODO: Validation alterations ?? Doesn't seem to matter
+		},
+
+		// Whereas init() is the constructor, this method is called after Jaffa
+		// knows about us and needs us to build UI elements and modify the form.
+		buildUi: function() {
+			var ui = this.getContainer();
+			ui.html("");
+
+			// Field
+			this.field = this.getConfig("field");
+			if (this.field == null) {
+				// TODO: Testing
+				jaffa.logError("No field name provided for widget '"+this.id()+"'. This is mandatory!");
+				return;
+			}
+			if(this.field.indexOf(".", this.field.length - 1) == -1) {
+				this.field = this.field+".";
+			}
+
+			var dateFieldId = this.field + "rdf:PlainLiteral";
+			ui.append("<input type=\"text\" placeholder=\"YYYY-MM-DD\" class=\"dateYMD\" id=\"" + dateFieldId + "\" class=\"jaffa-field\" />");
+			ui.append("<label for=\"" + dateFieldId + "\" class=\"widgetLabel peopleWidgetLabel\">Date is:</label>");
+
+			var typeFieldId = this.field + "dc:type.rdf:PlainLiteral";
+			ui.append("<select name=\"type\" id=\""+typeFieldId+"\" class=\"jaffa-field\" />");
+
+			var option = document.createElement("option");
+			option.text = "Date Available";
+			option.value = "available";
+			var select = document.getElementById(typeFieldId);
+			select.appendChild(option);
+
+			var option1 = document.createElement("option");
+			option1.text = "Date Created";
+			option1.value = "created";
+			select.appendChild(option1);
+
+			var option11 = document.createElement("option");
+			option11.text = "Date (Other)";
+			option11.value = "date";
+			select.appendChild(option11);
+
+			var option12 = document.createElement("option");
+			option12.text = "Date Accepted";
+			option12.value = "dateAccepted";
+			select.appendChild(option12);
+
+			var option13 = document.createElement("option");
+			option13.text = "Date Submitted";
+			option13.value = "dateSubmitted";
+			select.appendChild(option13);
+
+			var option15 = document.createElement("option");
+			option15.text = "Publication Date (End)";
+			option15.value = "endPublicationDate";
+			select.appendChild(option15);
+
+			var option14 = document.createElement("option");
+			option14.text = "Date Issued";
+			option14.value = "issued";
+			select.appendChild(option14);
+
+			var option16 = document.createElement("option");
+			option16.text = "Date Modified";
+			option16.value = "modified";
+			select.appendChild(option16);
+
+			var option17 = document.createElement("option");
+			option17.text = "Publication Date (Start)";
+			option17.value = "startPublicationDate";
+			select.appendChild(option17);
+
+			var option18 = document.createElement("option");
+			option18.text = "Date Valid";
+			option18.value = "valid";
+			select.appendChild(option18);
+
+			jaffa.form.addField(dateFieldId,  this.id());
+			jaffa.form.addField(typeFieldId,  this.id());
+//			jaffa.form.addField(identifierFieldId,  this.id());
+
+			// Add our custom classes
+			this.applyBranding(ui);
+		},
+
+		// If any of the fields we told Jaffa we manage
+		//   are changed it will call this.
+		change: function(fieldName, isValid) {
+			if (fieldName == this.field && this.labelField != null) {
+				var label = jaffa.form.field(fieldName).find(":selected").text();
+				jaffa.form.value(this.labelField, label);
+			}
+		},
+
+		// Constructor... any user provided config and the
+		//    jQuery container this was called against.
+		init: function(config, container) {
+			this._super(config, container);
+		}
+	});
+
+	jaffa.widgets.registerWidget("jaffaCitationDates", textClass);
+}
+$.requestWidgetLoad(CitationDatesWidgetBuilder);

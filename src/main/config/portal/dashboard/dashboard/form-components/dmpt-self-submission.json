@@ -17,10 +17,14 @@
         },
         "Affiliations": {
         	"Back": "Archive",
-            "Next": "Access and Publication"
+            "Next": "Citation"
         },
+		"Citation": {
+			"Back": "Affiliations",
+			"Next": "Access and Publication"
+		},
         "Access and Publication": {
-        	"Back": "Affiliations"
+        	"Back": "Citation"
         }
     }
 }
