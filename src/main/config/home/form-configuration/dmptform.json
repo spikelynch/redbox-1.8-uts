@@ -213,7 +213,17 @@
                         },
                         {
                             "component-type":"transition-control",
-                            "transitions":[{"name":"Next", "form-submit-action":"save", "type": "button"}]
+                            "transitions":[
+	                            {
+		                            "name": "Back",
+		                            "type": "button"
+	                            },
+	                            {
+		                            "name":"Next",
+		                            "form-submit-action":"save",
+		                            "type": "button"
+	                            }
+                            ]
                         },
                         {
                             "component-type": "transition-control",
@@ -451,27 +461,47 @@
                             "label":"",
                             "additional-classes":""
                         },
-                        {
-                            "component-type":"transition-control",
-    					   "transitions": [
-        									{
-            									"name": "Save and close",
-            									"form-submit-action": "save",
-            									"type": "button",
-            									"close": true,
-            									"closeUrl": "dmpt/details",
-            									"object-metadata-params": [
-                															{
-                    															"key": "generatePDF",
-                    															"value": "true"
-                															},
-                															{
-                    															"key": "dataStructureComplete",
-                    															"value": "true"
-                															}
-            															 ]
-        									}
-    									 ]
+
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Back",
+				                    "type": "button"
+			                    },
+			                    {
+				                    "name": "Next",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    }
+		                    ]
+	                    },
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Save",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    },
+			                    {
+                                "name": "Save and close",
+                                "form-submit-action": "save",
+                                "type": "button",
+                                "close": true,
+                                "closeUrl": "dmpt/details",
+                                "object-metadata-params": [
+                                                            {
+                                                                "key": "generatePDF",
+                                                                "value": "true"
+                                                            },
+                                                            {
+                                                                "key": "dataStructureComplete",
+                                                                "value": "true"
+                                                            }
+                                                         ]
+                                }
+                            ]
                         }
                     ]
                 },
@@ -672,25 +702,47 @@
                             "label":"",
                             "content":""
                         },
-                        {
-                            "component-type":"transition-control",
-							"transitions":[{
-            									"name": "Save and close",
-            									"form-submit-action": "save",
-            									"type": "button",
-            									"close": true,
-            									"closeUrl": "dmpt/details",
-            									"object-metadata-params": [
-                															{
-                    															"key": "generatePDF",
-                    															"value": "true"
-                															},
-                															{
-                    															"key": "dataAccessComplete",
-                    															"value": "true"
-                															}
-            															 ]
-        									}]
+
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Back",
+				                    "type": "button"
+			                    },
+			                    {
+				                    "name": "Next",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    }
+		                    ]
+	                    },
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Save",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    },
+			                    {
+                                    "name": "Save and close",
+                                    "form-submit-action": "save",
+                                    "type": "button",
+                                    "close": true,
+                                    "closeUrl": "dmpt/details",
+                                    "object-metadata-params": [
+                                                                {
+                                                                    "key": "generatePDF",
+                                                                    "value": "true"
+                                                                },
+                                                                {
+                                                                    "key": "dataAccessComplete",
+                                                                    "value": "true"
+                                                                }
+                                                             ]
+                                }
+		                    ]
                         }
                     ]
                 },
@@ -750,25 +802,47 @@
                             "label":"",
                             "additional-classes":"dateYMD"
                         },
-                        {
-                            "component-type":"transition-control",
-							"transitions":[{
-            									"name": "Save and close",
-            									"type": "button",
-            									"form-submit-action": "save",
-            									"close": true,
-            									"closeUrl": "dmpt/details",
-            									"object-metadata-params": [
-                															{
-                    															"key": "generatePDF",
-                    															"value": "true"
-                															},
-                															{
-                    															"key": "dataRetentionComplete",
-                    															"value": "true"
-                															}
-            															 ]
-        									}]
+
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Back",
+				                    "type": "button"
+			                    },
+			                    {
+				                    "name": "Next",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    }
+		                    ]
+	                    },
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Save",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    },
+	                            {
+                                    "name": "Save and close",
+                                    "type": "button",
+                                    "form-submit-action": "save",
+                                    "close": true,
+                                    "closeUrl": "dmpt/details",
+                                    "object-metadata-params": [
+                                                                {
+                                                                    "key": "generatePDF",
+                                                                    "value": "true"
+                                                                },
+                                                                {
+                                                                    "key": "dataRetentionComplete",
+                                                                    "value": "true"
+                                                                }
+                                                             ]
+                                }
+		                    ]
                         }
                     ]
                 },
@@ -939,7 +1013,17 @@
                         },
                         {
                             "component-type":"transition-control",
-							"transitions":[{"name":"Back", "type": "button"}]
+							"transitions":[
+								{
+									"name":"Back",
+									"type": "button"
+								},
+								{
+									"name": "Next",
+									"form-submit-action": "save",
+									"type": "button"
+								}
+							]
                         },
                         {
                             "component-type": "transition-control",
@@ -1035,20 +1119,42 @@
                             "component-type":"native-html",
                             "content":"<div id='mapholder_demo1' class='mapholder'></div><script>var latlon = '-34.961372,138.639221';var img_url = 'http://maps.googleapis.com/maps/api/staticmap?center='+latlon+'&zoom=10&size=400x300&sensor=false';document.getElementById('mapholder_demo1').innerHTML='<img src='+img_url+'>';</script>"
                         },
-                        {
-                            "component-type":"transition-control",
-                            "transitions":[{"name":"Back"},{
-            									"name": "Done",
-            									"form-submit-action": "save",
-            									"close": true,
-            									"closeUrl": "dmpt/details",
-            									"object-metadata-params": [
-                															{
-                    															"key": "generatePDF",
-                    															"value": "true"
-                															}
-            															 ]
-        									}]
+
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Back",
+				                    "type": "button"
+			                    },
+			                    {
+				                    "name": "Next",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    }
+		                    ]
+	                    },
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Save",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    },
+			                    {
+                                    "name": "Done",
+                                    "form-submit-action": "save",
+                                    "close": true,
+                                    "closeUrl": "dmpt/details",
+                                    "object-metadata-params": [
+                                                                {
+                                                                    "key": "generatePDF",
+                                                                    "value": "true"
+                                                                }
+                                                             ]
+                                }
+		                    ]
                         }
                     ]
                 },
@@ -1160,6 +1266,31 @@
                             "field-name":"Extra.Collection.Methodology",
                             "content":""
                         },
+
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Back",
+				                    "type": "button"
+			                    },
+			                    {
+				                    "name": "Next",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    }
+		                    ]
+	                    },
+	                    {
+		                    "component-type": "transition-control",
+		                    "transitions": [
+			                    {
+				                    "name": "Save",
+				                    "form-submit-action": "save",
+				                    "type": "button"
+			                    }
+			                ]
+	                    },
                         {
                             "component-type":"native-html",
                             "content":"<button id='done_button' onclick=done_forms()>Done</button><div id='thanks'></div><script>function done_forms(){ document.getElementById('done_button').setAttribute('hidden', 'hidden');document.getElementById('thanks').innerHTML = '<h3>Thank you.</h3>'+'<p>By completing this information, you have not only created a more complete Data Management Plan, you have gone some way to establishing a description of your dataset.</p>'+'<p>If you have any questions about this process, please do not hesitate to contact the Research Data Support team.</p>';}</script>"

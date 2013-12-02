@@ -1,0 +1,46 @@
+{
+    "steps": {
+	    "Welcome": {
+		    "Next": "Overview"
+	    },
+	    "Overview": {
+		    "Next": "People",
+		    "Back": "Welcome"
+	    },
+	    "People": {
+		    "Next": "dataCollection",
+		    "Back": "Overview"
+	    },
+	    "dataCollection": {
+		    "Next": "dataStorage",
+		    "Back": "People"
+	    },
+	    "dataStorage": {
+		    "Back": "dataCollection",
+		    "Next": "dataLicensingAccess"
+	    },
+	    "dataLicensingAccess": {
+		    "Back": "dataStorage",
+		    "Next": "Retention"
+	    },
+	    "Retention": {
+		    "Back": "dataLicensingAccess",
+		    "Next": "EthicsSensitivities"
+	    },
+	    "EthicsSensitivities": {
+		    "Back": "Retention",
+		    "Next": "Ownership"
+	    },
+	    "Ownership": {
+		    "Back": "EthicsSensitivities",
+		    "Next": "furtherinfo"
+	    },
+	    "furtherinfo": {
+		    "Back": "Ownership",
+		    "Next": "Extra"
+	    },
+	    "Extra": {
+		    "Back": "furtherinfo"
+	    }
+    }
+}
