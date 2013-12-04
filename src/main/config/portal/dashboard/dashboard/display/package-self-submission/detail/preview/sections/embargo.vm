@@ -1,0 +1,27 @@
+
+#macro(displayFirst $key $name)
+<dt>$name</dt>
+	#set ($value = $metadata.get("$key"))
+	#if ("$!value" != "")
+	<dd>$value</dd>
+	#else
+	<dd>
+		#noInformation()
+	</dd>
+	#end
+#end
+
+#sectionHeading("Embargo")
+<div class="meta">
+	<dl>
+		#set ($embargo = $metadata.get("redbox:embargo.redbox:isEmbargoed.1"))
+		<dt>Embargo</dt>
+		#if ("$!embargo" == "checked")
+			<dd>Item is currently embargoed.</dd>
+		#else
+			<dd>Not embargoed.</dd>
+		#end
+		#displayFirst("redbox:embargo.dc:date" "Embargo date")
+		#displayFirst("redbox:embargo.skos:note" "Embargo comment")
+	</dl>
+</div>

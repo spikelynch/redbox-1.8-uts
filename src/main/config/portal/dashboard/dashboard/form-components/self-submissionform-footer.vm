@@ -47,8 +47,27 @@ div[id^="dc:coverage.vivo:GeographicLocation"] select { display:none }
 				}
 			}
 		}
-		
 	};
+
+	var embargoSubmission = {
+		toggle_embargo: function () {
+			var embargo = $("[id='redbox:embargo.redbox:isEmbargoed.1']");
+					if (embargo.attr('checked') == null) {
+						var embargoDate = $("[id='redbox:embargo.dc:date']");
+						embargoDate.val("");
+						embargoDate.hide();
+						var emabargoNote = $("[id='redbox:embargo.skos:note']");
+						emabargoNote.val("");
+						emabargoNote.hide();
+						embargo.val("");
+					} else {
+						embargo.val("checked");
+						$("[id='redbox:embargo.dc:date']").show();
+						$("[id='redbox:embargo.skos:note']").show();
+					}
+				}
+	}
+	;
 	$(document).ready(function() {
 		
 	   //unhook old save button handling and rehook with code to set language label.
@@ -86,6 +105,7 @@ div[id^="dc:coverage.vivo:GeographicLocation"] select { display:none }
 		// hide Submit link until user acknowledges 
 		$("[transition-name='Submit']").hide();
 		$("[id='readyforreview.1']").change(selfSubmission.toggle_submit);
+		$("[id='redbox:embargo.redbox:isEmbargoed.1']").change(embargoSubmission.toggle_embargo);
 		$("[id='skos:note.0.dc:description']").after($("#submitWarning"));
 		$(submitWarning).hide();
 
