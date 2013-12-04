@@ -85,13 +85,6 @@
     						 			  }      
                       
                         },
-
-                        {
-                            "component-type": "text-block",
-                            "type": "label",
-                            "content": "self-submission.field.label.dc-language",
-                            "help": "self-submission.field.help.dc-language"
-                        },
                         {
                             "component-type": "data-source-dropdown",
                             "field-name": "dc:language.dc:identifier",
@@ -133,6 +126,10 @@
 				                    "required": "At least one keyword is required"
 			                    }
 		                    }
+	                    },
+	                    {
+		                    "component-type": "native-html",
+		                    "content": "<hr>"
 	                    },
 	                   {
 		                   "component-type": "text-block",
@@ -280,6 +277,10 @@
 							"additional-classes":""
 						},
 						{
+							"component-type": "native-html",
+							"content": "<hr>"
+						},
+						{
 							"component-type":"text-block",
 							"type":"label",
 							"content":"dmpt.field.label.foaf-fundedBy.vivo-Grant",
@@ -290,7 +291,10 @@
 							"field-name":"foaf:fundedBy.vivo:Grant",
 							"label":""
 						},
-
+						{
+							"component-type": "native-html",
+							"content": "<hr>"
+						},
 						{
 							"component-type": "text-block",
 							"type": "label",
@@ -303,6 +307,10 @@
 							"field-name-label": "dc:subject.anzsrc:toa.skos:prefLabel",
 							"label": "",
 							"sourceUrl": "dmpt/data/projectActivityType.json"
+						},
+						{
+							"component-type": "native-html",
+							"content": "<hr>"
 						},
 						{
 							"component-type": "text-block",
@@ -323,6 +331,10 @@
 							"listKey": "results",
 							"defaultValue": "skos:narrower",
 							"anzsrcType": "for"
+						},
+						{
+							"component-type": "native-html",
+							"content": "<hr>"
 						},
 						{
 							"component-type": "text-block",
@@ -499,13 +511,6 @@
                             "type": "h1",
                             "content": "WHERE is the data?"
                         },
-
-						{
-							"component-type": "text-block",
-							"type": "label",
-							"content": "self-submission.field.label.dc-identifier.rdf-PlainLiteral",
-							"help": "self-submission.field.help.dc-identifier.rdf-PlainLiteral"
-						},
 						{
 							"component-type": "text-input",
 							"field-name": "dc:identifier.rdf:PlainLiteral",
@@ -533,7 +538,10 @@
 							},
 							"additional-classes": ""
 						},
-
+						{
+							"component-type": "native-html",
+							"content": "<hr>"
+						},
 						{
 							"component-type": "text-block",
 							"type": "label",
@@ -665,7 +673,10 @@
 							},
 							"additional-classes": ""
 						},
-
+						{
+							"component-type": "native-html",
+							"content": "<hr>"
+						},
 						{
 							"component-type": "text-block",
 							"type": "h3",
@@ -687,7 +698,10 @@
 							},
 							"additional-classes": ""
 						},
-
+						{
+							"component-type": "native-html",
+							"content": "<hr>"
+						},
 						{
 							"component-type": "text-block",
 							"type": "h3",
