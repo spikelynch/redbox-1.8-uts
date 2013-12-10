@@ -1097,18 +1097,7 @@
 						{
 							"component-type": "text-input",
 							"label": "self-submission.field.label.dc-accessRights.dc-RightsStatement.dc-identifier",
-							"field-name": "dc:accessRights.dc:RightsStatement.dc:identifier",
-							"validation": {
-								"save-rules": [
-									"required"
-								],
-								"validation-id": "dc:accessRights.dc:RightsStatement.dc:identifier",
-								"focus-id": "dc:accessRights.dc:RightsStatement.dc:identifier",
-								"validation-messages":{
-									"required": "Access Rights url is required"
-								}
-							}
-
+							"field-name": "dc:accessRights.dc:RightsStatement.dc:identifier"
 						},
 						{
 							"component-type": "native-html",
@@ -1138,17 +1127,7 @@
 						{
 							"component-type": "text-input",
 							"label": "self-submission.field.label.dc-accessRights.dc-identifier",
-							"field-name": "dc:accessRights.dc:identifier",
-							"validation":{
-								"save-rules": [
-									"required"
-								],
-								"validation-id": "dc:accessRights.dc:identifier",
-								"focus-id": "dc:accessRights.dc:identifier",
-								"validation-messages":{
-									"required": "Access Conditions url is required"
-								}
-							}
+							"field-name": "dc:accessRights.dc:identifier"
 						},
 						{
 							"component-type": "native-html",
