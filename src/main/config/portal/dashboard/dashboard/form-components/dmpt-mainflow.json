@@ -12,23 +12,23 @@
 		    "Back": "Project"
 	    },
 	    "dataCollection": {
-		    "Next": "dataStorage",
+		    "Next": "Data Storage",
 		    "Back": "People"
 	    },
-	    "dataStorage": {
+	    "Data Storage": {
 		    "Back": "dataCollection",
 		    "Next": "dataLicensingAccess"
 	    },
 	    "dataLicensingAccess": {
-		    "Back": "dataStorage",
-		    "Next": "Retention"
+		    "Back": "Data Storage",
+		    "Next": "Data Retention and disposal"
 	    },
-	    "Retention": {
+	    "Data Retention and disposal": {
 		    "Back": "dataLicensingAccess",
 		    "Next": "EthicsSensitivities"
 	    },
 	    "EthicsSensitivities": {
-		    "Back": "Retention",
+		    "Back": "Data Retention and disposal",
 		    "Next": "Ownership"
 	    },
 	    "Ownership": {

@@ -516,7 +516,7 @@
                     ]
                 },
                 {
-                    "heading":"dataStorage",
+                    "heading":"Data Storage",
                     "fields":[
                         {
                             "component-type":"text-block",
@@ -757,7 +757,7 @@
                     ]
                 },
                 {
-                    "heading":"Retention",
+                    "heading":"Data Retention and disposal",
                     "fields":[
                         {
                             "component-type":"text-block",
