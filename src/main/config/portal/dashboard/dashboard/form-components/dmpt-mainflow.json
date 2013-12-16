@@ -29,14 +29,14 @@
 	    },
 	    "EthicsSensitivities": {
 		    "Back": "Data Retention and disposal",
-		    "Next": "Ownership"
+		    "Next": "Ownership and IP"
 	    },
-	    "Ownership": {
+	    "Ownership and IP": {
 		    "Back": "EthicsSensitivities",
 		    "Next": "furtherinfo"
 	    },
 	    "furtherinfo": {
-		    "Back": "Ownership",
+		    "Back": "Ownership and IP",
 		    "Next": "Extra"
 	    },
 	    "Extra": {

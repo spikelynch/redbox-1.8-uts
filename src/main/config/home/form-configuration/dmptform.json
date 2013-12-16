@@ -959,30 +959,12 @@
                     ]
                 },
                 {
-                    "heading":"Ownership",
+                    "heading":"Ownership and IP",
                     "fields":[
                         {
                             "component-type":"text-block",
                             "type":"h1",
                             "content":"dmpt.heading.ownership"
-                        },
-                        {
-                            "component-type":"text-block",
-                            "type":"label",
-                            "content":"dmpt.field.label.dc-coverage",
-                            "help": "dmpt.field.help.dc-coverage"
-                        },                        
-                        {
-                            "component-type":"repeatable-container",
-                            "containter-for":"dc:coverage.dc:identifier",
-                            "min-size":"1",
-                            "suffix":"country",
-                            "sub-elements":{"settings":[
-                            					{"jaffaDropDown":{"json-data-url":"$portalPath/proxyGet.script?ns=Countries","label":"",
-                            					 "class-list":"jaffa-field","suffix":"country"}
-                            					 }
-      											]
-      										}	
                         },
                         {
                             "component-type":"text-block",
@@ -1021,6 +1003,30 @@
                             "label":"",
                             "content":""
                         },
+	                    {
+		                    "component-type": "text-block",
+		                    "type": "label",
+		                    "content": "dmpt.field.label.dc-coverage",
+		                    "help": "dmpt.field.help.dc-coverage"
+	                    },
+	                    {
+		                    "component-type": "repeatable-container",
+		                    "containter-for": "dc:coverage.dc:identifier",
+		                    "min-size": "1",
+		                    "suffix": "country",
+		                    "sub-elements": {
+			                    "settings": [
+				                    {
+					                    "jaffaDropDown": {
+						                    "json-data-url": "$portalPath/proxyGet.script?ns=Countries",
+						                    "label": "",
+						                    "class-list": "jaffa-field",
+						                    "suffix": "country"
+					                    }
+				                    }
+			                    ]
+		                    }
+	                    },
                         {
                             "component-type":"transition-control",
 							"transitions":[
