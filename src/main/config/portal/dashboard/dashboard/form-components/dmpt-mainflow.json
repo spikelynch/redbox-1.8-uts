@@ -17,22 +17,22 @@
 	    },
 	    "Data Storage": {
 		    "Back": "dataCollection",
-		    "Next": "dataLicensingAccess"
+		    "Next": "Data licensing and access"
 	    },
-	    "dataLicensingAccess": {
+	    "Data licensing and access": {
 		    "Back": "Data Storage",
 		    "Next": "Data Retention and disposal"
 	    },
 	    "Data Retention and disposal": {
-		    "Back": "dataLicensingAccess",
-		    "Next": "EthicsSensitivities"
+		    "Back": "Data licensing and access",
+		    "Next": "Ethics and Sensitivities"
 	    },
-	    "EthicsSensitivities": {
+	    "Ethics and Sensitivities": {
 		    "Back": "Data Retention and disposal",
 		    "Next": "Ownership and IP"
 	    },
 	    "Ownership and IP": {
-		    "Back": "EthicsSensitivities",
+		    "Back": "Ethics and Sensitivities",
 		    "Next": "furtherinfo"
 	    },
 	    "furtherinfo": {
