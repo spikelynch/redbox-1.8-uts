@@ -33,7 +33,7 @@
                     ]
                 },
                 {
-                    "heading":"Overview",
+                    "heading":"Project",
                     "fields":[
                     	{
                             "component-type":"text-block",
@@ -97,8 +97,18 @@
                             "field-name":"dc:description",
                             "label":"",
                             "content":"",
-                            "additional-classes":"mandatory"
-                        },
+                            "additional-classes":"mandatory",
+							"validation": {
+								"save-rules": [
+									"required"
+								],
+								"validation-id": "dc:description",
+								"focus-id": "dc:description",
+								"validation-messages":{
+									"required": "Project description is required"
+								}
+							}
+						},
                         {
                             "component-type":"text-block",
                             "type":"label",

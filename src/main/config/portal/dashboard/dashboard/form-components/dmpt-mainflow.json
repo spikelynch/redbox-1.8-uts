@@ -1,15 +1,15 @@
 {
     "steps": {
 	    "Welcome": {
-		    "Next": "Overview"
+		    "Next": "Project"
 	    },
-	    "Overview": {
+	    "Project": {
 		    "Next": "People",
 		    "Back": "Welcome"
 	    },
 	    "People": {
 		    "Next": "dataCollection",
-		    "Back": "Overview"
+		    "Back": "Project"
 	    },
 	    "dataCollection": {
 		    "Next": "dataStorage",
