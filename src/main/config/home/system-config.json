@@ -615,8 +615,21 @@
                         "type": "external",
 						"url": "${server.url.base}default/process/launch.script?processingSet=notifyNewRecords",
                         "timing": "0 0/15 * * * ?"
-                    }                
-				 ]
+                    } ,
+	                {
+		                "name": "process-set-notifyEmbargoRecords",
+		                "type": "external",
+		                "url": "${server.url.base}default/process/launch.script?processingSet=notifyEmbargoRecords",
+		                "timing": "0 0/15 * * * ?"
+	                },
+	                {
+		                "name": "process-set-notifyDOIRecords",
+		                "type": "external",
+		                "url": "${server.url.base}default/process/launch.script?processingSet=notifyDOIRecords",
+		                "timing": "0 0/15 * * * ?"
+	                }
+
+                ]
             }
         },
         "oai-pmh": {

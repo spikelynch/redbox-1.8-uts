@@ -1,0 +1,26 @@
+{
+	"host":"${smtp.host}",
+	"port":"25",
+	"username":"${admin.email}",
+	"password":"",
+	"tls":"true",
+	"ssl":"true",
+	"from":"${admin.email}",
+	"to": "$piEmail",
+	"subject":"ReDBox record embargo date reached in 10 days: '$title'",
+	"body":"Dear User,\n\nThis is a notification of ReDBox record embargo date reached in 10 days: '$title' on $createTime. \n\n ${server.url.base}$viewId/detail/$oid \n\nCheers,\nEmailNotifier",
+	"vars":[
+		"$oid",
+		"$title",
+		"$createTime",
+		"$viewId",
+		"$piEmail"
+	],
+	"mapping": {
+		"$oid":"id",
+		"$title":"dc_title",
+		"$createTime":"create_timestamp",
+		"$viewId":"viewId",
+		"$piEmail":"locrel:prc.foaf:Person.foaf:email"
+	}
+}

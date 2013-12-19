@@ -1,0 +1,3 @@
+{
+	"query": "date_embargoed:[NOW/DAY-10DAY TO NOW/DAY] AND !workflow_id:self-submission-draft"
+}
