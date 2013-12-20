@@ -1064,7 +1064,7 @@
                 },
 
                 {
-                    "heading":"furtherinfo",
+                    "heading":"Further information",
                     "fields":[
                         {
                             "component-type":"text-block",
