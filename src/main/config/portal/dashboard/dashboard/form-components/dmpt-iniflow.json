@@ -1,0 +1,46 @@
+{
+	"steps": {
+		"Welcome": {
+			"Next": "Project"
+		},
+		"Project": {
+			"Next": "People",
+			"Back": "Welcome"
+		},
+		"People": {
+			"Next": "Data collection and analysis",
+			"Back": "Project"
+		},
+		"Data collection and analysis": {
+			"Next": "Data Storage",
+			"Back": "People"
+		},
+		"Data Storage": {
+			"Back": "Data collection and analysis",
+			"Next": "Data Retention and disposal"
+		},
+		"Data Retention and disposal": {
+			"Back": "Data Storage",
+			"Next": "Ownership and IP"
+		},
+		"Ownership and IP": {
+			"Back": "Data Retention and disposal",
+			"Next": "Data licensing and access"
+		},
+		"Data licensing and access": {
+			"Back": "Ownership and IP",
+			"Next": "Ethics and Sensitivities"
+		},
+		"Ethics and Sensitivities": {
+			"Back": "Data licensing and access",
+			"Next": "Further information"
+		},
+		"Further information": {
+			"Back": "Ethics and Sensitivities",
+			"Next": "Extra"
+		},
+		"Extra": {
+			"Back": "Further information"
+		}
+	}
+}
