@@ -1062,7 +1062,6 @@
                         }
                     ]
                 },
-
                 {
                     "heading":"Further information",
                     "fields":[
@@ -1274,16 +1273,6 @@
 				                    "name": "Back",
 				                    "type": "button"
 			                    },
-			                    {
-				                    "name": "Next",
-				                    "form-submit-action": "save",
-				                    "type": "button"
-			                    }
-		                    ]
-	                    },
-	                    {
-		                    "component-type": "transition-control",
-		                    "transitions": [
 			                    {
 				                    "name": "Save",
 				                    "form-submit-action": "save",
