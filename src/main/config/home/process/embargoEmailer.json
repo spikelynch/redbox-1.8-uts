@@ -7,20 +7,22 @@
 	"ssl":"true",
 	"from":"${admin.email}",
 	"to": "$piEmail",
-	"subject":"ReDBox record embargo date reached in 10 days: '$title'",
-	"body":"Dear User,\n\nThis is a notification of ReDBox record embargo date reached in 10 days: '$title' on $createTime. \n\n ${server.url.base}$viewId/detail/$oid \n\nCheers,\nEmailNotifier",
+	"subject":"Embargo date approaching",
+	"body":"Dear $piFirstName,\n\nOur records indicate that you have data intended for publication after an embargo. The embargo date indicated is $date_embargoed. If you would like to publish your data to Research Data Australia, please visit UTS Stash and deselect the embargo flag. If you need to extend the embargo you can do so in Stash by selecting a new embargo date. Your record can be found here ${server.url.base}$viewId/detail/$oid. \n\nFor further information please do not hesitate to contact eResearch-IT on data-librarian@uts.edu.au.\n\nKind regards \neResearch Support Group \ndata-librarian@uts.edu.au \nPh. 95144000 or ext.4000 \nN.B. This is a system generated message, please do not Reply, but email data-librarian@uts.edu.au.",
 	"vars":[
 		"$oid",
 		"$title",
-		"$createTime",
+		"$date_embargoed",
 		"$viewId",
-		"$piEmail"
+		"$piEmail",
+		"$piFirstName"
 	],
 	"mapping": {
 		"$oid":"id",
 		"$title":"dc_title",
-		"$createTime":"create_timestamp",
+		"$date_embargoed":"date_embargoed",
 		"$viewId":"viewId",
-		"$piEmail":"locrel:prc.foaf:Person.foaf:email"
+		"$piEmail":"locrel:prc.foaf:Person.foaf:email",
+		"$piFirstName":"locrel:prc.foaf:Person.foaf:givenName"
 	}
 }
