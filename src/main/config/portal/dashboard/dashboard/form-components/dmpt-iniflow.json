@@ -32,15 +32,7 @@
 			"Next": "Ethics and Sensitivities"
 		},
 		"Ethics and Sensitivities": {
-			"Back": "Data licensing and access",
-			"Next": "Further information"
-		},
-		"Further information": {
-			"Back": "Ethics and Sensitivities",
-			"Next": "Extra"
-		},
-		"Extra": {
-			"Back": "Further information"
+			"Back": "Data licensing and access"
 		}
 	}
 }
