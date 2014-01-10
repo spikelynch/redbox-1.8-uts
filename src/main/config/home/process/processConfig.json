@@ -30,7 +30,7 @@
 		"id": "notifyEmbargoRecords",
 		"pre": [
 			{
-				"class": "com.googlecode.fascinator.portal.process.NewRecordProcessor",
+				"class": "com.googlecode.fascinator.portal.process.EmbargoRecordProcessor",
 				"config": "${fascinator.home}/process/notifyEmbargoRecords.json",
 				"inputKey": "",
 				"outputKey": "newOids"
@@ -46,7 +46,7 @@
 		],
 		"post": [
 			{
-				"class": "com.googlecode.fascinator.portal.process.NewRecordProcessor",
+				"class": "com.googlecode.fascinator.portal.process.EmbargoRecordProcessor",
 				"config": "${fascinator.home}/process/notifyEmbargoRecords.json",
 				"inputKey": "failedOids",
 				"outputKey": ""
@@ -57,7 +57,7 @@
 		"id": "notifyDOIRecords",
 		"pre": [
 			{
-				"class": "com.googlecode.fascinator.portal.process.NewRecordProcessor",
+				"class": "com.googlecode.fascinator.portal.process.DoiRecordProcessor",
 				"config": "${fascinator.home}/process/notifyDOIRecords.json",
 				"inputKey": "",
 				"outputKey": "newOids"
@@ -73,7 +73,7 @@
 		],
 		"post": [
 			{
-				"class": "com.googlecode.fascinator.portal.process.NewRecordProcessor",
+				"class": "com.googlecode.fascinator.portal.process.DoiRecordProcessor",
 				"config": "${fascinator.home}/process/notifyDOIRecords.json",
 				"inputKey": "failedOids",
 				"outputKey": ""

@@ -85,6 +85,11 @@
           <type>warpath</type>
           <version>1.1.5-SNAPSHOT</version>
         </dependency>
+	  <dependency>
+		  <groupId>com.googlecode.the-fascinator.plugins</groupId>
+		  <artifactId>plugin-EmailNotifier</artifactId>
+		  <version>1.0</version>
+	  </dependency>
   </dependencies>
   <profiles>
 	  <profile>
@@ -526,6 +531,14 @@
       <id>redbox-nexus</id>
       <url>http://dev.redboxresearchdata.com.au/nexus/content/groups/public/</url>
     </repository>
+	  <repository>
+		  <id>plugin-EmailNotifier-snapshot</id>
+		  <url>https://github.com/IntersectAustralia/EmailNotifierPlugin/raw/master/snapshots</url>
+	  </repository>
+	  <repository>
+		  <id>plugin-EmailNotifier</id>
+		  <url>https://github.com/IntersectAustralia/EmailNotifierPlugin/raw/master/releases</url>
+	  </repository>
   </repositories>
   <scm>
     <url>https://github.com/redbox-mint/redbox-build-dev-local</url>
