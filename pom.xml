@@ -141,7 +141,7 @@
 		  </activation>
 		  <properties>
 			  <smtp.host>mailman.intersect.org.au</smtp.host>
-			  <admin.email>seanx@intersect.org.au</admin.email>
+			  <admin.email>redbox@intersect.org.au</admin.email>
 			  <redboxServer.hostname>localhost</redboxServer.hostname>
 			  <mintServer.hostname>localhost</mintServer.hostname>
 			  <mintAmqBroker.hostname>localhost</mintAmqBroker.hostname>
@@ -161,7 +161,7 @@
 		  </activation>
 		  <properties>
 			  <smtp.host>mailman.intersect.org.au</smtp.host>
-			  <admin.email>seanx@intersect.org.au</admin.email>
+			  <admin.email>redbox@intersect.org.au</admin.email>
 			  <mintServer.hostname>ic2-redbox-vm.intersect.org.au</mintServer.hostname>
 			  <redboxServer.hostname>ic2-redbox-vm.intersect.org.au</redboxServer.hostname>
 			  <mintAmqBroker.hostname>ic2-redbox-vm.intersect.org.au</mintAmqBroker.hostname>
@@ -181,7 +181,7 @@
 		  </activation>
 		  <properties>
 			  <smtp.host>mailman.intersect.org.au</smtp.host>
-			  <admin.email>seanx@intersect.org.au</admin.email>
+			  <admin.email>redbox@intersect.org.au</admin.email>
 			  <mintServer.hostname>ic2-ms22-staging1-vm.intersect.org.au</mintServer.hostname>
 			  <redboxServer.hostname>ic2-ms22-staging1-vm.intersect.org.au</redboxServer.hostname>
 			  <mintAmqBroker.hostname>ic2-ms22-staging1-vm.intersect.org.au</mintAmqBroker.hostname>
