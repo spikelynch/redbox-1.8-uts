@@ -109,11 +109,23 @@
 								}
 							}
 						},
-
+	                    {
+		                    "component-type": "native-html",
+		                    "content": "<hr>"
+	                    },
+	                    {
+		                    "component-type": "text-block",
+		                    "type": "label",
+		                    "content": "Keywords"
+	                    },
 	                    {
 		                    "component-type": "repeatable-text",
 		                    "field-name": "finalKeywords",
-		                    "label": "Keyword"
+		                    "label": ""
+	                    },
+	                    {
+		                    "component-type": "native-html",
+		                    "content": "<hr>"
 	                    },
                         {
                             "component-type":"text-block",
@@ -251,10 +263,16 @@
                                 },
                                 {
                                     "name": "Save and close",
-                                    "form-submit-action": "save",
-                                    "type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
+	                                "form-submit-action": "save",
+	                                "type": "button",
+	                                "close": true,
+	                                "closeUrl": "dmpt/planready",
+	                                "object-metadata-params": [
+		                                {
+			                                "key": "generatePDF",
+			                                "value": "true"
+		                                }
+	                                ]
                                 }
                             ]
                         }
@@ -362,10 +380,16 @@
                                 },
                                 {
                                     "name": "Save and close",
-                                    "form-submit-action": "save",
-                                    "type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
+	                                "form-submit-action": "save",
+	                                "type": "button",
+	                                "close": true,
+	                                "closeUrl": "dmpt/planready",
+	                                "object-metadata-params": [
+		                                {
+			                                "key": "generatePDF",
+			                                "value": "true"
+		                                }
+	                                ]
                                 }
                             ]
                         }
@@ -490,7 +514,7 @@
                                 "form-submit-action": "save",
                                 "type": "button",
                                 "close": true,
-                                "closeUrl": "dmpt/details",
+                                "closeUrl": "dmpt/planready",
                                 "object-metadata-params": [
                                                             {
                                                                 "key": "generatePDF",
@@ -579,10 +603,16 @@
                                 },
                                 {
                                     "name": "Save and close",
-                                    "form-submit-action": "save",
-                                    "type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
+	                                "form-submit-action": "save",
+	                                "type": "button",
+	                                "close": true,
+	                                "closeUrl": "dmpt/planready",
+	                                "object-metadata-params": [
+		                                {
+			                                "key": "generatePDF",
+			                                "value": "true"
+		                                }
+	                                ]
                                 }
                             ]
                         }
@@ -673,7 +703,7 @@
                                     "type": "button",
                                     "form-submit-action": "save",
                                     "close": true,
-                                    "closeUrl": "dmpt/details",
+                                    "closeUrl": "dmpt/planready",
                                     "object-metadata-params": [
                                                                 {
                                                                     "key": "generatePDF",
@@ -828,12 +858,17 @@
 					            {
 						            "label": "open, free access under license",
 						            "value": "open, free access under license"
+					            },
+					            {
+						            "label": "no access due to sensitivities (as indicated on next tab)",
+						            "value": "no access due to sensitivities"
 					            }
 				            ]
 			            },
 			            {
 				            "component-type": "text-block",
 				            "type": "label",
+				            "size": "60",
 				            "content": "dmpt.field.label.dataLicensingAccess.manager"
 			            },
 			            {
@@ -940,7 +975,7 @@
 						            "form-submit-action": "save",
 						            "type": "button",
 						            "close": true,
-						            "closeUrl": "dmpt/details",
+						            "closeUrl": "dmpt/planready",
 						            "object-metadata-params": [
 							            {
 								            "key": "generatePDF",
@@ -1049,10 +1084,16 @@
                                 },
                                 {
                                     "name": "Save and close",
-                                    "form-submit-action": "save",
-                                    "type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
+	                                "form-submit-action": "save",
+	                                "type": "button",
+	                                "close": true,
+	                                "closeUrl": "dmpt/planready",
+	                                "object-metadata-params": [
+		                                {
+			                                "key": "generatePDF",
+			                                "value": "true"
+		                                }
+	                                ]
                                 }
                             ]
                         }
