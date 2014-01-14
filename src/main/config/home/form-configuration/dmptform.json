@@ -414,8 +414,61 @@
                             "component-type":"textarea",
                             "field-name":"vivo:Dataset.redbox:DataCollectionMethodology",
                             "label":"",
-                            "content":""
+                            "content":"" ,
+	                        "validation": {
+		                        "save-rules": [
+			                        "required"
+		                        ],
+		                        "validation-id": "vivo:Dataset.redbox:DataCollectionMethodology",
+		                        "focus-id": "vivo:Dataset.redbox:DataCollectionMethodology",
+		                        "validation-messages": {
+			                        "required": "Brief description of your data collection methodology is required"
+		                        }
+	                        }
                         },
+	                    {
+		                    "component-type": "text-block",
+		                    "type": "label",
+		                    "content": "dmpt.field.label.vivo-Dataset.dc.format",
+		                    "help": "dmpt.field.help.vivo-Dataset.dc.format"
+	                    },
+	                    {
+		                    "component-type": "data-source-dropdown",
+		                    "field-name": "vivo:Dataset.dc.format",
+		                    "label": "",
+		                    "field-name-label": "vivo:Dataset.dc.format.prefLabel",
+		                    "sourceUrl": "dmpt/data/fileFormat.json",
+		                    "validation": {
+			                    "save-rules": [
+				                    "required"
+			                    ],
+			                    "validation-id": "vivo:Dataset.dc.format",
+			                    "focus-id": "vivo:Dataset.dc.format",
+			                    "validation-messages": {
+				                    "required": "Predominant file format is required"
+			                    }
+		                    }
+	                    },
+	                    {
+		                    "component-type": "text-block",
+		                    "type": "label",
+		                    "content": "dmpt.field.label.vivo-Dataset.dc.format.other"
+	                    },
+	                    {
+		                    "component-type": "repeatable-text",
+		                    "field-name": "vivo:Dataset.dc.format.other",
+		                    "label": "",
+		                    "validation": {
+			                    "save-rules": [
+				                    "required"
+			                    ],
+			                    "validation-id": "vivo:Dataset.dc.format.other.1.",
+			                    "focus-id": "vivo:Dataset.dc.format.other.1.",
+			                    "validation-messages": {
+				                    "required": "Other format used is required"
+			                    }
+		                    }
+	                    },
                         {
                             "component-type":"text-block",
                             "type":"label",
@@ -440,29 +493,7 @@
                             "label":"",
                             "content":""
                         },
-                        {
-                            "component-type":"text-block",
-                            "type":"label",
-                            "content":"dmpt.field.label.vivo-Dataset.dc.format",
-                            "help":"dmpt.field.help.vivo-Dataset.dc.format"
-                        },
-                        {
-                            "component-type":"data-source-dropdown",
-                            "field-name":"vivo:Dataset.dc.format",
-                            "label":"",
-                            "field-name-label":"vivo:Dataset.dc.format.prefLabel",
-                            "sourceUrl":"dmpt/data/fileFormat.json"
-                        },
-                        {
-                            "component-type":"text-block",
-                            "type":"label",
-                            "content":"dmpt.field.label.vivo-Dataset.dc.format.other"
-                        },
-                        {
-	                        "component-type": "repeatable-text",
-                            "field-name":"vivo:Dataset.dc.format.other",
-                            "label":""
-                        },
+
 	                    {
 		                    "component-type": "text-block",
 		                    "type": "label",
@@ -549,7 +580,17 @@
                             "field-name":"vivo:Dataset.dc:extent",
                             "label":"",
                             "field-name-label":"vivo:Dataset.dc:extent.prefLabel",
-                            "sourceUrl":"workflows/forms/data/dataSize.json"
+                            "sourceUrl":"workflows/forms/data/dataSize.json",
+	                        "validation": {
+		                        "save-rules": [
+			                        "required"
+		                        ],
+		                        "validation-id": "vivo:Dataset.dc:extent",
+		                        "focus-id": "vivo:Dataset.dc:extent",
+		                        "validation-messages": {
+			                        "required": "vivo:Dataset.dc:extent is required"
+		                        }
+	                        }
                         },
                         {
                             "component-type":"text-block",
@@ -562,7 +603,17 @@
                             "field-name":"vivo:Dataset.dc:location.rdf:PlainLiteral",
                             "label":"",
                             "field-name-label":"vivo:Dataset.dc:location.rdf:PlainLiteral.prefLabel",
-                            "sourceUrl":"dmpt/data/storageLocation.json "
+                            "sourceUrl":"dmpt/data/storageLocation.json ",
+	                        "validation": {
+		                        "save-rules": [
+			                        "required"
+		                        ],
+		                        "validation-id": "vivo:Dataset.dc:location.rdf:PlainLiteral",
+		                        "focus-id": "vivo:Dataset.dc:location.rdf:PlainLiteral",
+		                        "validation-messages": {
+			                        "required": "Storage Location during project is required"
+		                        }
+	                        }
                         },
                         {
                             "component-type":"textarea",
@@ -581,7 +632,18 @@
                             "field-name":"vivo:Dataset.dc:source.dc:location.rdf:PlainLiteral",
                             "label":"",
                             "field-name-label":"vivo:Dataset.dc:source.dc:location.rdf:PlainLiteral.prefLabel",
-                            "sourceUrl":"dmpt/data/masterLocation.json"
+                            "sourceUrl":"dmpt/data/masterLocation.json",
+	                        "validation": {
+		                        "save-rules": [
+			                        "required"
+		                        ],
+		                        "validation-id": "vivo:Dataset.dc:source.dc:location.rdf:PlainLiteral",
+		                        "focus-id": "vivo:Dataset.dc:source.dc:location.rdf:PlainLiteral",
+		                        "validation-messages": {
+			                        "required": "Location of the master version is required"
+		                        }
+	                        }
+
                         },
                         {
                             "component-type":"textarea",
@@ -738,7 +800,17 @@
 				            "field-name": "dc:rightsHolder.dc:name",
 				            "field-name-label": "dc:rightsHolder.dc:name.prefLabel",
 				            "label": "",
-				            "sourceUrl": "dmpt/data/rightsOwner.json"
+				            "sourceUrl": "dmpt/data/rightsOwner.json",
+				            "validation": {
+					            "save-rules": [
+						            "required"
+					            ],
+					            "validation-id": "dc:rightsHolder.dc:name",
+					            "focus-id": "dc:rightsHolder.dc:name",
+					            "validation-messages": {
+						            "required": "Copyright and intellectual property owners is required"
+					            }
+				            }
 			            },
 			            {
 				            "component-type": "text-block",
