@@ -322,40 +322,40 @@
 
 
 	### Citation
-	#foreach( $key in ["dc:biblioGraphicCitation.dc:hasPart.dc:identifier.skos:note",
-		"dc:biblioGraphicCitation.dc:hasPart.dc:title",
-		"dc:biblioGraphicCitation.dc:hasPart.dc:publisher.rdf:PlainLiteral",
-		"dc:biblioGraphicCitation.dc:hasPart.bibo:Website.dc:identifier",
-		"publication-date-citation",
-		"dc:biblioGraphicCitation.dc:hasPart.dc:hasVersion.rdf:PlainLiteral",
-		"dc:biblioGraphicCitation.dc:hasPart.vivo:Publisher.vivo:Location",
-		"dc:biblioGraphicCitation.dc:hasPart.skos:scopeNote"
-	])
-		#set($v = $util.get($item, $key))
-		#if ($v) "$key": "$!v",
-		#else
-		"$key": "",
-		#end
-	#end
-
-	#set($citationTitle = $util.get($item, "dc:biblioGraphicCitation.dc:hasPart.dc:title"))
-	#if($citationTitle && $citationTitle !="")
-		"dc:biblioGraphicCitation.redbox:sendCitation": "true"
-	#end
-
-"dc:biblioGraphicCitation.dc:hasPart.dc:date.1.rdf:PlainLiteral": "$util.get($item, "publication-date-citation")"
-	#set($order = 2)
-	#set($valueMap = $util.getList($item, "dc:biblioGraphicCitation.dc:hasPart.dc:date"))
-	#foreach($key in $valueMap.keySet())
-
-		#set($dateValue = $valueMap.get($key).get("rdf:PlainLiteral"))
-		#set($typeValue = $valueMap.get($key).get("dc:type.rdf:PlainLiteral"))
-		#set($typeSkosValue = $valueMap.get($key).get("dc:type.skos:prefLabel"))
-		"dc:biblioGraphicCitation.dc:hasPart.dc:date.${order}.rdf:PlainLiteral": "$dateValue"
-		"dc:biblioGraphicCitation.dc:hasPart.dc:date.${order}.dc:type.rdf:PlainLiteral": "$typeValue"
-		"dc:biblioGraphicCitation.dc:hasPart.dc:date.${order}.dc:type.skos:prefLabel": "$typeSkosValue"
-		#set($order = $order + 1)
-	#end
+##	#foreach( $key in ["dc:biblioGraphicCitation.dc:hasPart.dc:identifier.skos:note",
+##		"dc:biblioGraphicCitation.dc:hasPart.dc:title",
+##		"dc:biblioGraphicCitation.dc:hasPart.dc:publisher.rdf:PlainLiteral",
+##		"dc:biblioGraphicCitation.dc:hasPart.bibo:Website.dc:identifier",
+##		"publication-date-citation",
+##		"dc:biblioGraphicCitation.dc:hasPart.dc:hasVersion.rdf:PlainLiteral",
+##		"dc:biblioGraphicCitation.dc:hasPart.vivo:Publisher.vivo:Location",
+##		"dc:biblioGraphicCitation.dc:hasPart.skos:scopeNote"
+##	])
+##		#set($v = $util.get($item, $key))
+##		#if ($v) "$key": "$!v",
+##		#else
+##		"$key": "",
+##		#end
+##	#end
+##
+##	#set($citationTitle = $util.get($item, "dc:biblioGraphicCitation.dc:hasPart.dc:title"))
+##	#if($citationTitle && $citationTitle !="")
+##		"dc:biblioGraphicCitation.redbox:sendCitation": "true"
+##	#end
+##
+##"dc:biblioGraphicCitation.dc:hasPart.dc:date.1.rdf:PlainLiteral": "$util.get($item, "publication-date-citation")"
+##	#set($order = 2)
+##	#set($valueMap = $util.getList($item, "dc:biblioGraphicCitation.dc:hasPart.dc:date"))
+##	#foreach($key in $valueMap.keySet())
+##
+##		#set($dateValue = $valueMap.get($key).get("rdf:PlainLiteral"))
+##		#set($typeValue = $valueMap.get($key).get("dc:type.rdf:PlainLiteral"))
+##		#set($typeSkosValue = $valueMap.get($key).get("dc:type.skos:prefLabel"))
+##		"dc:biblioGraphicCitation.dc:hasPart.dc:date.${order}.rdf:PlainLiteral": "$dateValue"
+##		"dc:biblioGraphicCitation.dc:hasPart.dc:date.${order}.dc:type.rdf:PlainLiteral": "$typeValue"
+##		"dc:biblioGraphicCitation.dc:hasPart.dc:date.${order}.dc:type.skos:prefLabel": "$typeSkosValue"
+##		#set($order = $order + 1)
+##	#end
 
 	#set($order = 1)
 	#set($valueMap = $util.getList($item, "dc:biblioGraphicCitation.dc:hasPart.locrel:ctb"))
@@ -515,7 +515,6 @@
         "skos:note.1.dc:description",
         "dc:biblioGraphicCitation.skos:prefLabel",
         "dc:biblioGraphicCitation.redbox:sendCitation",
-        "dc:biblioGraphicCitation.dc:hasPart.dc:identifier.skos:note",
         "dc:biblioGraphicCitation.dc:hasPart.locrel:ctb.1.foaf:title",
         "dc:biblioGraphicCitation.dc:hasPart.locrel:ctb.1.foaf:givenName",
         "dc:biblioGraphicCitation.dc:hasPart.locrel:ctb.1.foaf:familyName",

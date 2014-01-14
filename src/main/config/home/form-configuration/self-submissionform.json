@@ -750,292 +750,13 @@
                     ]
                 },
 				{
-					"heading": "Attribution",
+					"heading": "Access",
 					"fields": [
 						{
 							"component-type": "text-block",
 							"type": "h1",
-							"content": "Citation Metadata"
+							"content": "self-submission.heading.label.access"
 						},
-
-						{
-							"component-type": "checkbox",
-							"field-name": "dc:biblioGraphicCitation.dc:hasPart.dc:identifier.skos:note",
-							"box-for": "",
-							"boxes": [
-								{
-									"label": "Use the Identifier provided during curation",
-								}
-							]
-						},
-						{
-							"component-type": "native-html",
-							"content": "<hr>"
-						},
-
-						{
-							"component-type": "text-input",
-							"field-name": "dc:biblioGraphicCitation.dc:hasPart.dc:title",
-							"label": "Title(*):",
-							"size": "60",
-							"additional-classes": "",
-							"placeholder": "title",
-							"validation": {
-								"save-rules": [
-									"required"
-								],
-								"validation-id": "dc:biblioGraphicCitation.dc:hasPart.dc:title",
-								"focus-id": "dc:biblioGraphicCitation.dc:hasPart.dc:title",
-								"validation-messages":{
-									"required": "Citation title is required"
-								}
-							}
-						},
-						{
-						"component-type": "native-html",
-						"content": "<hr>"
-						},
-
-						{
-							"component-type": "text-block",
-							"type": "h4",
-							"content": "Creators(*):"
-						},
-
-						{
-							"component-type": "repeatable-container",
-							"containter-for": "dc:biblioGraphicCitation.dc:hasPart.locrel:ctb",
-							"sub-elements": {
-								"settings": [
-									{
-										"jaffaPeople": {
-											"source": "nla,mint",
-											"label": "",
-											"class-list": "jaffa-field",
-											"suffix": ""
-										}
-									}
-								]
-							},
-							"validation": {
-								"save-rules": [
-									"required"
-								],
-								"validation-id": "dc:biblioGraphicCitation.dc:hasPart.locrel:ctb.foaf:familyName",
-								"focus-id": "dc:biblioGraphicCitation.dc:hasPart.locrel:ctb.foaf:title",
-								"validation-messages":{
-									"required": "Creator is required"
-								}
-							}
-						},
-
-						{
-						"component-type": "native-html",
-						"content": "<hr>"
-						},
-
-						{
-							"component-type": "text-input",
-							"field-name": "dc:biblioGraphicCitation.dc:hasPart.dc:publisher.rdf:PlainLiteral",
-							"label": "Publisher (*):",
-							"size": "60",
-							"additional-classes": "",
-							"placeholder": "Publisher",
-							"validation": {
-								"save-rules": [
-									"required"
-								],
-								"validation-id": "dc:biblioGraphicCitation.dc:hasPart.dc:publisher.rdf:PlainLiteral",
-								"focus-id": "dc:biblioGraphicCitation.dc:hasPart.dc:publisher.rdf:PlainLiteral",
-								"validation-messages":{
-									"required": "Publisher is required"
-								}
-							}
-						},
-						{
-							"component-type": "native-html",
-							"content": "<hr>"
-						},
-
-						{
-							"component-type": "text-input",
-							"field-name": "dc:biblioGraphicCitation.dc:hasPart.bibo:Website.dc:identifier",
-							"label": "URL (*):",
-							"size": "60",
-							"additional-classes": "",
-							"placeholder": "URL",
-							"validation": {
-								"save-rules": [
-									"required"
-								],
-								"validation-id": "dc:biblioGraphicCitation.dc:hasPart.bibo:Website.dc:identifier",
-								"focus-id": "dc:biblioGraphicCitation.dc:hasPart.bibo:Website.dc:identifier",
-								"validation-messages":{
-									"required": "URL is required"
-								}
-							}
-						},
-						{
-							"component-type": "native-html",
-							"content": "<hr>"
-						},
-
-						{
-							"component-type": "text-input",
-							"field-name": "publication-date-citation",
-							"label": "Publication Date (*):",
-							"additional-classes":"dateYMD",
-							"placeholder": "YYY-MM-DD",
-							"validation": {
-								"save-rules": [
-									"required"
-								],
-								"validation-id": "publication-date-citation",
-								"focus-id": "publication-date-citation",
-								"validation-messages":{
-									"required": "Publication Date is required"
-								}
-							}
-						},
-						{
-							"component-type": "native-html",
-							"content": "<hr>"
-						},
-
-						{
-							"component-type": "text-block",
-							"type": "h4",
-							"content": "Additional citation metadata"
-						},
-						{
-							"component-type": "native-html",
-							"content": "<hr>"
-						},
-						{
-							"component-type": "text-input",
-							"field-name": "dc:biblioGraphicCitation.dc:hasPart.dc:hasVersion.rdf:PlainLiteral",
-							"label": "Edition:",
-							"size": "60",
-							"placeholder": "Edition",
-							"additional-classes":""
-						},
-						{
-							"component-type": "native-html",
-							"content": "<hr>"
-						},
-
-						{
-							"component-type": "text-input",
-							"field-name": "dc:biblioGraphicCitation.dc:hasPart.vivo:Publisher.vivo:Location",
-							"label": "Place of Publication:",
-							"size": "60",
-							"placeholder": "Place of Publication",
-							"additional-classes":""
-						},
-						{
-							"component-type": "native-html",
-							"content": "<hr>"
-						},
-
-						{
-							"component-type": "text-block",
-							"type": "h4",
-							"content": "Date(s):"
-						},
-						{
-							"component-type": "repeatable-container",
-							"containter-for": "dc:biblioGraphicCitation.dc:hasPart.dc:date",
-							"sub-elements":{"settings":[
-									{
-										"jaffaCitationDates": {
-											"label": "",
-											"class-list": "jaffa-field",
-											"suffix": ""
-										}
-									}
-								]
-							},
-							"additional-classes": ""
-						},
-						{
-							"component-type": "native-html",
-							"content": "<hr>"
-						},
-
-						{
-							"component-type": "text-input",
-							"field-name": "dc:biblioGraphicCitation.dc:hasPart.skos:scopeNote",
-							"label": "Context:",
-							"size": "60",
-							"placeholder": "Context",
-							"additional-classes":""
-						},
-
-						{
-							"component-type": "transition-control",
-							"transitions": [
-								{ "name": "Back", "type": "button"}, { "name": "Next", "form-submit-action":"save" "type": "button"}
-							]
-						},
-						{
-							"component-type": "transition-control",
-							"transitions": [
-								{
-									"name": "Save",
-									"form-submit-action": "save",
-									"type": "button"
-								},
-								{
-									"name": "Save and close",
-									"form-submit-action": "save",
-									"type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
-								}
-							]
-						}
-					]
-				},
-				{
-                    "heading": "Access and Publication",
-                    "fields": [
-                        {
-                            "component-type": "text-block",
-                            "type": "h1",
-                            "content": "HOW should data access be managed?"
-                        },
-						{
-							"component-type": "text-block",
-							"type": "h4",
-							"content": "dataset.embargo.heading"
-						},
-						{
-							"component-type": "checkbox",
-							"field-name": "redbox:embargo.redbox:isEmbargoed",
-							"box-for": "",
-							"boxes": [
-								{
-									"label": "dataset.embargo.checkbox.label",
-								}
-							]
-						},
-						{
-							"component-type": "text-input",
-							"field-name": "redbox:embargo.dc:date",
-							"label": "dataset.embargo.date.label",
-							"additional-classes":"dateYMD"
-						},
-						{
-							"component-type": "textarea",
-							"field-name": "redbox:embargo.skos:note",
-							"label": "dataset.embargo.notes.label",
-							"content":""
-						},
-						{
-							"component-type": "native-html",
-							"content": "<hr>"
-						},
-
 						{
 							"component-type": "text-block",
 							"type": "h3",
@@ -1133,6 +854,100 @@
 							"component-type": "native-html",
 							"content": "<hr>"
 						},
+
+						{
+							"component-type": "transition-control",
+							"transitions": [
+								{ "name": "Back", "type": "button"}, { "name": "Next", "form-submit-action":"save" "type": "button"}
+							]
+						},
+						{
+							"component-type": "transition-control",
+							"transitions": [
+								{
+									"name": "Save",
+									"form-submit-action": "save",
+									"type": "button"
+								},
+								{
+									"name": "Save and close",
+									"form-submit-action": "save",
+									"type": "button",
+									"close": true,
+									"closeUrl": "dmpt/details"
+								}
+							]
+						}
+					]
+				},
+				{
+                    "heading": "Publish",
+                    "fields": [
+                        {
+                            "component-type": "text-block",
+                            "type": "h1",
+                            "content": "WHEN and how should this data record be published?"
+                        },
+						{
+							"component-type": "text-block",
+							"type": "h4",
+							"content": "dataset.embargo.heading"
+						},
+						{
+							"component-type": "checkbox",
+							"field-name": "redbox:embargo.redbox:isEmbargoed",
+							"box-for": "",
+							"boxes": [
+								{
+									"label": "dataset.embargo.checkbox.label",
+								}
+							]
+						},
+						{
+							"component-type": "text-input",
+							"field-name": "redbox:embargo.dc:date",
+							"label": "dataset.embargo.date.label",
+							"additional-classes":"dateYMD"
+						},
+						{
+							"component-type": "textarea",
+							"field-name": "redbox:embargo.skos:note",
+							"label": "dataset.embargo.notes.label",
+							"content":""
+						},
+						{
+							"component-type": "native-html",
+							"content": "<hr>"
+						},
+
+						{
+							"component-type": "text-block",
+							"type": "h4",
+							"content": "Citation Authors (in order):"
+						},
+
+						{
+							"component-type": "repeatable-container",
+							"containter-for": "dc:biblioGraphicCitation.dc:hasPart.locrel:ctb",
+							"sub-elements": {
+								"settings": [
+									{
+										"jaffaPeople": {
+											"source": "nla,mint",
+											"label": "",
+											"class-list": "jaffa-field",
+											"suffix": ""
+										}
+									}
+								]
+							}
+						},
+						{
+							"component-type": "native-html",
+							"content": "<hr>"
+						},
+
+
 						{
 							"component-type": "checkbox",
 							"field-name": "self-submission.field.dc-identifier.redboxdmpt-doirequest",
