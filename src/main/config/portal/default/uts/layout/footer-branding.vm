@@ -1,10 +1,15 @@
 <div class="clear"></div>
 <div class="footer"> 
-  This project is supported by the Australian National Data Service (ANDS). ANDS is supported by the Australian Government through the National Collaborative Research Infrastructure Strategy Program and the Education Investment Fund (EIF) Super Science Initiative.
-    <a href="http://ands.org.au" target="_blank" id="ANDSlogo">
-	<img id="ANDSlogo" alt="ANDS logo" src="$portalPath/images/ands-logo.png" align="right" height="30" width="62 "/>
-  </a>
-  </h1>
+  <div id="copyright">
+	  This project is supported by the Australian National Data Service (ANDS). ANDS is supported by the Australian
+	  Government through the National Collaborative Research Infrastructure Strategy Program and the Education
+	  Investment Fund (EIF) Super Science Initiative.
+  </div>
+  <div id="ands_logo">
+	  <a href="http://ands.org.au" target="_blank">
+		  <img alt="ANDS logo" src="$portalPath/images/logo_ands.gif" align="right"/>
+	  </a>
+  </div>
 </div>
 
 
