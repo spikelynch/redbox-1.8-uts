@@ -588,7 +588,7 @@
 		                        "validation-id": "vivo:Dataset.dc:extent",
 		                        "focus-id": "vivo:Dataset.dc:extent",
 		                        "validation-messages": {
-			                        "required": "vivo:Dataset.dc:extent is required"
+			                        "required": "Expected size is required"
 		                        }
 	                        }
                         },
