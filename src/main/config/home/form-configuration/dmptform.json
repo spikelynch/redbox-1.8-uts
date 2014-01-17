@@ -940,7 +940,7 @@
 			            {
 				            "component-type": "text-block",
 				            "type": "label",
-				            "size": "60",
+				            "size": "200",
 				            "content": "dmpt.field.label.dataLicensingAccess.manager"
 			            },
 			            {
