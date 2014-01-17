@@ -940,13 +940,13 @@
 			            {
 				            "component-type": "text-block",
 				            "type": "label",
-				            "size": "200",
 				            "content": "dmpt.field.label.dataLicensingAccess.manager"
 			            },
 			            {
 				            "component-type": "text-input",
 				            "field-name": "dataLicensingAccess.manager",
 				            "label": "",
+				            "size": "100",
 				            "additional-classes": ""
 			            },
 			            {
