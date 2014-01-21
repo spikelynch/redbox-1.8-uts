@@ -433,11 +433,10 @@
 		                    "help": "dmpt.field.help.vivo-Dataset.dc.format"
 	                    },
 	                    {
-		                    "component-type": "data-source-dropdown",
+		                    "component-type": "textarea",
 		                    "field-name": "vivo:Dataset.dc.format",
 		                    "label": "",
-		                    "field-name-label": "vivo:Dataset.dc.format.prefLabel",
-		                    "sourceUrl": "dmpt/data/fileFormat.json",
+		                    "content": "",
 		                    "validation": {
 			                    "save-rules": [
 				                    "required"
@@ -445,27 +444,7 @@
 			                    "validation-id": "vivo:Dataset.dc.format",
 			                    "focus-id": "vivo:Dataset.dc.format",
 			                    "validation-messages": {
-				                    "required": "Predominant file format is required"
-			                    }
-		                    }
-	                    },
-	                    {
-		                    "component-type": "text-block",
-		                    "type": "label",
-		                    "content": "dmpt.field.label.vivo-Dataset.dc.format.other"
-	                    },
-	                    {
-		                    "component-type": "repeatable-text",
-		                    "field-name": "vivo:Dataset.dc.format.other",
-		                    "label": "",
-		                    "validation": {
-			                    "save-rules": [
-				                    "required"
-			                    ],
-			                    "validation-id": "vivo:Dataset.dc.format.other.1.",
-			                    "focus-id": "vivo:Dataset.dc.format.other.1.",
-			                    "validation-messages": {
-				                    "required": "Other format used is required"
+				                    "required": "vivo:Dataset.dc.format"
 			                    }
 		                    }
 	                    },
