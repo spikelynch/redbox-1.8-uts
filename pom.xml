@@ -77,6 +77,14 @@
       <groupId>fascinator-shibboleth</groupId>
       <artifactId>fascinator-shibboleth</artifactId>
       <version>0.0.1-SNAPSHOT</version>
+      <!-- exclusion as JCU dependency outdated, see: -->
+      <!-- https://groups.google.com/forum/#!msg/redbox-dev/OJmzunroZ2M/0GFPcS3HooAJ -->
+      <exclusions>
+        <exclusion>
+          <groupId>com.googlecode.the-fascinator</groupId>
+          <artifactId>fascinator-portal</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!-- Clean up a dependency error raised during 1.6.1 redbox release -->
     <dependency>
