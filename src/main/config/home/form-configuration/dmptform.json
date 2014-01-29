@@ -116,7 +116,8 @@
 	                    {
 		                    "component-type": "text-block",
 		                    "type": "label",
-		                    "content": "Keywords"
+		                    "content": "Keywords",
+		                    "help": "Enter a word or phrase that characterises your research data. To enter another word or phrase, click 'add'."
 	                    },
 	                    {
 		                    "component-type": "repeatable-text",
@@ -1123,16 +1124,7 @@
                         },
                         {
                             "component-type":"transition-control",
-							"transitions":[{"name":"Back", "type": "button"},{"name":"Next", "form-submit-action":"save", "type": "button"}]
-                        },
-                        {
-                            "component-type": "transition-control",
-                            "transitions": [
-                                {
-                                    "name": "Save",
-                                    "form-submit-action": "save",
-                                    "type": "button"
-                                },
+							"transitions":[{"name":"Back", "type": "button"},
                                 {
                                     "name": "Save and close",
 	                                "form-submit-action": "save",
