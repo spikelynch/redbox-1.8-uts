@@ -1,3 +1,11 @@
+#macro(Collaborators $map $key $order)
+	#set($queryKey = "person.${key}")
+	#set ($value = $map.get($queryKey))
+	#if ("$!value" != "")
+	"dc:contributor.locrel:clb.${order}.foaf:Agent.${key}": "$value",
+	#end
+#end
+
 #macro(Grants $map $key $order)
 	#set($queryKey = "${key}")
 	#set ($value = $map.get($queryKey))
@@ -31,158 +39,44 @@
 "packageType": "self-submission",
 "viewId": "dashboard",
 "dc:title": "[untitled]",
-"dc:description": "$util.get($item, 'dc:description')",
+"dc:description": "",
 #mapTo('oid', 'redbox:ManagementPlan.oid')
 #mapTo('dc:title', 'redbox:ManagementPlan.skos:note')
 #foreach( $key in ["swrc:supervisor.foaf:Person.foaf:title","swrc:supervisor.foaf:Person.foaf:givenName","swrc:supervisor.foaf:Person.foaf:familyName"
 ,"swrc:supervisor.foaf:Person.foaf:email","swrc:supervisor.foaf:Person.dc:identifier"
 ,"locrel:prc.foaf:Person.foaf:title","locrel:prc.foaf:Person.foaf:givenName","locrel:prc.foaf:Person.foaf:familyName"
 ,"locrel:prc.foaf:Person.dc:identifier","locrel:prc.foaf:Person.foaf:email"
-,"dc:coverage.vivo:DateTimeInterval.vivo:end","dc:coverage.redbox:timePeriod" ,"dc:coverage.vivo:DateTimeInterval.vivo:start"
+,"dc:coverage.vivo:DateTimeInterval.vivo:start","dc:coverage.vivo:DateTimeInterval.vivo:end","dc:coverage.redbox:timePeriod"
 ,"dc:license.dc:identifier"
 ,"dc:license.skos:prefLabel"
 ,"dc:subject.anzsrc:toa.rdf:resource","dc:subject.anzsrc:toa.skos:prefLabel"
 ,"redbox:retentionPeriod.dc:date"
+,"redbox:retentionPeriod.dc:date.prefLabel"
+,"redbox:retentionPeriod.dc:date.skos:note"
+,"redbox:retentionPeriod.dc:date.skos:note.prefLabel"
+,"redbox:disposalDate"
 ])
 	#set($v = $util.get($item, $key))
 	#if ($v) "$key": "$!v",
 	#end
 #end
-
-#foreach( $key in [
-"dc:type.skos:prefLabel",
-"dc:coverage.vivo:GeographicLocation.1.dc:type",
-"dc:coverage.vivo:GeographicLocation.2.dc:type",
-"dc:coverage.vivo:GeographicLocation.1.redbox:wktRaw",
-"dc:coverage.vivo:GeographicLocation.2.redbox:wktRaw",
-"dc:coverage.vivo:GeographicLocation.1.rdf:PlainLiteral",
-"dc:coverage.vivo:GeographicLocation.2.rdf:PlainLiteral",
-"dc:coverage.vivo:GeographicLocation.1.geo:long",
-"dc:coverage.vivo:GeographicLocation.2.geo:long",
-"dc:coverage.vivo:GeographicLocation.1.geo:lat",
-"dc:coverage.vivo:GeographicLocation.2.geo:lat",
-"dc:coverage.vivo:GeographicLocation.1.dc:identifier",
-"dc:coverage.vivo:GeographicLocation.2.dc:identifier",
-"dc:relation.swrc:Publication.1.dc:identifier",
-"dc:relation.swrc:Publication.1.dc:title",
-"dc:relation.swrc:Publication.1.skos:note",
-"dc:relation.bibo:Website.1.dc:identifier",
-"dc:relation.bibo:Website.1.dc:title",
-"dc:relation.bibo:Website.1.skos:note",
-"dc:relation.vivo:Dataset.1.dc:identifier",
-"dc:relation.vivo:Dataset.1.vivo:Relationship.rdf:PlainLiteral",
-"dc:relation.vivo:Dataset.1.vivo:Relationship.skos:prefLabel",
-"dc:relation.vivo:Dataset.1.dc:title",
-"dc:relation.vivo:Dataset.1.skos:note",
-"dc:relation.vivo:Dataset.1.redbox:origin",
-"dc:relation.vivo:Dataset.1.redbox:publish",
-"dc:relation.vivo:Service.1.dc:identifier",
-"dc:relation.vivo:Service.1.vivo:Relationship.rdf:PlainLiteral",
-"dc:relation.vivo:Service.1.vivo:Relationship.skos:prefLabel",
-"dc:relation.vivo:Service.1.dc:title",
-"dc:relation.vivo:Service.1.skos:note",
-"dc:creator.foaf:Person.1.dc:identifier",
-"dc:creator.foaf:Person.1.foaf:name",
-"dc:creator.foaf:Person.1.foaf:title",
-"dc:creator.foaf:Person.1.redbox:isCoPrimaryInvestigator",
-"dc:creator.foaf:Person.1.redbox:isPrimaryInvestigator",
-"dc:creator.foaf:Person.1.foaf:givenName",
-"dc:creator.foaf:Person.1.foaf:familyName",
-"dc:creator.foaf:Person.1.foaf:Organization.dc:identifier",
-"dc:creator.foaf:Person.1.foaf:Organization.skos:prefLabel",
-"locrel:prc.foaf:Person.dc:identifier",
-"swrc:supervisor.foaf:Person.1.dc:identifier",
-"swrc:supervisor.foaf:Person.1.foaf:name",
-"swrc:supervisor.foaf:Person.1.foaf:title",
-"swrc:supervisor.foaf:Person.1.foaf:givenName",
-"swrc:supervisor.foaf:Person.1.foaf:familyName",
-"dc:contributor.locrel:clb.1.foaf:Agent",
-"dc:subject.anzsrc:seo.1.skos:prefLabel",
-"dc:subject.anzsrc:seo.1.rdf:resource",
-"dc:subject.anzsrc:for.1.skos:prefLabel",
-"dc:subject.anzsrc:for.1.rdf:resource",
-"dc:subject.vivo:keyword.1.rdf:PlainLiteral",
-"dc:subject.anzsrc:toa.rdf:resource",
-"dc:subject.anzsrc:toa.skos:prefLabel",
-"dc:accessRights.skos:prefLabel",
-"dc:accessRights.dc:identifier",
-"dc:accessRights.dc:RightsStatement.skos:prefLabel",
-"dc:accessRights.dc:RightsStatement.dc:identifier",
-"dc:license.rdf:Alt.skos:prefLabel",
-"dc:license.rdf:Alt.dc:identifier",
-"dc:identifier.rdf:PlainLiteral",
-"dc:identifier.dc:type.rdf:PlainLiteral",
-"dc:identifier.dc:type.skos:prefLabel",
-"dc:identifier.redbox:origin",
-"locrel:own.foaf:Agent.1.foaf:name",
-"locrel:dtm.foaf:Agent.foaf:name",
-"foaf:Organization.dc:identifier",
-"foaf:Organization.skos:prefLabel",
-"foaf:fundedBy.foaf:Agent.1.skos:prefLabel",
-"foaf:fundedBy.foaf:Agent.1.dc:identifier",
-"foaf:fundedBy.vivo:Grant.1.redbox:internalGrant",
-"foaf:fundedBy.vivo:Grant.1.redbox:grantNumber",
-"foaf:fundedBy.vivo:Grant.1.dc:identifier",
-"foaf:fundedBy.vivo:Grant.1.skos:prefLabel",
-"swrc:ResearchProject.dc:title",
-"locrel:dpt.foaf:Person.foaf:name",
-"dc:Policy",
-"redbox:ManagementPlan.redbox:hasPlan",
-"redbox:ManagementPlan.skos:note",
-"skos:note.1.dc:created",
-"skos:note.1.foaf:name",
-"skos:note.1.dc:description",
-"xmlns:dc",
-"xmlns:foaf",
-"xmlns:anzsrc"
-])
-	#set($v = $util.get($item, $key))
-	#if ($v) "$key": "$!v",
-	#end
-#end
-
-
-#foreach( $key in ["dc:type.rdf:PlainLiteral", "self-submission.field.dc-identifier.redboxdmpt-doirequest",  "dc:subject.vivo:keyword.1.rdf:PlainLiteral",
-"dc:license.rdf:Alt.skos:prefLabel","dc:license.rdf:Alt.dc:identifier","dc:identifier.rdf:PlainLiteral","dc:identifier.dc:type.rdf:PlainLiteral",
-"dc:identifier.dc:type.skos:prefLabel","dc:identifier.redbox:origin",
-"locrel:dtm.foaf:Agent.foaf:name","foaf:Organization.dc:identifier",
-"foaf:Organization.skos:prefLabel","swrc:ResearchProject.dc:title","locrel:dpt.foaf:Person.foaf:name",
-"dc:Policy","dc:accessRights.dc:RightsStatement.skos:prefLabel","dc:accessRights.dc:RightsStatement.dc:identifier","dc:accessRights.skos:prefLabel","dc:accessRights.dc:identifier",
-"dc:subject.anzsrc:toa.rdf:resource","dc:subject.anzsrc:toa.skos:prefLabel"
-])
-	#set($v = $util.get($item, $key))
-	#if ($v) "$key": "$!v",
-	#else
-	"$key": "",
-	#end
-#end
-
-## Principal Investigators
-#mapTo("dc:creator.foaf:Person.foaf:title" "dc:creator.foaf:Person.foaf:title")
-#mapTo("dc:creator.foaf:Person.foaf:givenName" "dc:creator.foaf:Person.foaf:givenName")
-#mapTo("dc:creator.foaf:Person.foaf:familyName" "dc:creator.foaf:Person.foaf:familyName")
-#mapTo("dc:creator.foaf:Person.foaf:email" "dc:creator.foaf:Person.foaf:email")
-#mapTo("dc:creator.foaf:Person.dc:identifier" "dc:creator.foaf:Person.dc:identifier")
+#mapTo("locrel:rth.foaf:Person.foaf:title" "dc:creator.foaf:Person.foaf:title")
+#mapTo("locrel:rth.foaf:Person.foaf:givenName" "dc:creator.foaf:Person.foaf:givenName")
+#mapTo("locrel:rth.foaf:Person.foaf:familyName" "dc:creator.foaf:Person.foaf:familyName")
+#mapTo("locrel:rth.foaf:Person.foaf:email" "dc:creator.foaf:Person.foaf:email")
+#mapTo("locrel:rth.foaf:Person.dc:identifier" "dc:creator.foaf:Person.dc:identifier")
 #mapTo("dc:RightsStatement" "dc:accessRights.dc:RightsStatement.skos:prefLabel")
-
-## Collaborators
-#set($index = 1)
-#foreach($index in  [1..10000])
-	#if (! $util.get($item, "dc:contributor.locrel:clb.${index}.foaf:Agent.dc:identifier"))
-		#break
-	#end
-
-	#Collaborators("foaf:title" $index)
-	#Collaborators("foaf:givenName" $index)
-	#Collaborators("foaf:familyName" $index)
-	#Collaborators("foaf:email" $index)
-	#Collaborators("dc:identifier" $index)
-#end
-
-#macro(Collaborators $key $index)
-	#set ($value = $util.get($item, "dc:contributor.locrel:clb.${index}.foaf:Agent.${key}"))
-	#if ("$!value" != "")
-		"dc:contributor.locrel:clb.${index}.foaf:Agent.${key}": "$value",
+#set($cList = $util.getList($item, "locrel:clb.foaf:Person"))
+#set($order = 1)
+#if ($cList.size() > 0)
+	#foreach($key in $cList.keySet())
+		#set($slot = $cList.get($key))
+		#Collaborators($slot "foaf:title" $order)
+		#Collaborators($slot "foaf:givenName" $order)
+		#Collaborators($slot "foaf:familyName" $order)
+		#Collaborators($slot "foaf:email" $order)
+		#Collaborators($slot "dc:identifier" $order)
+		#set($order = $order + 1)
 	#end
 #end
 
