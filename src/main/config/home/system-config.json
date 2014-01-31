@@ -3,9 +3,9 @@
     "redbox.version.string": "${redbox.version}",
     "version.string": "${redbox.version}",
     "redbox.identity": {
-        "institution": "The University of Technology, Sydney",
-        "RIF-CS Group": "The University of Technology, Sydney, Australia",
-        "internalGrantString": "urn:uts:internal"
+        "institution": "University of Technology, Sydney",
+        "RIF-CS Group": "University of Technology, Sydney",
+        "internalGrantString": "urn:UTS:internal"
     },
     "transitionWorkflow": {
         "transitions": [
@@ -44,7 +44,7 @@
     },
 	"Shibboleth":{
 		"use_headers":"false",
-		"username_attribute":"auEduPersonSharedToken",
+		"username_attribute":"mail",
 		"cn_attribute":"displayName",
 		"session_attribute":"Shib-Session-ID",
 		"idp_attribute":"Shib-Identity-Provider",
@@ -54,108 +54,47 @@
 		"SimpleShibbolethRoleManager":{
 			"admin":[
 				[
-					["auEduPersonSharedToken", "is", "5pgKpM8-mxw2QTi9jSVgbobQe4c"]
+					["mail", "is", "Paul.Nguyen@uts.edu.au"]
 				]
 				,
 				[
-					["auEduPersonSharedToken", "is", "OjB_85bSX4yBXyQDZ7Ry_U5soN8"]
+					["mail", "is", "Sharyn.Wise@uts.edu.au"]
 				]
 				,
 				[
-					["auEduPersonSharedToken", "is", "XqMBJT6CScmguPkk893vrDepYuk"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
+					["mail", "is", "Michael.Lynch@uts.edu.au"]
 				]
 			],
 			"reviewer":[
 				[
-					["auEduPersonSharedToken", "is", "5pgKpM8-mxw2QTi9jSVgbobQe4c"]
+					["mail", "is", "Paul.Nguyen@uts.edu.au"]
 				]
 				,
 				[
-					["auEduPersonSharedToken", "is", "OjB_85bSX4yBXyQDZ7Ry_U5soN8"]
+					["mail", "is", "Sharyn.Wise@uts.edu.au"]
 				]
 				,
 				[
-					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "bzZvUwtCB1OXRFi4ZV0ERnH0Hf0"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "gzgqT6mXfI2xCDkJe4C5MbI1WKs"]
+					["mail", "is", "Michael.Lynch@uts.edu.au"]
 				]
 			],
 			"librarian":[
 				[
-					["auEduPersonSharedToken", "is", "5pgKpM8-mxw2QTi9jSVgbobQe4c"]
+					["mail", "is", "Paul.Nguyen@uts.edu.au"]
 				]
 				,
 				[
-					["auEduPersonSharedToken", "is", "z0Io1gkbDXFMcBQpf3EqHkog9IY"]
+					["mail", "is", "Sharyn.Wise@uts.edu.au"]
 				]
 				,
 				[
-					["auEduPersonSharedToken", "is", "SPQ3DSww4-B3D8kPvk4AVzlNHnA"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "bzZvUwtCB1OXRFi4ZV0ERnH0Hf0"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "oJ2iHnXZ52k-uJHTGePxfJlvtzk"]
+					["mail", "is", "Michael.Lynch@uts.edu.au"]
 				]
 			],
 			"researcher":[
 				[
-					["auEduPersonSharedToken", "is", "dnxiXK7FEMq1UGv2TWmMJnlVC4w"]
-				]
-				,
-				[
-					["Shib-Identity-Provider", "is", "https://test-aaf-login.uts.edu.au/idp/shibboleth"],
+					["Shib-Identity-Provider", "is", "https://aaf-login.uts.edu.au/idp/shibboleth"],
 					["eduPersonAffiliation", "is", "staff"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "nEk1Op_Dckfga81qUUpNMD3AX88"]
-				]
-				,
-				[
-					["Shib-Identity-Provider", "is", "https://idptest.intersect.org.au/idp/shibboleth"],
-					["eduPersonAffiliation", "is", "staff"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "0QamBNPa0FnXgOC-DwNsRI3vPv0"]
-				]
-				,
-				[
-					["auEduPersonSharedToken", "is", "SrOthXd2coVXqBD7LysG_uMRNYc"]
 				]
 			],
 			"guest":[
@@ -264,7 +203,7 @@
         "curationEmailAddress": "${admin.email}",
         "curationRequiresConfirmation": false,
         "pidProperty": "localPid",
-	    "pidType": "local",
+        "pidType": "local",
         "mintBroker": "${mint.amq.broker}",
         "relations": {
             "dc:relation.vivo:Dataset.0.dc:identifier": {
@@ -423,10 +362,10 @@
         }
     },
     "transformerDefaults": {
-	    "local": {
-		    "id": "local",
-		    "useIncrements": false
-	    },
+        "local": {
+            "id": "local",
+            "useIncrements": false
+        },
         "jsonVelocity": {
             "id": "jsonVelocity",
             "sourcePayload": ".tfpackage",
@@ -452,16 +391,6 @@
             "clearPropertyOnTransform": "true",
             "transformSource": "true"
         },
-	    "selfSubToSelfSub": {
-		    "id": "jsonVelocity",
-		    "sourcePayload": ".tfpackage",
-		    "templatesPath": "${fascinator.home}/templates/self-submission/selfSubClone.vm",
-		    "checkForTFMETAProperty": "true",
-		    "TFMETAPropertyName": "copyTFPackage",
-		    "TFMETAPropertyValue": "selfSubToSelfSub",
-		    "clearPropertyOnTransform": "true",
-		    "transformSource": "true"
-	    },
         "selfSubtoDataset": {
             "id": "jsonVelocity",
             "sourcePayload": ".tfpackage",
@@ -511,7 +440,7 @@
         "skins": {
             "default": "default",
             "order": [
-	            "uts",
+                "uts", 
                 "local",
                 "dashboard",
                 "redbox"
@@ -609,16 +538,16 @@
                 "frequency": "3600",
                 "jobs": [
                     {
-                        "name": "alerts-poll",
+                        "name": "new-alerts-poll",
                         "type": "external",
-						"url": "${server.url.base}default/hkjobs/alerts.script",
+			"url": "${server.url.base}default/hkjobs/alerts.script",
                         "timing": "0 0/15 * * * ?"
                     },
 					{
-						"name": "transitionWorkflow",
-						"type": "external",
-						"url": "${server.url.base}default/hkjobs/transitionWorkflow.script",
-						"timing": "0 0-59/5 * * * ?"
+					  "name": "transitionWorkflow",
+					  "type": "external",
+					  "url": "${server.url.base}default/hkjobs/transitionWorkflow.script",
+					  "timing": "0 0-59/5 * * * ?"
 					},
                     {
                         "name": "process-set-notifyNewRecords",
@@ -695,63 +624,40 @@
         "Countries": "${mint.proxy.url}/default/api/query.script?callType=countries",
         "Countries_Detail": "${mint.proxy.url}/default/api/query.script?callType=countries&func=detail"
     },
-    "alerts": {
-        "path": "${fascinator.home}/alerts",
-        "xmlMaps": {
-            "xml": "${fascinator.home}/alerts/config/basicXmlMap.json",
-            "rif": "${fascinator.home}/alerts/config/rifXmlMap.json"
-        }
-    },
+
     "new-alerts": {
         "alertSet": [
-            {
-                "name": "Data plans",
-                "path": "${fascinator.home}/test-alerts/dataplan1",
-                "harvestConfig": "${fascinator.home}/harvest/workflows/dmpt.json",
-                "handlers": {
-                    "csv": "CSVAlertHandler"
+	    {
+                "name": "Data Capture",
+                "path": "${fascinator.home}/alerts",
+		"harvestConfig": "${fascinator.home}/harvest/workflows/dataset.json",
+		"handlers": {
+		    "xml": "XMLAlertHandler"
                 },
-                "CSVAlertHandlerParams": {
-                    "configMap": {
-                        "csv": {
-                            "Dialect": {
-                                "skipinitialspace": true
-                            },
-                            "fieldMap": {
-                                "Title": [
-                                    "title",
-                                    "dc:title"
-                                ],
-                                "Description": [
-                                    "description",
-                                    "dc:description"
-                                ],
-                                "ID": "dc:identifier",
-                                "Start": "dc:coverage.vivo:DateTimeInterval.vivo:start",
-                                "End": "dc:coverage.vivo:DateTimeInterval.vivo:end",
-                                "PI_Given_Name": "locrel:rth.foaf:Person.foaf:givenName",
-                                "PI_Family_Name": "locrel:rth.foaf:Person.foaf:familyName",
-                                "PI_Honorific": "locrel:rth.foaf:Person.foaf:title ",
-                                "PI_Email": "locrel:rth.foaf:Person.foaf:email",
-                                "Supervisor_Given_Name": "swrc:supervisor.foaf:Person.0.foaf:givenName",
-                                "Supervisor_Family_Name": "swrc:supervisor.foaf:Person.0.foaf:familyName",
-                                "Supervisor_Honorific": "swrc:supervisor.foaf:Person.0.foaf:title",
-                                "Supervisor_Email": "swrc:supervisor.foaf:Person.0.foaf:email",
-                                "Staff_ID": "user_id"
-                            }
-                        }
-                    }
-                },
-                "baseline": {
-                    "viewId": "dashboard",
-                    "packageType": "dmpt",
-                    "redbox:formVersion": "1.6.1-SNAPSHOT",
-                    "redbox:newForm": true,
-                    "redbox:submissionProcess.redbox:submitted": true,
+	        "baseline": {
                     "workflow_source": "Default Alert"
+                },
+ 	        "timestampFields": [ "redbox:submissionProcess.dc:date" ],
+		"XMLAlertHandlerParams": {
+                    "configMap": {
+			"xml": {
+			    "xmlMap": "${fascinator.home}/alerts/config/DCXMLmap.json"
+			}
+		    }
                 }
-            }
-        ]
+	    }
+	],
+	"baseline": {
+		"viewId": "default",
+		"packageType": "dataset",
+		"dc:type.rdf:PlainLiteral": "dataset",
+		"dc:type.skos:prefLabel": "Dataset",
+		"dc:identifier.dc:type.rdf:PlainLiteral": "handle",
+		"dc:identifier.dc:type.skos:prefLabel": "HANDLE System Identifier",
+		"redbox:formVersion": "1.6.2",
+		"redbox:newForm": "true",
+		"redbox:submissionProcess.redbox:submitted": "true"
+	}	
     },
     "watcher": {
         "path": "${watcher.home}"
