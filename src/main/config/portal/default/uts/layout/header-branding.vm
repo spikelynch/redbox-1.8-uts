@@ -3,10 +3,10 @@
 <div class="header">
   <h1 id="branding">
     <a href="$portalPath/home">
-	  <img alt="Stash Logo" src="$portalPath/images/logo_stash.gif" align="left" style="margin-left: 20px;" />
+	  <img alt="Stash Logo" src="$portalPath/images/logo_stash.gif" style="float: left; margin-left: 20px;" />
 	</a>
 	<a href="http://uts.edu.au">
-		<img id="banner" alt="UTS Logo" src="$portalPath/images/logo_uts.gif" align="right" />
+		<img id="banner" alt="UTS Logo" src="$portalPath/images/logo_uts.gif" style="float: right;" />
 	</a>
   </h1>
 </div>
