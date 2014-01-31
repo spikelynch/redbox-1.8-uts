@@ -109,11 +109,24 @@
 								}
 							}
 						},
-
+	                    {
+		                    "component-type": "native-html",
+		                    "content": "<hr>"
+	                    },
+	                    {
+		                    "component-type": "text-block",
+		                    "type": "label",
+		                    "content": "Keywords",
+		                    "help": "Enter a word or phrase that characterises your research data. To enter another word or phrase, click 'add'."
+	                    },
 	                    {
 		                    "component-type": "repeatable-text",
 		                    "field-name": "finalKeywords",
-		                    "label": "Keyword"
+		                    "label": ""
+	                    },
+	                    {
+		                    "component-type": "native-html",
+		                    "content": "<hr>"
 	                    },
                         {
                             "component-type":"text-block",
@@ -251,10 +264,16 @@
                                 },
                                 {
                                     "name": "Save and close",
-                                    "form-submit-action": "save",
-                                    "type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
+	                                "form-submit-action": "save",
+	                                "type": "button",
+	                                "close": true,
+	                                "closeUrl": "dmpt/planready",
+	                                "object-metadata-params": [
+		                                {
+			                                "key": "generatePDF",
+			                                "value": "true"
+		                                }
+	                                ]
                                 }
                             ]
                         }
@@ -362,10 +381,16 @@
                                 },
                                 {
                                     "name": "Save and close",
-                                    "form-submit-action": "save",
-                                    "type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
+	                                "form-submit-action": "save",
+	                                "type": "button",
+	                                "close": true,
+	                                "closeUrl": "dmpt/planready",
+	                                "object-metadata-params": [
+		                                {
+			                                "key": "generatePDF",
+			                                "value": "true"
+		                                }
+	                                ]
                                 }
                             ]
                         }
@@ -390,8 +415,40 @@
                             "component-type":"textarea",
                             "field-name":"vivo:Dataset.redbox:DataCollectionMethodology",
                             "label":"",
-                            "content":""
+                            "content":"" ,
+	                        "validation": {
+		                        "save-rules": [
+			                        "required"
+		                        ],
+		                        "validation-id": "vivo:Dataset.redbox:DataCollectionMethodology",
+		                        "focus-id": "vivo:Dataset.redbox:DataCollectionMethodology",
+		                        "validation-messages": {
+			                        "required": "Brief description of your data collection methodology is required"
+		                        }
+	                        }
                         },
+	                    {
+		                    "component-type": "text-block",
+		                    "type": "label",
+		                    "content": "dmpt.field.label.vivo-Dataset.dc.format",
+		                    "help": "dmpt.field.help.vivo-Dataset.dc.format"
+	                    },
+	                    {
+		                    "component-type": "textarea",
+		                    "field-name": "vivo:Dataset.dc.format",
+		                    "label": "",
+		                    "content": "",
+		                    "validation": {
+			                    "save-rules": [
+				                    "required"
+			                    ],
+			                    "validation-id": "vivo:Dataset.dc.format",
+			                    "focus-id": "vivo:Dataset.dc.format",
+			                    "validation-messages": {
+				                    "required": "vivo:Dataset.dc.format"
+			                    }
+		                    }
+	                    },
                         {
                             "component-type":"text-block",
                             "type":"label",
@@ -416,29 +473,7 @@
                             "label":"",
                             "content":""
                         },
-                        {
-                            "component-type":"text-block",
-                            "type":"label",
-                            "content":"dmpt.field.label.vivo-Dataset.dc.format",
-                            "help":"dmpt.field.help.vivo-Dataset.dc.format"
-                        },
-                        {
-                            "component-type":"data-source-dropdown",
-                            "field-name":"vivo:Dataset.dc.format",
-                            "label":"",
-                            "field-name-label":"vivo:Dataset.dc.format.prefLabel",
-                            "sourceUrl":"dmpt/data/fileFormat.json"
-                        },
-                        {
-                            "component-type":"text-block",
-                            "type":"label",
-                            "content":"dmpt.field.label.vivo-Dataset.dc.format.other"
-                        },
-                        {
-	                        "component-type": "repeatable-text",
-                            "field-name":"vivo:Dataset.dc.format.other",
-                            "label":""
-                        },
+
 	                    {
 		                    "component-type": "text-block",
 		                    "type": "label",
@@ -490,7 +525,7 @@
                                 "form-submit-action": "save",
                                 "type": "button",
                                 "close": true,
-                                "closeUrl": "dmpt/details",
+                                "closeUrl": "dmpt/planready",
                                 "object-metadata-params": [
                                                             {
                                                                 "key": "generatePDF",
@@ -525,7 +560,17 @@
                             "field-name":"vivo:Dataset.dc:extent",
                             "label":"",
                             "field-name-label":"vivo:Dataset.dc:extent.prefLabel",
-                            "sourceUrl":"workflows/forms/data/dataSize.json"
+                            "sourceUrl":"workflows/forms/data/dataSize.json",
+	                        "validation": {
+		                        "save-rules": [
+			                        "required"
+		                        ],
+		                        "validation-id": "vivo:Dataset.dc:extent",
+		                        "focus-id": "vivo:Dataset.dc:extent",
+		                        "validation-messages": {
+			                        "required": "Expected size is required"
+		                        }
+	                        }
                         },
                         {
                             "component-type":"text-block",
@@ -538,7 +583,17 @@
                             "field-name":"vivo:Dataset.dc:location.rdf:PlainLiteral",
                             "label":"",
                             "field-name-label":"vivo:Dataset.dc:location.rdf:PlainLiteral.prefLabel",
-                            "sourceUrl":"dmpt/data/storageLocation.json "
+                            "sourceUrl":"dmpt/data/storageLocation.json ",
+	                        "validation": {
+		                        "save-rules": [
+			                        "required"
+		                        ],
+		                        "validation-id": "vivo:Dataset.dc:location.rdf:PlainLiteral",
+		                        "focus-id": "vivo:Dataset.dc:location.rdf:PlainLiteral",
+		                        "validation-messages": {
+			                        "required": "Storage Location during project is required"
+		                        }
+	                        }
                         },
                         {
                             "component-type":"textarea",
@@ -557,7 +612,18 @@
                             "field-name":"vivo:Dataset.dc:source.dc:location.rdf:PlainLiteral",
                             "label":"",
                             "field-name-label":"vivo:Dataset.dc:source.dc:location.rdf:PlainLiteral.prefLabel",
-                            "sourceUrl":"dmpt/data/masterLocation.json"
+                            "sourceUrl":"dmpt/data/masterLocation.json",
+	                        "validation": {
+		                        "save-rules": [
+			                        "required"
+		                        ],
+		                        "validation-id": "vivo:Dataset.dc:source.dc:location.rdf:PlainLiteral",
+		                        "focus-id": "vivo:Dataset.dc:source.dc:location.rdf:PlainLiteral",
+		                        "validation-messages": {
+			                        "required": "Location of the master version is required"
+		                        }
+	                        }
+
                         },
                         {
                             "component-type":"textarea",
@@ -579,10 +645,16 @@
                                 },
                                 {
                                     "name": "Save and close",
-                                    "form-submit-action": "save",
-                                    "type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
+	                                "form-submit-action": "save",
+	                                "type": "button",
+	                                "close": true,
+	                                "closeUrl": "dmpt/planready",
+	                                "object-metadata-params": [
+		                                {
+			                                "key": "generatePDF",
+			                                "value": "true"
+		                                }
+	                                ]
                                 }
                             ]
                         }
@@ -673,7 +745,7 @@
                                     "type": "button",
                                     "form-submit-action": "save",
                                     "close": true,
-                                    "closeUrl": "dmpt/details",
+                                    "closeUrl": "dmpt/planready",
                                     "object-metadata-params": [
                                                                 {
                                                                     "key": "generatePDF",
@@ -708,7 +780,17 @@
 				            "field-name": "dc:rightsHolder.dc:name",
 				            "field-name-label": "dc:rightsHolder.dc:name.prefLabel",
 				            "label": "",
-				            "sourceUrl": "dmpt/data/rightsOwner.json"
+				            "sourceUrl": "dmpt/data/rightsOwner.json",
+				            "validation": {
+					            "save-rules": [
+						            "required"
+					            ],
+					            "validation-id": "dc:rightsHolder.dc:name",
+					            "focus-id": "dc:rightsHolder.dc:name",
+					            "validation-messages": {
+						            "required": "Copyright and intellectual property owners is required"
+					            }
+				            }
 			            },
 			            {
 				            "component-type": "text-block",
@@ -828,6 +910,10 @@
 					            {
 						            "label": "open, free access under license",
 						            "value": "open, free access under license"
+					            },
+					            {
+						            "label": "no access due to sensitivities (as indicated on next tab)",
+						            "value": "no access due to sensitivities"
 					            }
 				            ]
 			            },
@@ -840,6 +926,7 @@
 				            "component-type": "text-input",
 				            "field-name": "dataLicensingAccess.manager",
 				            "label": "",
+				            "size": "100",
 				            "additional-classes": ""
 			            },
 			            {
@@ -940,7 +1027,7 @@
 						            "form-submit-action": "save",
 						            "type": "button",
 						            "close": true,
-						            "closeUrl": "dmpt/details",
+						            "closeUrl": "dmpt/planready",
 						            "object-metadata-params": [
 							            {
 								            "key": "generatePDF",
@@ -1037,22 +1124,19 @@
                         },
                         {
                             "component-type":"transition-control",
-							"transitions":[{"name":"Back", "type": "button"},{"name":"Next", "form-submit-action":"save", "type": "button"}]
-                        },
-                        {
-                            "component-type": "transition-control",
-                            "transitions": [
-                                {
-                                    "name": "Save",
-                                    "form-submit-action": "save",
-                                    "type": "button"
-                                },
+							"transitions":[{"name":"Back", "type": "button"},
                                 {
                                     "name": "Save and close",
-                                    "form-submit-action": "save",
-                                    "type": "button",
-									"close": true,
-									"closeUrl": "dmpt/details"
+	                                "form-submit-action": "save",
+	                                "type": "button",
+	                                "close": true,
+	                                "closeUrl": "dmpt/planready",
+	                                "object-metadata-params": [
+		                                {
+			                                "key": "generatePDF",
+			                                "value": "true"
+		                                }
+	                                ]
                                 }
                             ]
                         }

@@ -30,7 +30,7 @@
 			                	ajax: 1,
 			                	fromOid: oid,
 			                	toOid: data.oid,
-			                	tfMetaPropertyValue: "dmpToSelfSub"
+			                	tfMetaPropertyValue: "selfSubToSelfSub"
 			            	}, 
 			            	success: function(data) {
 			            		if (data.status == "ok") {
