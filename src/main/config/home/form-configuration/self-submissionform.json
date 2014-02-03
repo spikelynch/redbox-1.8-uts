@@ -964,7 +964,7 @@
                             "component-type": "textarea",
                             "field-name": "skos:note.0.dc:description",
                             "label": "self-submission.field.label.skos-note",
-                            "content":"No notes, please add yours!"
+                            "content":""
                         },
 						{
 							"component-type": "checkbox",

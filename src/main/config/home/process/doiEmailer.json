@@ -8,7 +8,7 @@
 	"from":"${admin.email}",
 	"to":"$piEmail, ${admin.email}",
 	"subject":"DOI request received RE OID: $oid",
-	"body":"Dear $piGivenName,\n\nThank you for requesting a Digital Object Identifier (DOI) for your data record ${server.url.base}$viewId/detail/$oid. A Data librarian will be in contact with you soon to assist you in obtaining a DOI. Meanwhile, here is more information about DOIs. \n\nWHAT IS A DOI? \n\nA DOI is a form of identifier used in publishing to uniquely and persistently identify an object. The object may be digital or non-digital (i.e. the 'digital' in DOI refers to the identifier, not the object). A DOI should resolve to a URL from which the object can be accessed whether directly (e.g. via download) or indirectly (e.g. via request to the custodian). \n\nSHOULD I GET A DOI?  \n\nIf you intend to reference your data or believe your data will be cited, you can obtain a DOI. There are two important things you should know: \n\n1) DOIs are forever. Because a DOI must always resolve to a URL (even if only to a 'tombstone page' saying that the data has reached its retention date and been disposed of), there are associated maintenance overheads. Therefore DOIs should be used judiciously; i.e., for objects that you expect to reference or to be cited. \n\n2) Once an object has been published with a DOI, no further substantive changes can be made to the object or its description - including, in particular, the Title, Authors, Date, Description or Publisher. If you need to make changes, you will need to request another DOI for the revised object. \n\nYour message to the Data Librarian (if any) is included below for your reference. \n$doiNotes \n\nFor further information please do not hesitate to contact eResearch-IT on data-librarian@uts.edu.au.\n\nKind regards \neResearch Support Group \ndata-librarian@uts.edu.au \nPh. 95144000 or ext.4000 \nN.B. This is a system generated message, please do not Reply, but email data-librarian@uts.edu.au.",
+	"body":"Dear $piGivenName,\n\nThank you for requesting a Digital Object Identifier (DOI) for your data record ${server.url.base}$viewId/detail/$oid. A Data librarian will be in contact with you soon to assist you in obtaining a DOI. Meanwhile, here is more information about DOIs. \n\nWHAT IS A DOI? \n\nA DOI is a form of identifier used in publishing to uniquely and persistently identify an object. The object may be digital or non-digital (i.e. the 'digital' in DOI refers to the identifier, not the object). A DOI should resolve to a URL from which the object can be accessed whether directly (e.g. via download) or indirectly (e.g. via request to the custodian). \n\nSHOULD I GET A DOI?  \n\nIf you intend to reference your data or believe your data will be cited, you can obtain a DOI. There are two important things you should know: \n\n1) DOIs are forever. Because a DOI must always resolve to a URL (even if only to a 'tombstone page' saying that the data has reached its retention date and been disposed of), there are associated maintenance overheads. Therefore DOIs should be used judiciously; i.e., for objects that you expect to reference or to be cited. \n\n2) Once an object has been published with a DOI, no further substantive changes can be made to the object or its description - including, in particular, the Title, Authors, Date, Description or Publisher. If you need to make changes, you will need to request another DOI for the revised object. \n\nYour message to the Data Librarian (if any) is included below for your reference. \n$NoNoteAdded \n\nFor further information please do not hesitate to contact eResearch-IT on data-librarian@uts.edu.au.\n\nKind regards \neResearch Support Group \ndata-librarian@uts.edu.au \nPh. 95144000 or ext.4000 \nN.B. This is a system generated message, please do not Reply, but email data-librarian@uts.edu.au.",
 	"vars":[
 		"$oid",
 		"$title",
@@ -16,7 +16,7 @@
 		"$viewId",
 		"$piEmail",
 		"$piGivenName",
-		"$doiNotes"
+		"$NoNoteAdded"
 	],
 	"mapping": {
 		"$oid":"id",
@@ -25,6 +25,6 @@
 		"$viewId":"viewId",
 		"$piEmail":"locrel:prc.foaf:Person.foaf:email",
 		"$piGivenName": "locrel:prc.foaf:Person.foaf:givenName",
-		"$doiNotes":"skos:note.0.dc:description"
+		"$NoNoteAdded":"skos:note.0.dc:description"
 	}
 }
