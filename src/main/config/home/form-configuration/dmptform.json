@@ -445,7 +445,7 @@
 			                    "validation-id": "vivo:Dataset.dc.format",
 			                    "focus-id": "vivo:Dataset.dc.format",
 			                    "validation-messages": {
-				                    "required": "vivo:Dataset.dc.format"
+				                    "required": "Predominant file format is required!"
 			                    }
 		                    }
 	                    },
@@ -905,7 +905,8 @@
 				            "buttons": [
 					            {
 						            "label": "permission from the data manager",
-						            "value": "permission from the data manager"
+						            "value": "permission from the data manager",
+						            "checked": "true"
 					            },
 					            {
 						            "label": "open, free access under license",
