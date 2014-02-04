@@ -5,7 +5,7 @@ div[id^="dc:coverage.vivo:GeographicLocation"] select { display:none }
 .olControlModifyFeatureItemInactive {display:none;}
 </style>
 <label id="submitWarning" hidden="true" style="color:red">This collection cannot be submitted due to all its data items are
-	private. Please go to Tab Identifier and add on public data item.</label>
+	private. Please go to Tab Archive and add on public data item.</label>
 <script src="$portalPath/js/wizardWithTabs.js"></script>
 <script type="text/javascript">
 
