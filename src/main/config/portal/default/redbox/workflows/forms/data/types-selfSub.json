@@ -1,0 +1,12 @@
+{
+	"results": [
+		{
+			"id": "collection",
+			"label": "Collection"
+		},
+		{
+			"id": "dataset",
+			"label": "Dataset"
+		}
+	]
+}

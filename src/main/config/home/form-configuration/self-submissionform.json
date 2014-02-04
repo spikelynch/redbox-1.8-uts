@@ -68,7 +68,7 @@
                             "label": "",
                             "field-name": "dc:type.rdf:PlainLiteral",
                             "field-name-label": "dc:type.skos:prefLabel",
-                            "sourceUrl": "workflows/forms/data/types.json",
+                            "sourceUrl": "workflows/forms/data/types-selfSub.json",
                             "mandatory": "true",
                             "idKey": "id",
                             "labelKey": "label",
@@ -430,8 +430,8 @@
                                 "save-rules": [
                                     "required"
                                 ],
-                                "validation-id": "locrel:prc.foaf:Person.dc:identifier",
-                                "focus-id": "locrel:prc.foaf:Person.foaf:title",
+                                "validation-id": "locrel:prc.foaf:Person.foaf:familyName",
+                                "focus-id": "locrel:prc.foaf:Person.foaf:familyName",
                                 "validation-messages": {
                                     "required": "Data manager is required"
                                 }
@@ -554,6 +554,7 @@
 							"label": "",
 							"field-name": "dc:extent",
 							"field-name-label": "dc:extent",
+							"size": "60",
 							"validation": {
 								"save-rules": [
 									"required"
@@ -663,7 +664,7 @@
 							"containter-for": "dc:relation.swrc:Publication",
 							"sub-elements":{"settings":[
 								{
-									"jaffaRelatedURLInfo": {
+									"jaffaRelatedPublicationInfo": {
 										"label": "",
 										"class-list": "jaffa-field",
 										"suffix": ""
@@ -804,6 +805,8 @@
 							"component-type": "text-input",
 							"field-name": "dc:accessRights.dc:RightsStatement.skos:prefLabel",
 							"label": "",
+							"size": "60",
+							"content": "Copyright, University of Technology, Sydney",
 							"validation":{
 								"save-rules": [
 									"required"
@@ -818,7 +821,8 @@
 						{
 							"component-type": "text-input",
 							"label": "self-submission.field.label.dc-accessRights.dc-RightsStatement.dc-identifier",
-							"field-name": "dc:accessRights.dc:RightsStatement.dc:identifier"
+							"field-name": "dc:accessRights.dc:RightsStatement.dc:identifier",
+							"size": "60"
 						},
 						{
 							"component-type": "native-html",
@@ -834,21 +838,13 @@
 							"component-type": "text-input",
 							"label": "",
 							"field-name": "dc:accessRights.skos:prefLabel",
-							"validation":{
-								"save-rules": [
-									"required"
-								],
-								"validation-id": "dc:accessRights.skos:prefLabel",
-								"focus-id": "dc:accessRights.skos:prefLabel",
-								"validation-messages":{
-									"required": "Access Conditions statement is required"
-								}
-							}
+							"size": "60"
 						},
 						{
 							"component-type": "text-input",
 							"label": "self-submission.field.label.dc-accessRights.dc-identifier",
-							"field-name": "dc:accessRights.dc:identifier"
+							"field-name": "dc:accessRights.dc:identifier",
+							"size": "60"
 						},
 						{
 							"component-type": "native-html",
