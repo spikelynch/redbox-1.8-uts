@@ -145,7 +145,8 @@ $(function(){
 #parseTemplate("home/dmpt/mydatasets.vm")
 <p style="margin-bottom: 0px;">
 Add a data record:
-	<a id='create-selfsubmission' href='#'><img src="$portalPath/images/icons/package_add.png" alt="Create a dataset based on this plan"/></a>
+	<a id='create-selfsubmission' href='#'><img src="$portalPath/images/icons/package_add.png" alt="Create a dataset
+	based on this plan" width="30px" height="30px"/></a>
 </p>
 
 </div>
