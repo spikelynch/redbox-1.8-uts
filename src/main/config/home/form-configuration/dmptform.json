@@ -326,7 +326,7 @@
         									"save-rules": [
             									"required"
         									],
-        									"validation-id": "locrel:prc.foaf:Person.dc:identifier",
+        									"validation-id": "locrel:prc.foaf:Person.foaf:familyName",
         									"focus-id": "locrel:prc.foaf:Person.foaf:title",
         									 "validation-messages":{
         									 						"required": "Data manager is required"
