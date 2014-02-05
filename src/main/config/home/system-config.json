@@ -391,6 +391,16 @@
             "clearPropertyOnTransform": "true",
             "transformSource": "true"
         },
+	    "selfSubToSelfSub": {
+		    "id": "jsonVelocity",
+		    "sourcePayload": ".tfpackage",
+		    "templatesPath": "${fascinator.home}/templates/self-submission/selfSubClone.vm",
+		    "checkForTFMETAProperty": "true",
+		    "TFMETAPropertyName": "copyTFPackage",
+		    "TFMETAPropertyValue": "selfSubToSelfSub",
+		    "clearPropertyOnTransform": "true",
+		    "transformSource": "true"
+	    },
         "selfSubtoDataset": {
             "id": "jsonVelocity",
             "sourcePayload": ".tfpackage",

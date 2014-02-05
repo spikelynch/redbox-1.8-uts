@@ -806,7 +806,6 @@
 							"field-name": "dc:accessRights.dc:RightsStatement.skos:prefLabel",
 							"label": "",
 							"size": "60",
-							"content": "Copyright, University of Technology, Sydney",
 							"validation":{
 								"save-rules": [
 									"required"

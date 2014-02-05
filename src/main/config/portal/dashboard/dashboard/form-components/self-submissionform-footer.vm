@@ -109,6 +109,9 @@ div[id^="dc:coverage.vivo:GeographicLocation"] select { display:none }
 		$("[id='skos:note.0.dc:description']").after($("#submitWarning"));
 		$(submitWarning).hide();
 
+//		var elem = document.getElementById("dc:accessRights.dc:RightsStatement.skos:prefLabel");
+//		elem.value = "Copyright, University of Technology, Sydney";
+
 		// hide language & existing identifier.
 		$("[id='data-source-dropdown-dc:language.dc:identifier']").hide();
 		$("[id='dc:identifier.rdf:PlainLiteral']").hide();
