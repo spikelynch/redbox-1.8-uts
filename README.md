@@ -1,7 +1,7 @@
 ReDBox - Local Curation Demo
 ======================
 
-Sample institutional build with file system storage and local curation.
+UTS institutional build with file system storage and local curation.
 
 Downloaded the latest builds here:
 
