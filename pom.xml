@@ -109,43 +109,11 @@
         </exclusion>
       </exclusions>
     </dependency>
-    <!-- Clean up a dependency error raised during 1.6.1 redbox release -->
-    <!--<dependency>-->
-      <!--<groupId>com.googlecode.the-fascinator</groupId>-->
-      <!--<artifactId>fascinator-portal</artifactId>-->
-      <!--<type>warpath</type>-->
-      <!--<version>1.1.5</version>-->
-    <!--</dependency>-->
     <dependency>
       <groupId>com.googlecode.the-fascinator.plugins</groupId>
       <artifactId>plugin-EmailNotifier</artifactId>
       <version>1.0</version>
   </dependency>
-	  <!--<dependency>-->
-		  <!--<groupId>org.apache.activemq</groupId>-->
-		  <!--<artifactId>activemq-core</artifactId>-->
-		  <!--<version>5.7.0</version>-->
-	  <!--</dependency>-->
-	  <!--<dependency>-->
-		  <!--<groupId>org.apache.activemq</groupId>-->
-		  <!--<artifactId>activemq-all</artifactId>-->
-		  <!--<version>5.7.0</version>-->
-	  <!--</dependency>-->
-	  <!--<dependency>-->
-		  <!--<groupId>org.apache.activemq</groupId>-->
-		  <!--<artifactId>activemq-camel</artifactId>-->
-		  <!--<version>5.7.0</version>-->
-	  <!--</dependency>-->
-	  <!--<dependency>-->
-		  <!--<groupId>org.apache.activemq</groupId>-->
-		  <!--<artifactId>activemq-pool</artifactId>-->
-		  <!--<version>5.7.0</version>-->
-	  <!--</dependency>-->
-	  <!--<dependency>-->
-		  <!--<groupId>org.apache.activemq</groupId>-->
-		  <!--<artifactId>activemq-web</artifactId>-->
-		  <!--<version>5.7.0</version>-->
-	  <!--</dependency>-->
 
   </dependencies>
   <profiles>
