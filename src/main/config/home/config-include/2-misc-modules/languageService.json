@@ -1,0 +1,11 @@
+{
+	"services": [        
+        {
+            "id": "languageService",
+            "className": "com.googlecode.fascinator.portal.services.impl.JavaPropertiesLanguageService",
+            "config": {
+                "propertiesDir": "${fascinator.home}/language-files/"
+            }
+        }        
+    ]    
+}
