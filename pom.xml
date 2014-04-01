@@ -64,8 +64,8 @@
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
-			<artifactId>plugin-transaction-curation-redbox</artifactId>
-			<version>1.8-SNAPSHOT</version>
+			<artifactId>plugin-transaction-external-curation</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<!-- Local Curation Plugin (from Mint) -->
 		<dependency>

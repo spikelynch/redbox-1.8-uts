@@ -5,6 +5,10 @@
         "pidProperty": "localPid",
         "pidType": "local",
         "mintBroker": "${mint.amq.broker}",
+        "curation-manager-url":"http://localhost:8080/curation/",
+        "external-system-urls": {
+        		"mint":"${mint.proxy.url}/default/api/getRelationships.script?apiKey=1412412412241"
+        },
         "relations": {
             "dc:relation.vivo:Dataset.0.dc:identifier": {
                 "path": [

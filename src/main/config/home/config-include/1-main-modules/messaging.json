@@ -19,7 +19,7 @@
                 "priority": "5",
                 "config": {
                     "name": "transactionManager",
-                    "transactionManagerPlugin": "curation-redbox"
+                    "transactionManagerPlugin": "curation-external"
                 }
             },
             {
