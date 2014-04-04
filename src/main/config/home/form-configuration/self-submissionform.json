@@ -99,7 +99,8 @@
 	                    {
 		                    "component-type": "text-block",
 		                    "type": "label",
-		                    "content": "self-submission.field.label.dc-subject.vivo-keyword"
+		                    "content": "self-submission.field.label.dc-subject.vivo-keyword",
+		                    "help": "self-submission.field.help.dc-subject.vivo-keyword"
 	                    },
 	                    {
 		                    "component-type": "repeatable-container",
@@ -162,7 +163,8 @@
 	                   {
 		                   "component-type":"text-block",
 		                   "type":"h3",
-		                   "content":"self-submission.heading.label.geospatial"
+		                   "content":"self-submission.heading.label.geospatial",
+		                   "help":"self-submission.heading.help.geospatial"
 	                   },
 	                   {
 		                   "component-type":"native-html",
@@ -187,7 +189,7 @@
 	                   {
 		                   "component-type": "text-block",
 		                   "type": "label",
-		                   "content": "Location:"
+		                   "content": "self-submission.field.label.dc.coverage.vivo.GeographicLocation"
 	                   },
 	                   {
 		                   "component-type":"repeatable-container",
@@ -580,7 +582,8 @@
 						{
 							"component-type": "text-block",
 							"type": "label",
-							"content": "self-submission.field.label.redbox-retentionPeriod"
+							"content": "self-submission.field.label.redbox-retentionPeriod",
+							"help":"self-submission.heading.help.retention"
 						},
 						{
 							"component-type": "data-source-dropdown",
@@ -656,8 +659,8 @@
 						{
 							"component-type": "text-block",
 							"type": "h3",
-							"content": "Related Publications"
-							"help": "Include URL/s to any publications underpinning the research dataset/collection, registry/repository, catalogue or index."
+							"content": "self-submission.field.label.dc.relation.swrc.Publication"
+							"help": "self-submission.field.help.dc.relation.swrc.Publication"
 						},
 						{
 							"component-type": "repeatable-container",
@@ -681,8 +684,8 @@
 						{
 							"component-type": "text-block",
 							"type": "h3",
-							"content": "Related Website"
-							"help": " Include URL/s for the relevant website."
+							"content": "self-submission.field.label.dc.relation.bibo.Website"
+							"help": "self-submission.field.help.dc.relation.bibo.Website"
 						},
 						{
 							"component-type": "repeatable-container",
@@ -706,8 +709,8 @@
 						{
 							"component-type": "text-block",
 							"type": "h3",
-							"content": "Related Data"
-							"help": "Link to any sources of third party data used/re-used. By default this is a lookup against existing datasets found in this system. If you would like to link to external datasets you should click on 'Advanced Selections' and deselect 'Local related data'. Also under 'Advanced Selections' is an option called 'Publish to RDA' which can be deselected if you do not wish to include this relationship in the RIF-CS sent to RDA."
+							"content": "self-submission.field.label.dc.relation.vivo.Dataset"
+							"help": "self-submission.field.help.dc.relation.vivo.Dataset"
 						},
 						{
 							"component-type": "repeatable-container",
@@ -942,6 +945,11 @@
 							"content": "<hr>"
 						},
 
+						{
+							"component-type": "text-block",
+							"type": "h4",
+							"content": "DOI"
+						},
 
 						{
 							"component-type": "checkbox",

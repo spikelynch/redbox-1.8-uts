@@ -117,7 +117,7 @@
 		                    "component-type": "text-block",
 		                    "type": "label",
 		                    "content": "Keywords",
-		                    "help": "Enter a word or phrase that characterises your research data. To enter another word or phrase, click 'add'."
+		                    "help": "dmpt.field.help.dc-keyword"
 	                    },
 	                    {
 		                    "component-type": "repeatable-text",
