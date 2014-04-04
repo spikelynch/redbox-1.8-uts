@@ -3,17 +3,17 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.googlecode.redbox-mint</groupId>
   <artifactId>redbox-UTS</artifactId>
-  <version>1.7</version>
+  <version>1.6.2</version>
   <packaging>${packaging}</packaging>
   <name>UTS Redbox</name>
   <parent>
     <groupId>com.googlecode.redbox-mint</groupId>
     <artifactId>redbox</artifactId>
-    <version>1.7</version>
+    <version>1.6.2</version>
   </parent>
   <properties>
     <!-- Used in build -->
-    <redbox.version>1.7</redbox.version>
+    <redbox.version>1.6.2</redbox.version>
 	  <package.finalname>${project.build.finalName}</package.finalname>
 	  <!-- Runtime values, will replace placeholders in config and control scripts -->
 	  <app.location.windows>${project.home}</app.location.windows>
@@ -65,7 +65,7 @@
     <dependency>
       <groupId>com.googlecode.redbox-mint</groupId>
       <artifactId>plugin-transaction-curation-redbox</artifactId>
-      <version>${redbox.version}</version>
+      <version>1.6.2</version>
     </dependency>
     <!-- Local Curation Plugin (from Mint) -->
     <dependency>
@@ -73,29 +73,6 @@
       <artifactId>plugin-transformer-local</artifactId>
       <version>1.6.2</version>
     </dependency>
-	  <dependency>
-		  <groupId>com.googlecode.the-fascinator.plugins</groupId>
-		  <artifactId>plugin-transformer-basicVersioning</artifactId>
-		  <version>1.0-SNAPSHOT</version>
-	  </dependency>
-	  <!-- new velocity plugins -->
-	  <dependency>
-		  <groupId>com.googlecode.the-fascinator.plugins</groupId>
-		  <artifactId>plugin-transformer-jsonVelocity</artifactId>
-		  <version>1.2-SNAPSHOT</version>
-	  </dependency>
-	  <dependency>
-		  <groupId>com.googlecode.the-fascinator.plugins</groupId>
-		  <artifactId>plugin-transformer-jsonVelocity-pdf</artifactId>
-		  <version>1.0-SNAPSHOT</version>
-	  </dependency>
-	  <!-- JSON harvester plugin -->
-	  <dependency>
-		  <groupId>au.com.redboxresearchdata.fascinator</groupId>
-		  <artifactId>plugin-harvester-json</artifactId>
-		  <version>1.2-SNAPSHOT</version>
-	  </dependency>
-
     <dependency>
       <groupId>fascinator-shibboleth</groupId>
       <artifactId>fascinator-shibboleth</artifactId>
@@ -109,11 +86,43 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <!-- Clean up a dependency error raised during 1.6.1 redbox release -->
+    <dependency>
+      <groupId>com.googlecode.the-fascinator</groupId>
+      <artifactId>fascinator-portal</artifactId>
+      <type>warpath</type>
+      <version>1.1.5</version>
+    </dependency>
     <dependency>
       <groupId>com.googlecode.the-fascinator.plugins</groupId>
       <artifactId>plugin-EmailNotifier</artifactId>
       <version>1.0</version>
   </dependency>
+	  <dependency>
+		  <groupId>org.apache.activemq</groupId>
+		  <artifactId>activemq-core</artifactId>
+		  <version>5.7.0</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.apache.activemq</groupId>
+		  <artifactId>activemq-all</artifactId>
+		  <version>5.7.0</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.apache.activemq</groupId>
+		  <artifactId>activemq-camel</artifactId>
+		  <version>5.7.0</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.apache.activemq</groupId>
+		  <artifactId>activemq-pool</artifactId>
+		  <version>5.7.0</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.apache.activemq</groupId>
+		  <artifactId>activemq-web</artifactId>
+		  <version>5.7.0</version>
+	  </dependency>
 
   </dependencies>
   <profiles>
