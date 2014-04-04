@@ -400,7 +400,7 @@
                         {
                             "component-type": "person",
                             "lookup-name": "dc:creator.foaf:Person",
-                            "lookup-only": "false",
+                            "lookup-only": "true",
                             "validation": {
                                 "save-rules": [
                                     "required"
@@ -408,7 +408,7 @@
                                 "validation-id": "dc:creator.foaf:Person.dc:identifier",
                                 "focus-id": "dc:creator.foaf:Person.foaf:title",
                                 "validation-messages": {
-                                    "required": "Principal investigator is required"
+                                    "required": "Principal investigator must be selected using lookup."
                                 }
                             }
                         },

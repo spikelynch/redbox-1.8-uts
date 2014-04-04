@@ -296,7 +296,7 @@
                         {
                         	"component-type":"person",
                         	"lookup-name":"locrel:rth.foaf:Person",
-                        	"lookup-only":"false",
+                        	"lookup-only":"true",
                             "validation": {
         									"save-rules": [
             									"required"
@@ -304,7 +304,7 @@
         									"validation-id": "locrel:rth.foaf:Person.dc:identifier",
         									"focus-id": "locrel:rth.foaf:Person.foaf:title",
         									 "validation-messages":{
-        									 						"required": "Principal investigator is required"
+        									 						"required": "Principal investigator must be selected using lookup."
         									 						}
     						 			  }      
                         },
