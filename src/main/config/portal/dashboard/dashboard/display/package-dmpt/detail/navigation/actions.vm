@@ -1,0 +1,159 @@
+<div id="actions-menu">
+    #set($menuTitle = "Actions")
+    #parseTemplate("wrapping/main-menu-open.vm")
+    <ul class="menu">
+        #parseDisplayTemplate("detail/navigation/workflow.vm")
+        #parseDisplayTemplate("detail/navigation/custom-actions.vm")
+        #if($page.authentication.is_admin())
+            <li><a href="$portalPath/history/$oid/">Object History</a></li>
+            #if(!$parent.isPending())
+                <li>
+                    <a id="reharvest-this" href="$portalPath/detail/$oid">Reharvest</a>
+                    <script type="text/javascript">
+                    <!--
+                        var pollTimerId = 0;
+                        function poll() {
+                            jQuery.post("$portalPath/actions/objectMeta.ajax",
+                                { "oid" : "$oid" },
+                                function(data) {
+                                    if (data.error) {
+                                        $("#reharvest-form").append('<img src="$portalPath/images/icons/exclamation.png" alt="Error" /><span>&nbsp;<b>Error</b>:&nbsp;' + data.error + '</span>');
+                                        return;
+                                    }
+                                    if (data.meta) {
+                                        var pending = data.meta["render-pending"];
+                                        if (pending == "false") {
+                                            clearTimeout(pollTimerId);
+                                            $("#reharvest-loading, #reharvest-in-progress").fadeOut(
+                                                function() {
+                                                    $("#reharvest-form b").html("COMPLETE");
+                                                    $("#reharvest-complete").fadeIn();
+                                                });
+                                        }
+                                    }
+                                },
+                                "json");
+                        }
+                        $(function() {
+                            $("#reharvest-this").click(function() {
+                                $(this).hide();
+                                $("#reharvest-form").show();
+                                jQuery.post("$portalPath/actions/reharvest.ajax",
+                                    { func: "reharvest", oid: "$oid" },
+                                    function(data) { pollTimerId = setInterval("poll()", 2500); },
+                                    "json");
+                                return false;
+                            });
+                        });
+                    -->
+                    </script>
+                </li>
+
+                <li>
+                    <a id="reindex-this" href="$portalPath/detail/$oid">
+                        Reindex
+                        <span id="reindexloading" class="hidden"><img src="$portalPath/images/icons/loading.gif" alt="Loading" /></span>
+                    </a>
+                    <script type="text/javascript">
+                    <!--
+                        $(function() {
+                            $("#reindex-this").click(function() {
+                                $("#reindexloading").show();
+                                jQuery.post("$portalPath/actions/reharvest.ajax",
+                                    { func: "reindex", oid: "$oid" },
+                                    function(data) {
+                                        $("#reindexloading").hide();
+                                        window.location.reload();
+                                    },
+                                    "json");
+                                return false;
+                            });
+                        });
+                    -->
+                    </script>
+                </li>
+
+				<li>
+					<a id="create-selfsubmission" href="$portalPath/detail/$oid" alt="Create a dataset based on this plan">
+						Add a data record
+					</a>
+					<script type="text/javascript">
+						$('#create-selfsubmission').click(function () {
+							var processing = false;
+							if (processing) return;
+							processing = true;
+							jQuery("#create-selfsubmission").append('<img class="right" src="$portalPath/images/icons/loading.gif" />');
+							jQuery.ajax({
+								type: "POST",
+								url: "$portalPath/actions/packaging.ajax",
+								data: {
+									ajax: 1,
+									func: "create-new",
+									packageType: "self-submission",
+									metaList: ["redbox:newForm", "redbox:formVersion"],
+									"redbox:newForm": "true",
+									"redbox:formVersion": "$systemConfig.getString("Unknown", "redbox.version.string")"
+								}, success: function (data) {
+									if (data.status == "ok") {
+										function copyMetadata() {
+											var oid = "$metadata.get('storage_id')";
+											jQuery.ajax({
+												type: "POST",
+												url: "$portalPath/copyTfPackage.ajax",
+												data: {
+													ajax: 1,
+													fromOid: oid,
+													toOid: data.oid,
+													tfMetaPropertyValue: "dmpToSelfSub"
+												},
+												success: function (data) {
+													if (data.status == "ok") {
+														function redirect() {
+															window.location.href = data.url;
+														}
+
+														setTimeout(redirect, 1500);
+													} else {
+														alert("Failed to transfer record! " + data.message);
+													}
+												},
+												error: function (xhr, status, e) {
+													alert("Failed to complete transferring record!");
+												},
+												dataType: "json"
+											});
+										}
+
+										setTimeout(copyMetadata, 1500);
+									} else {
+										alert("Failed to create record!");
+									}
+								},
+								error: function (xhr, status, e) {
+									alert("Failed to complete creating record!");
+								},
+								dataType: "json"
+							});
+							return false;
+						});
+					</script>
+				</li>
+            #end
+            <li><a target="blank" href="/solr/fascinator/select?q=(id:$oid%20AND%20item_type:object)">View Solr Index</a></li>
+        #end
+    </ul>
+    #parseTemplate("wrapping/main-menu-close.vm")
+</div>
+
+## Simple (lazy) fix for empty actions menu
+<script type="text/javascript">
+<!--
+    $(function() {
+        var actionList = $("#actions-menu").find("li");
+        if (actionList.size() == 0) {
+            $("#actions-menu").hide();
+            $(".grid_12").attr("class", "grid_16");
+        }
+    });
+-->
+</script>

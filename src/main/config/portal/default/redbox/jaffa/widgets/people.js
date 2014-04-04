@@ -551,11 +551,11 @@ var RelatedPublicationInfoWidgetBuilder = function($, jaffa) {
 
 			var titleFieldId= this.field+"dc:title";
 			ui.append("<label for=\""+titleFieldId+"\" class=\"widgetLabel peopleWidgetLabel\">Citation details</label>");
-			ui.append("<input size=\"60\" type=\"text\" id=\""+titleFieldId+"\" class=\"jaffa-field\" />");
+			ui.append("<input size=\"80\" type=\"text\" id=\""+titleFieldId+"\" class=\"jaffa-field\" />");
 
 			var noteFieldId= this.field+"skos:note";
 			ui.append("<label for=\""+noteFieldId+"\" class=\"widgetLabel peopleWidgetLabel\">Notes</label>");
-			ui.append("<input size=\"60\" type=\"text\" id=\""+noteFieldId+"\" class=\"jaffa-field\" />");
+			ui.append("<input size=\"40\" type=\"text\" id=\""+noteFieldId+"\" class=\"jaffa-field\" />");
 
 			jaffa.form.addField(idFieldId,  this.id());
 			jaffa.form.addField(titleFieldId,  this.id());
