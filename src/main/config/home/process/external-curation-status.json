@@ -1,0 +1,29 @@
+[
+  {
+    "id": "SubmissionNotifier",
+    "pre": [
+      {
+        "class": "com.googlecode.fascinator.redbox.plugins.curation.external.processor.ExternalCurationJobStatusResponseProcessor",
+        "config": "",
+        "inputKey": "",
+        "outputKey": ""
+      }
+    ],
+    "main": [
+      {
+        "class": "com.googlecode.fascinator.redbox.plugins.curation.external.processor.ExternalCurationJobStatusResponseProcessor",
+        "config": "",
+        "inputKey": "",
+        "outputKey": ""
+      }
+    ],
+    "post": [
+      {
+        "class": "com.googlecode.fascinator.redbox.plugins.curation.external.processor.ExternalCurationJobStatusResponseProcessor",
+        "config": "",
+        "inputKey": "",
+        "outputKey": ""
+      }
+    ]
+  }
+]

@@ -121,7 +121,14 @@
                         "type": "external",
                         "url": "http://localhost:${jetty.port}/redbox/default/process/launch.script?processingSet=notifyNewRecords",
                         "timing": "0 0/15 * * * ?"
-                    }                
+                    },
+                    {
+       					"name": "external-curation-status",
+        				"type": "processingSet",
+        				"configFile": "${fascinator.home}/process/external-curation-status.json",
+        				"setId": "",
+        				"timing": "0 0/10 * * * ?"
+      				}                
 				 ]
             }
         },

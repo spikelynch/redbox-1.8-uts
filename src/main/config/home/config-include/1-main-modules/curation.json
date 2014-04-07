@@ -5,9 +5,16 @@
         "pidProperty": "localPid",
         "pidType": "local",
         "mintBroker": "${mint.amq.broker}",
-        "curation-manager-url":"http://localhost:8080/curation/",
+        "curation-manager-url":"http://localhost:8080/CurationManager/curationManager",
+        "supported-types":{ "dataset":"redbox","person":"mint","group":"mint"}, 
+        "identifier-pids":{"local":"localPid","handle":"handlePid"},
         "external-system-urls": {
-        		"mint":"${mint.proxy.url}/default/api/getRelationships.script?apiKey=1412412412241"
+        		"relationships":{
+        				"mint":"${mint.proxy.url}/default/api/getRelationships.script?apiKey=1412412412241"
+        		 },
+        		 "publish":{
+        		 	"mint":"${mint.proxy.url}/default/api/publish.script?apiKey=1412412412241"
+        		 }
         },
         "relations": {
             "dc:relation.vivo:Dataset.0.dc:identifier": {
