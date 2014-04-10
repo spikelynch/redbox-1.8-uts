@@ -245,7 +245,7 @@
 							<copyright>GPLv2</copyright>
 							<distribution></distribution>
 							<group>Application/Internet</group>
-							<name>redbox-dev-all</name>
+							<name>redbox-build-dev-all</name>
 							<mappings>
 								<mapping>
 									<directory>/opt/redbox/home</directory>
