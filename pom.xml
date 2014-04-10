@@ -219,6 +219,91 @@
       	</resources>
       </build>
     </profile>
+  	<profile>
+			<id>build-rpm</id>
+			<properties>
+				<server.url.base>http://localhost:${server.port}/redbox/</server.url.base>
+				<app.location.windows>c:/tf2/redbox</app.location.windows>
+				<app.location.linux>/opt/redbox</app.location.linux>
+			</properties>
+			<!-- clean up the deploy directory first -->
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>rpm-maven-plugin</artifactId>
+						<version>2.1-alpha-3</version>
+						<executions>
+							<execution>
+								<id>generate-rpm</id>
+								<goals>
+									<goal>rpm</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<copyright>GPLv2</copyright>
+							<distribution></distribution>
+							<group>Application/Internet</group>
+							<name>redbox-dev-all</name>
+							<mappings>
+								<mapping>
+									<directory>/opt/redbox/home</directory>
+									<filemode>744</filemode>
+									<username>redbox</username>
+									<groupname>redbox</groupname>
+									<sources>
+										<source>
+											<location>${dir.home}</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>/opt/redbox/portal</directory>
+									<filemode>744</filemode>
+									<username>redbox</username>
+									<groupname>redbox</groupname>
+									<sources>
+										<source>
+											<location>${dir.portal}</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>/opt/redbox/server</directory>
+									<filemode>744</filemode>
+									<username>redbox</username>
+									<groupname>redbox</groupname>
+									<sources>
+										<source>
+											<location>${dir.server}</location>
+										</source>
+									</sources>
+								</mapping>
+								<mapping>
+									<directory>/opt/redbox/solr</directory>
+									<filemode>744</filemode>
+									<username>redbox</username>
+									<groupname>redbox</groupname>
+									<sources>
+										<source>
+											<location>${dir.solr}</location>
+										</source>
+									</sources>
+								</mapping>
+							</mappings>
+
+							<preinstallScriptlet>
+								<scriptFile>support/rpm/rpm-build-preinst.sh</scriptFile>
+							</preinstallScriptlet>
+							<postinstallScriptlet>
+								<scriptFile>support/rpm/rpm-build-postinst.sh</scriptFile>
+							</postinstallScriptlet>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
   </profiles>
   <!-- The standard build/deploy process for making a server -->
   <build>
