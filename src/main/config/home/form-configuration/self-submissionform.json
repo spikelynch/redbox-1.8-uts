@@ -889,7 +889,8 @@
 						{
 							"component-type": "text-block",
 							"type": "h4",
-							"content": "dataset.embargo.heading"
+	        					"content": "dataset.embargo.heading",
+                                                        "help": "dataset.embargo.help"
 						},
 						{
 							"component-type": "checkbox",
@@ -921,7 +922,8 @@
 						{
 							"component-type": "text-block",
 							"type": "h4",
-							"content": "Citation Authors (in order):"
+							"content": "Citation Authors (in order):",
+							"help": "self-submission.heading.help.citation",
 						},
 
 						{
@@ -948,13 +950,13 @@
 						{
 							"component-type": "text-block",
 							"type": "h4",
-							"content": "DOI"
+							"content": "DOI",
+                                                        "help": "self-submission.field.help.dc-identifier.redboxdmpt-doirequest",
 						},
 
 						{
 							"component-type": "checkbox",
 							"field-name": "self-submission.field.dc-identifier.redboxdmpt-doirequest",
-							"help": "self-submission.field.help.dc-identifier.redboxdmpt-doirequest",
 							"box-for": "",
 							"boxes": [
 								{
