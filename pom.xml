@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.googlecode.redbox-mint</groupId>
-  <artifactId>redbox-build-dev-all</artifactId>
+  <artifactId>redbox-distro</artifactId>
   <version>1.8-SNAPSHOT</version>
   <packaging>${packaging}</packaging>
-  <name>ReDBox - Kitchen Sink</name>
+  <name>ReDBox - Distribution</name>
   <parent>
     <groupId>com.googlecode.redbox-mint</groupId>
     <artifactId>redbox</artifactId>
@@ -245,7 +245,7 @@
 							<copyright>GPLv2</copyright>
 							<distribution></distribution>
 							<group>Application/Internet</group>
-							<name>redbox-build-dev-all</name>
+							<name>redbox-distro</name>
 							<mappings>
 								<mapping>
 									<directory>/opt/redbox/home</directory>
@@ -611,8 +611,8 @@
     </repository>
   </repositories>
   <scm>
-    <url>https://github.com/redbox-mint/redbox-build-dev-local</url>
-    <developerConnection>scm:git:https://github.com/redbox-mint/redbox-build-dev-local.git</developerConnection>
+    <url>https://github.com/redbox-mint/redbox-build-distro</url>
+    <developerConnection>scm:git:https://github.com/redbox-mint/redbox-build-distro.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
   <distributionManagement>
