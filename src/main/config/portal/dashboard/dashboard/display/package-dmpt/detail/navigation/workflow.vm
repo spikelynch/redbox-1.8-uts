@@ -1,0 +1,74 @@
+#set($hasWorkflow = $self.hasWorkflow())
+#set($hasWorkflowAccess = $self.hasWorkflowAccess())
+#if($hasWorkflow && $hasWorkflowAccess)
+    #set($workflowStep = $self.getWorkflowStep())
+    <li>
+        <a href="$portalPath/workflow/$oid?flow=mainflow" title="$workflowStep">Edit my plan (<em>$workflowStep</em>)</a>
+    </li>
+
+	<li>
+		<a id="create-selfsubmission" href="$portalPath/detail/$oid" alt="Create a dataset based on this plan">
+			Add a data record
+		</a>
+		<script type="text/javascript">
+			$('#create-selfsubmission').click(function () {
+				var processing = false;
+				if (processing) return;
+				processing = true;
+				jQuery("#create-selfsubmission").append('<img class="right" src="$portalPath/images/icons/loading.gif" />');
+				jQuery.ajax({
+					type: "POST",
+					url: "$portalPath/actions/packaging.ajax",
+					data: {
+						ajax: 1,
+						func: "create-new",
+						packageType: "self-submission",
+						metaList: ["redbox:newForm", "redbox:formVersion"],
+						"redbox:newForm": "true",
+						"redbox:formVersion": "$systemConfig.getString("Unknown", "redbox.version.string")"
+					}, success: function (data) {
+						if (data.status == "ok") {
+							function copyMetadata() {
+								var oid = "$metadata.get('storage_id')";
+								jQuery.ajax({
+									type: "POST",
+									url: "$portalPath/copyTfPackage.ajax",
+									data: {
+										ajax: 1,
+										fromOid: oid,
+										toOid: data.oid,
+										tfMetaPropertyValue: "dmpToSelfSub"
+									},
+									success: function (data) {
+										if (data.status == "ok") {
+											function redirect() {
+												window.location.href = data.url;
+											}
+
+											setTimeout(redirect, 1500);
+										} else {
+											alert("Failed to transfer record! " + data.message);
+										}
+									},
+									error: function (xhr, status, e) {
+										alert("Failed to complete transferring record!");
+									},
+									dataType: "json"
+								});
+							}
+
+							setTimeout(copyMetadata, 1500);
+						} else {
+							alert("Failed to create record!");
+						}
+					},
+					error: function (xhr, status, e) {
+						alert("Failed to complete creating record!");
+					},
+					dataType: "json"
+				});
+				return false;
+			});
+		</script>
+	</li>
+#end
