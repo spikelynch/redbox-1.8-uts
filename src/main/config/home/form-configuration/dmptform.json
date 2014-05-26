@@ -508,7 +508,18 @@
 			                    {
 				                    "name": "Next",
 				                    "form-submit-action": "save",
-				                    "type": "button"
+				                    "type": "button",
+				                    "object-metadata-params": [
+					                    {
+						                    "key": "generatePDF",
+						                    "value": "true"
+					                    },
+					                    {
+						                    "key": "dataStructureComplete",
+						                    "value": "true"
+					                    }
+				                    ]
+
 			                    }
 		                    ]
 	                    },
@@ -518,7 +529,18 @@
 			                    {
 				                    "name": "Save",
 				                    "form-submit-action": "save",
-				                    "type": "button"
+				                    "type": "button",
+				                    "object-metadata-params": [
+					                    {
+						                    "key": "generatePDF",
+						                    "value": "true"
+					                    },
+					                    {
+						                    "key": "dataStructureComplete",
+						                    "value": "true"
+					                    }
+				                    ]
+
 			                    },
 			                    {
                                 "name": "Save and close",
@@ -728,7 +750,18 @@
 			                    {
 				                    "name": "Next",
 				                    "form-submit-action": "save",
-				                    "type": "button"
+				                    "type": "button",
+				                    "object-metadata-params": [
+					                    {
+						                    "key": "generatePDF",
+						                    "value": "true"
+					                    },
+					                    {
+						                    "key": "dataRetentionComplete",
+						                    "value": "true"
+					                    }
+				                    ]
+
 			                    }
 		                    ]
 	                    },
@@ -738,7 +771,17 @@
 			                    {
 				                    "name": "Save",
 				                    "form-submit-action": "save",
-				                    "type": "button"
+				                    "type": "button",
+				                    "object-metadata-params": [
+					                    {
+						                    "key": "generatePDF",
+						                    "value": "true"
+					                    },
+					                    {
+						                    "key": "dataRetentionComplete",
+						                    "value": "true"
+					                    }
+				                    ]
 			                    },
 	                            {
                                     "name": "Save and close",
@@ -1011,7 +1054,18 @@
 					            {
 						            "name": "Next",
 						            "form-submit-action": "save",
-						            "type": "button"
+						            "type": "button",
+						            "object-metadata-params": [
+							            {
+								            "key": "generatePDF",
+								            "value": "true"
+							            },
+							            {
+								            "key": "dataAccessComplete",
+								            "value": "true"
+							            }
+						            ]
+
 					            }
 				            ]
 			            },
@@ -1021,7 +1075,18 @@
 					            {
 						            "name": "Save",
 						            "form-submit-action": "save",
-						            "type": "button"
+						            "type": "button",
+						            "object-metadata-params": [
+							            {
+								            "key": "generatePDF",
+								            "value": "true"
+							            },
+							            {
+								            "key": "dataAccessComplete",
+								            "value": "true"
+							            }
+						            ]
+
 					            },
 					            {
 						            "name": "Save and close",
