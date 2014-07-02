@@ -29,105 +29,23 @@ import org.json.simple.parser.JSONParser
  * @author <a href="matt@redboxresearchdata.com.au">Matt Mulholland</a>
  */
 
-def test1 = "{\n" +
-        "  \"array\": [\n" +
-        "    1,\n" +
-        "    2,\n" +
-        "    3,\n" +
-        "    4\n" +
-        "  ],\n" +
-        "  \"boolean\": true,\n" +
-        "  \"null\": null,\n" +
-        "  \"number\": 123,\n" +
-        "  \"object\": {\n" +
-        "    \"a\": \"b\",\n" +
-        "    \"c\": \"d\",\n" +
-        "    \"e\": \"f\",\n" +
-        "    \"somethingelse\": {\n" +
-        "      \"blah\": \"test1\"\n" +
-        "    }\n" +
-        "  },\n" +
-        "  \"string\": \"Hello World\"\n" +
-        "}"
-
-def test2 = "{\n" +
-        "  \"array\": [\n" +
-        "    1,\n" +
-        "    2,\n" +
-        "    3\n" +
-        "  ],\n" +
-        "  \"boolean\": true,\n" +
-        "  \"boolean\": true,\n" +
-        "  \"null\": null,\n" +
-        "  \"number\": 123,\n" +
-        "  \"object\": {\n" +
-        "    \"a\": \"a\",\n" +
-        "    \"c\": \"c\",\n" +
-        "    \"e\": \"e\",\n" +
-        "    \"somethingelse\" : {\n" +
-        "      \"blah\" : \"test2\"\n" +
-        "    }\n" +
-        "  },\n" +
-        "  \"string\": \"Hello World\"\n" +
-        "}"
-
-def mergeConfig = new MergeConfig()
-
-JSONObject jsonResult = mergeConfig.deeperMerge(test1, test2)
+MergeConfig mergeConfig = new MergeConfig()
+JSONObject jsonResult = mergeConfig.deeperMerge(args[0], args[1])
 mergeConfig.logJsonObject(jsonResult)
-//String sourceString = JsonOutput.toJson(sourceBody)
 
 @Log4j
 class MergeConfig {
-    private static final String ARRAY_ERROR = "The size of the envelope must be smaller than the source"
     private static final String ITERATE_ERROR = "The compared objects do not contain compatible types"
-    private static final String MAP_ERROR = "Cannot find useful starting point"
     private static final String LOGGING_CONFIG_NAME = "log4j.groovy"
 
     static {
         def fileList = new FileNameFinder().getFileNames('./', "**/${LOGGING_CONFIG_NAME}")
         if (!fileList || fileList.size != 1) {
-             throw new FileNotFoundException("Could not find unique logging config in recursive search.")
+            throw new FileNotFoundException("Could not find unique logging config in recursive search.")
         }
-        def file = new File(fileList?.get(0))
-        //def config = new ConfigSlurper().parse(new File('support/scripts/log4j.groovy').toURI().toURL())
+        def file = new File(fileList.get(0))
         def config = new ConfigSlurper().parse(file.toURI().toURL())
         PropertyConfigurator.configure(config.toProperties())
-    }
-
-    private def showError = { String message ->
-        throw new UnsupportedOperationException(message)
-    }
-
-    private def addToTarget = { target, sourceElement ->
-        target.add(sourceElement)
-    }
-
-    private def putInTarget = { target, sourceKey, sourceValue ->
-        target.put(sourceKey, sourceValue)
-    }
-
-    def stepIntoJsonArray(JSONArray target, sourceElement, i, Expando expando) {
-        if (i < target.size()) {
-            if (sourceElement instanceof JSONAware) {
-                expando.parentFunction(sourceElement, target.get(i), expando)
-            } else if (!target.contains(sourceElement)) {
-                expando.altFunction(target, sourceElement)
-            }
-        } else {
-            expando.altFunction(target, sourceElement)
-        }
-    }
-
-    def stepIntoJsonObject(JSONObject target, sourceElement, Expando expando) {
-        def sourceKey = sourceElement.key
-        def sourceValue = sourceElement.value
-
-        if (target.containsKey(sourceKey) && (sourceValue instanceof JSONAware)) {
-            expando.parentFunction(sourceValue, target[sourceKey], expando)
-        } else {
-            expando.altFunction(target, sourceKey, sourceValue)
-        }
     }
 
     /**
@@ -146,14 +64,15 @@ class MergeConfig {
         return target
     }
 
-    def createJsonObject(String target) {
-        JSONParser parser = new JSONParser()
-        JSONObject json = parser.parse(target)
-        return json
-    }
-
     def logJsonObject(JSONObject object) {
         log.info(object)
+    }
+
+    def createJsonObject(String target) {
+        JSONParser parser = new JSONParser()
+        Object json = parser.parse(target)
+        JSONObject jsonObject = JSONObject.cast(json)
+        return jsonObject
     }
 
     def checkAndMerge = { source, target, Expando expando ->
@@ -172,77 +91,38 @@ class MergeConfig {
         return target
     }
 
-    //	private static def checkAndUnpack={ source, target, Expando expando ->
-    //		expando.completed = target
-    //		expando.parentFunction = checkAndUnpack
-    //		source.eachWithIndex{ sourceElement, i->
-    //			if (source instanceof JSONArray && target instanceof JSONArray) {
-    //				expando.altFunction = {showError(ARRAY_ERROR)}
-    //				stepIntoJsonArray(source, target, sourceElement, i, expando)
-    //			} else if (source instanceof JSONObject && target instanceof JSONObject) {
-    //				expando.altFunction = {showError(MAP_ERROR)}
-    //				stepIntoJsonObject(source, target, sourceElement, expando)
-    //			} else {
-    //				showError(ITERATE_ERROR)
-    //			}
-    //		}
-    //		return expando.completed
-    //	}
-    //
-    //	/**
-    //	 * Uses the sourceEnvelope to find the inner json element/object that the envelope contains.
-    //	 * @param source: source record(s) with envelope
-    //	 * @param envelope: the envelope to remove from source(s)
-    //	 * @return: inner json object
-    //	 */
-    //	static JSONObject unpackCollection(final JSONObject source, final String envelope) {
-    //		def expando = new Expando()
-    //		JSONObject jsonEnvelope = createJsonObject(envelope)
-    //		JSONObject result = checkAndUnpack(jsonEnvelope, source, expando)
-    //		return result
-    //	}
+    private def addToTarget = { target, sourceElement ->
+        target.add(sourceElement)
+    }
 
-    //TODO : remove dependence on hard-coding of "data.data"
-    /**
-     * (Alternative to slurper is to use method unpackCollection)
-     * @param source full text including envelope and body.
-     * TODO : At the moment this method and the alternative can find a point within text to start at for adding defaults
-     * with deeperMerge. However finding the starting point is not enough. It needs to remove and remember this envelope to
-     * be able to re-add it around the updated body text at the end of deeperMerge. Currently this method does not take into
-     * account the added field type: JsonService, either
-     * @return
-     */
-//	static def slurpBody(String source) {
-//		def sourceSlurper = new JsonSlurper().parseText(source)
-//		def sourceBody = sourceSlurper.data.data
-//
-//		String sourceString = JsonOutput.toJson(sourceBody)
-//
-//		JSONParser parser = new JSONParser()
-//		def sourceJson
-//		if (sourceBody instanceof List<?>) {
-//			sourceJson = (JSONArray)parser.parse(sourceString);
-//		} else {
-//			sourceJson = (JSONObject)parser.parse(sourceString);
-//		}
-//
-//		return sourceJson
-//	}
-//
-//
-//	/**
-//	 * Calls deeperMerge for multiple json records, applying to jsonTemplate.
-//	 * @param source: source json object containing multiple json records
-//	 * @param target: target json template containing default values and/or required properties
-//	 * @return
-//	 */
-//	static def addDefaultToMultiple(final JSONAware source, final String target) {
-//		JSONArray resultCollection = new JSONArray()
-//		source.each{ element->
-//			JSONObject result = deeperMerge(element, target)
-//			resultCollection.add(result)
-//		}
-//		return resultCollection
-//	}
+    private def putInTarget = { target, sourceKey, sourceValue ->
+        target.put(sourceKey, sourceValue)
+    }
 
+    private def showError = { String message ->
+        throw new UnsupportedOperationException(message)
+    }
+
+    private def stepIntoJsonArray(JSONArray target, sourceElement, i, Expando expando) {
+        if (i < target.size()) {
+            if (sourceElement instanceof JSONAware) {
+                expando.parentFunction(sourceElement, target.get(i), expando)
+            } else if (!target.contains(sourceElement)) {
+                expando.altFunction(target, sourceElement)
+            }
+        } else {
+            expando.altFunction(target, sourceElement)
+        }
+    }
+
+    private def stepIntoJsonObject(JSONObject target, sourceElement, Expando expando) {
+        def sourceKey = sourceElement.key
+        def sourceValue = sourceElement.value
+
+        if (target.containsKey(sourceKey) && (sourceValue instanceof JSONAware)) {
+            expando.parentFunction(sourceValue, target[sourceKey], expando)
+        } else {
+            expando.altFunction(target, sourceKey, sourceValue)
+        }
+    }
 }
