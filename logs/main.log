@@ -1,0 +1,1 @@
+2014-07-02 07:47:50,967  INFO MergeConfig:45 - {"string":"Hello World","number":123,"boolean":true,"object":{"e":"f","c":"d","a":"b"},"null":null,"array":[1,2,3]}

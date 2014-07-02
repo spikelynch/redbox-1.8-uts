@@ -1,0 +1,9 @@
+2014-07-02 09:46:13,243  INFO MergeConfig:45 - {"string":"Hello World","number":123,"boolean":true,"object":{"e":"f","c":"d","a":"b"},"null":null,"array":[1,2,3]}
+10:02:33.343 INFO  [main][MergeConfig] {"string":"Hello World","number":123,"boolean":true,"object":{"e":"f","c":"d","a":"b"},"null":null,"array":[1,2,3]}
+10:20:41.399 INFO  [main][MergeConfig] {"string":"Hello World","number":123,"boolean":true,"object":{"e":"f","c":"d","a":"b"},"null":null,"array":[1,2,3]}
+10:32:34.598 INFO  [main][MergeConfig] {"string":"Hello World","number":1234,"boolean":true,"object":{"somethingelse":{"blah":"test2"},"e":"g","c":"e","a":"a"},"null":null,"array":[1,2,3]}
+10:33:48.709 INFO  [main][MergeConfig] {"string":"Hello World","number":123,"boolean":true,"object":{"somethingelse":{"blah":"test1"},"e":"f","c":"d","a":"b"},"null":null,"array":[1,2,3]}
+10:34:34.528 INFO  [main][MergeConfig] {"string":"Hello World","number":123,"boolean":true,"object":{"somethingelse":{"blah":"test1"},"e":"f","c":"d","a":"b"},"null":null,"array":[1,2,3,4]}
+10:35:42.843 INFO  [main][MergeConfig] {"string":"Hello World","number":123,"boolean":false,"object":{"somethingelse":{"blah":"test1"},"e":"f","c":"d","a":"b"},"null":null,"array":[1,2,3,4]}
+10:37:08.785 INFO  [main][MergeConfig] {"string":"Hello World","number":123,"boolean":false,"object":{"somethingelse":{"blah":"test1"},"e":"f","c":"d","a":"b"},"null":null,"array":[1,2,3,4]}
+10:37:22.589 INFO  [main][MergeConfig] {"string":"Hello World","number":123,"boolean":true,"object":{"somethingelse":{"blah":"test1"},"e":"f","c":"d","a":"b"},"null":null,"array":[1,2,3,4]}
