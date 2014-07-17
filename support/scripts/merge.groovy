@@ -15,56 +15,128 @@
 *   with this program; if not, write to the Free Software Foundation, Inc.,
 *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-@Grab('com.googlecode.json-simple:json-simple:1.1')
-@Grab(group = 'log4j', module = 'log4j', version = '1.2.12')
-import groovy.util.logging.Log4j
-import org.apache.log4j.PropertyConfigurator
+@Grab(group = 'com.googlecode.json-simple', module = 'json-simple', version = '1.1')
+import groovy.json.JsonSlurper
+import groovy.util.logging.Slf4j
 import org.json.simple.JSONArray
 import org.json.simple.JSONAware
 import org.json.simple.JSONObject
 import org.json.simple.parser.JSONParser
 
 /**
+ * Tested against groovy version: 2.3.4
  * @version
  * @author <a href="matt@redboxresearchdata.com.au">Matt Mulholland</a>
  */
+def downloadUrl = args.get"https://api.github.com/repos/redbox-mint/redbox-build-distro/contents/src/main/config/home/config-include"
+def target = "{}"
 
-MergeConfig mergeConfig = new MergeConfig()
-JSONObject jsonResult = mergeConfig.deeperMerge(args[0], args[1])
-mergeConfig.logJsonObject(jsonResult)
+switch (args.size()) {
+    case 2:
+        target = args[1]
+        // allow drop-through to assign next arg.
+    case 1:
+        downloadUrl = args[0]
+        break
+    case 0:
+        log.info("Using default arguments for script:...")
+        log.info("...downloadUrl : ${downloadUrl}")
+        log.info("...target : ${target}")
+        break
+    default:
+        throw new IllegalAccessException("Wrong number of arguments passed to script. Usage: groovy merge.groovy [<downloadUrl [<source system-config.json>]])")
+        break
+}
 
-@Log4j
+
+DownloadConfigFromGithub downloadConfig = new DownloadConfigFromGithub(downloadUrl)
+
+//to avoid api-github limit being reached, comment-out this method once files have been downloaded.
+downloadConfig.downloadFiles()
+
+//TODO : target is always clobbered - change this as existing config should overwrite downloaded versions
+downloadConfig.configDir.eachFileRecurse { File file ->
+    target = new MergeConfig().deeperMerge(file.text, target)
+}
+
+@Slf4j
+class DownloadConfigFromGithub {
+    final String configUrl
+    final File configDir
+
+    private DownloadConfigFromGithub() {
+        throw new UnsupportedOperationException("Cannot instantiate a no-args class. Usage: DownloadConfigFromGitHub(<<downloadUrl>>)")
+    }
+
+    DownloadConfigFromGithub(String url) {
+        this.configUrl = url
+        this.configDir = getDownloadDir(this.configUrl)
+    }
+
+    private def getDownloadDir = {
+        def dir
+        def dirName = it.split("/")[-1]
+        dir = new File(dirName)
+        dir.mkdir()
+        return dir
+    }
+
+    def slurpUrl = {
+        new JsonSlurper().parse(new BufferedReader(new InputStreamReader(new URL(it).openStream())))
+    }
+
+    def downloadFile = { File dir, config ->
+        File file = new File(dir, config.name)
+        file.text = (config.url).toURI().toURL().getText(requestProperties: [Accept: "application/vnd.github.v3.raw"])
+        log.debug("created file: ${file}")
+        log.debug("file content: ${file.text}")
+    }
+
+    def downloadFiles = {
+        if (this.configUrl?.trim() && this.configDir) {
+            def dirs = [this.configUrl]
+            while (dirs) {
+                slurpUrl(dirs.pop()).each {
+                    switch (it.type) {
+                        case 'file':
+                            downloadFile(this.configDir, it)
+                            break
+                        case 'dir':
+                            dirs << it.url
+                            break
+                        default:
+                            log.warn("Unknown github download type: ${it.type}")
+                            break
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Slf4j
 class MergeConfig {
     private static final String ITERATE_ERROR = "The compared objects do not contain compatible types"
-    private static final String LOGGING_CONFIG_NAME = "log4j.groovy"
-
-    static {
-        def fileList = new FileNameFinder().getFileNames('./', "**/${LOGGING_CONFIG_NAME}")
-        if (!fileList || fileList.size != 1) {
-            throw new FileNotFoundException("Could not find unique logging config in recursive search.")
-        }
-        def file = new File(fileList.get(0))
-        def config = new ConfigSlurper().parse(file.toURI().toURL())
-        PropertyConfigurator.configure(config.toProperties())
-    }
 
     /**
      * This is a deep merge function for 2 json documents. The source is used to add data to the target.
-     * JSONObjects and JSONArrays are checked to allow nested data to be checked without performing a shallow clobber.
-     * Is in untested against very complicated json data, but does work at levels deeper than shallow merge.
+     * JSONObjects and JSONArrays are checked to allow nested data to be checked and updated, without performing a shallow clobber.
+     * TODO: deprecated since upgrade of groovy version: update with JsonSlurper
+     *
      * @param src the json object used to get new data
-     * @param tgt the target of the merge. New data will be added. Pre-existing data will be clobbered
+     * @param tgt the target of the merge. New data will be added.
      * @return merged target
      */
-    def JSONObject deeperMerge(final String source, final String template) {
+    String deeperMerge(final String source, final String template) {
         def expando = new Expando()
         JSONObject jsonSource = createJsonObject(source)
         JSONObject jsonTemplate = createJsonObject(template)
         JSONObject target = checkAndMerge(jsonSource, jsonTemplate, expando)
-        return target
+        log.debug(target.toJSONString())
+        return target.toJSONString()
     }
 
-    def logJsonObject(JSONObject object) {
+    def logObject(JSONObject object) {
         log.info(object)
     }
 
@@ -79,10 +151,10 @@ class MergeConfig {
         expando.parentFunction = checkAndMerge
         source.eachWithIndex { sourceElement, i ->
             if (source instanceof JSONArray && target instanceof JSONArray) {
-                expando.altFunction = addToTarget
+                expando.updateFunction = addToTarget
                 stepIntoJsonArray(target, sourceElement, i, expando)
             } else if (source instanceof JSONObject && target instanceof JSONObject) {
-                expando.altFunction = putInTarget
+                expando.updateFunction = putInTarget
                 stepIntoJsonObject(target, sourceElement, expando)
             } else {
                 showError(ITERATE_ERROR)
@@ -103,15 +175,32 @@ class MergeConfig {
         throw new UnsupportedOperationException(message)
     }
 
+    /**
+     *  Updates json array target. If:
+     *  <ul>
+     *  <li> we have reached the limit of the target array, add it to target </li>
+     *  <li> not: </li>
+     *  <ul>
+     *    <li> if JSONAware: will continue recursion </li>
+     *    <li> not: and element is new, adds to array </li>
+     *    </ul>
+     *    </ul>
+     *  This behaviour can be changed to simply clobber one array with another array in {@link #checkAndMerge(source, target, expando checkAndMerge } method.
+            *
+            * @param target : the JsonArray to update
+            * @param sourceElement : the element, from the update source, to add
+            * @param i : the index, from the update source, to add
+            * @param expando : Expando which holds the calling function and the updateFunction
+     */
     private def stepIntoJsonArray(JSONArray target, sourceElement, i, Expando expando) {
         if (i < target.size()) {
             if (sourceElement instanceof JSONAware) {
                 expando.parentFunction(sourceElement, target.get(i), expando)
             } else if (!target.contains(sourceElement)) {
-                expando.altFunction(target, sourceElement)
+                expando.updateFunction(target, sourceElement)
             }
         } else {
-            expando.altFunction(target, sourceElement)
+            expando.updateFunction(target, sourceElement)
         }
     }
 
@@ -122,7 +211,7 @@ class MergeConfig {
         if (target.containsKey(sourceKey) && (sourceValue instanceof JSONAware)) {
             expando.parentFunction(sourceValue, target[sourceKey], expando)
         } else {
-            expando.altFunction(target, sourceKey, sourceValue)
+            expando.updateFunction(target, sourceKey, sourceValue)
         }
     }
 }

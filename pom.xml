@@ -32,13 +32,13 @@
     <smtp.host>localhost</smtp.host>
     <admin.email>admin@localhost</admin.email>
     <packaging>pom</packaging>
-    <!-- Control scripts try to auto-detect proxy. Use this value if you want 
+    <!-- Control scripts try to auto-detect proxy. Use this value if you want
 			Java to specifically exclude certain hosts from proxying. -->
     <non.proxy.hosts>localhost</non.proxy.hosts>
   </properties>
   <dependencies>
-   <!-- ReDBox Core - We want to explicitly define versions here because ReDBox 
-			is listed as both a dependency and a parent. Some odd consequences of using 
+   <!-- ReDBox Core - We want to explicitly define versions here because ReDBox
+			is listed as both a dependency and a parent. Some odd consequences of using
 			${project.version} can result -->
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
@@ -100,8 +100,8 @@
 		    <groupId>au.com.redboxresearchdata.fascinator</groupId>
 		    <artifactId>plugin-sso-rapidaaf</artifactId>
 		    <version>1.2-SNAPSHOT</version>
-		</dependency>		
-		
+		</dependency>
+
   </dependencies>
   <profiles>
     <profile>
@@ -114,33 +114,33 @@
       <!-- clean up the deploy directory first -->
       <build>
         <plugins>
-            <plugin>                
-                <artifactId>maven-clean-plugin</artifactId>              
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>../home</directory>                            
+                            <directory>../home</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
                         <fileset>
-                            <directory>../portal</directory>                            
+                            <directory>../portal</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
                         <fileset>
-                            <directory>../server</directory>                            
+                            <directory>../server</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
                             <followSymlinks>false</followSymlinks>
                         </fileset>
                         <fileset>
-                            <directory>../solr</directory>                            
+                            <directory>../solr</directory>
                             <includes>
                                 <include>**/*</include>
                             </includes>
@@ -148,8 +148,8 @@
                         </fileset>
                     </filesets>
                 </configuration>
-            </plugin>        
-      <!-- Used for creating an install - omits local build system settings -->              
+            </plugin>
+      <!-- Used for creating an install - omits local build system settings -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
@@ -511,7 +511,7 @@
     </plugins>
     <pluginManagement>
       <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings 
+        <!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>

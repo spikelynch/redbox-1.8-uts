@@ -6,3 +6,8 @@ target/
 *.iml
 .DS_Store
 /logs/
+.idea/
+logs/
+support/scripts/logs/
+support/scripts/config-include/
+

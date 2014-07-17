@@ -7,9 +7,8 @@
 
 def test1 = "{\n" +
         "  \"array\": [\n" +
-        "    1,\n" +
-        "    2,\n" +
         "    3,\n" +
+        "    2,\n" +
         "    4\n" +
         "  ],\n" +
         "  \"boolean\": true,\n" +
@@ -32,10 +31,10 @@ def test2 = "{\n" +
         "    2,\n" +
         "    3\n" +
         "  ],\n" +
-        "  \"boolean\": true,\n" +
+        "  \"boolean\": false,\n" +
         "  \"boolean\": true,\n" +
         "  \"null\": null,\n" +
-        "  \"number\": 123,\n" +
+        "  \"number\": 456,\n" +
         "  \"object\": {\n" +
         "    \"a\": \"a\",\n" +
         "    \"c\": \"c\",\n" +
@@ -44,7 +43,7 @@ def test2 = "{\n" +
         "      \"blah\" : \"test2\"\n" +
         "    }\n" +
         "  },\n" +
-        "  \"string\": \"Hello World\"\n" +
+        "  \"string\": \"Goodbye World!\"\n" +
         "}"
 
 final String FILE_PATTERN = "**/merge.groovy"
