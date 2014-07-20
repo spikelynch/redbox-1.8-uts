@@ -15,28 +15,39 @@
 *   with this program; if not, write to the Free Software Foundation, Inc.,
 *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-@Grab(group = 'com.googlecode.json-simple', module = 'json-simple', version = '1.1')
+
+import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper
 import groovy.util.logging.Slf4j
-import org.json.simple.JSONArray
-import org.json.simple.JSONAware
-import org.json.simple.JSONObject
-import org.json.simple.parser.JSONParser
+
 
 /**
  * Tested against groovy version: 2.3.4
  * @version
  * @author <a href="matt@redboxresearchdata.com.au">Matt Mulholland</a>
  */
-def downloadUrl = args.get"https://api.github.com/repos/redbox-mint/redbox-build-distro/contents/src/main/config/home/config-include"
+def log = new Logger()
+def downloadUrl = "https://api.github.com/repos/redbox-mint/redbox-build-distro/contents/src/main/config/home/config-include"
 def target = "{}"
+
+def getInputTargetText = {
+    def parentDir = new File(getClass().protectionDomain.codeSource.location.path).parent
+    def fileList = new FileNameFinder().getFileNames(parentDir, "**/${it}")
+    if (!fileList || fileList.size != 1) {
+        throw new FileNotFoundException("Could not find unique file matching pattern, **/${it}, in recursive search of ${parentDir}")
+    }
+    return new File(fileList.get(0)).text
+}
 
 switch (args.size()) {
     case 2:
-        target = args[1]
-        // allow drop-through to assign next arg.
+        downloadUrl = args[1]
+// allow drop-through to assign next arg.
     case 1:
-        downloadUrl = args[0]
+        target = getInputTargetText()
+        if (!target) {
+            throw new IOException("Could not get text from file named on command line.")
+        }
         break
     case 0:
         log.info("Using default arguments for script:...")
@@ -44,31 +55,51 @@ switch (args.size()) {
         log.info("...target : ${target}")
         break
     default:
-        throw new IllegalAccessException("Wrong number of arguments passed to script. Usage: groovy merge.groovy [<downloadUrl [<source system-config.json>]])")
+        throw new IllegalArgumentException("Wrong number of arguments passed to script. Usage: groovy merge.groovy [ <name of json config file> [<download url>] ])")
         break
 }
 
 
-DownloadConfigFromGithub downloadConfig = new DownloadConfigFromGithub(downloadUrl)
+DownloadGithubConfig downloadConfig = new DownloadGithubConfig(downloadUrl)
 
 //to avoid api-github limit being reached, comment-out this method once files have been downloaded.
-downloadConfig.downloadFiles()
+//downloadConfig.downloadFiles()
 
 //TODO : target is always clobbered - change this as existing config should overwrite downloaded versions
 downloadConfig.configDir.eachFileRecurse { File file ->
+    log.debug("adding file : " + file)
     target = new MergeConfig().deeperMerge(file.text, target)
+}
+File configResult = new File("system-config-result.json")
+configResult.text = target
+
+@Slf4j
+class Logger {
+    def info = {
+        log.info(it)
+    }
+
+    def debug = {
+        log.debug(it)
+    }
 }
 
 @Slf4j
-class DownloadConfigFromGithub {
+/**
+ * With a github api url to instantiate class, this uses the api, no-authentication to recursively download files contained.
+ * The files are downloaded to the current script location under a folder created using the last '/'-separated path suffix in url name.
+ * This ensures there is a persisted record of the download, as this is a non-authenticated use of the github-api, which has a download limit
+ * rule per hour (or in other words, once files are downloaded, comment out the caller).
+ */
+class DownloadGithubConfig {
     final String configUrl
     final File configDir
 
-    private DownloadConfigFromGithub() {
+    private DownloadGithubConfig() {
         throw new UnsupportedOperationException("Cannot instantiate a no-args class. Usage: DownloadConfigFromGitHub(<<downloadUrl>>)")
     }
 
-    DownloadConfigFromGithub(String url) {
+    DownloadGithubConfig(String url) {
         this.configUrl = url
         this.configDir = getDownloadDir(this.configUrl)
     }
@@ -82,7 +113,7 @@ class DownloadConfigFromGithub {
     }
 
     def slurpUrl = {
-        new JsonSlurper().parse(new BufferedReader(new InputStreamReader(new URL(it).openStream())))
+        new JsonSlurper().parseText(it.toURI().toURL().getText())
     }
 
     def downloadFile = { File dir, config ->
@@ -116,59 +147,43 @@ class DownloadConfigFromGithub {
 
 @Slf4j
 class MergeConfig {
-    private static final String ITERATE_ERROR = "The compared objects do not contain compatible types"
-
     /**
      * This is a deep merge function for 2 json documents. The source is used to add data to the target.
-     * JSONObjects and JSONArrays are checked to allow nested data to be checked and updated, without performing a shallow clobber.
-     * TODO: deprecated since upgrade of groovy version: update with JsonSlurper
+     * Maps and Lists are checked to allow nested data to be checked and updated, without performing a shallow clobber.
      *
      * @param src the json object used to get new data
      * @param tgt the target of the merge. New data will be added.
      * @return merged target
      */
-    String deeperMerge(final String source, final String template) {
-        def expando = new Expando()
-        JSONObject jsonSource = createJsonObject(source)
-        JSONObject jsonTemplate = createJsonObject(template)
-        JSONObject target = checkAndMerge(jsonSource, jsonTemplate, expando)
-        log.debug(target.toJSONString())
-        return target.toJSONString()
+
+    private static final String ITERATE_ERROR = "The compared objects do not contain compatible types"
+
+    String deeperMerge(final String source, final String target) {
+        def jsonSource = new JsonSlurper().parseText(source)
+        def jsonTarget = new JsonSlurper().parseText(target)
+        def result = checkAndMerge(jsonSource, jsonTarget)
+
+        def formattedResult = new JsonBuilder(result).toPrettyString()
+        log.debug(formattedResult)
+        return formattedResult
     }
 
-    def logObject(JSONObject object) {
-        log.info(object)
-    }
-
-    def createJsonObject(String target) {
-        JSONParser parser = new JSONParser()
-        Object json = parser.parse(target)
-        JSONObject jsonObject = JSONObject.cast(json)
-        return jsonObject
-    }
-
-    def checkAndMerge = { source, target, Expando expando ->
-        expando.parentFunction = checkAndMerge
-        source.eachWithIndex { sourceElement, i ->
-            if (source instanceof JSONArray && target instanceof JSONArray) {
-                expando.updateFunction = addToTarget
-                stepIntoJsonArray(target, sourceElement, i, expando)
-            } else if (source instanceof JSONObject && target instanceof JSONObject) {
-                expando.updateFunction = putInTarget
-                stepIntoJsonObject(target, sourceElement, expando)
-            } else {
-                showError(ITERATE_ERROR)
+    def checkAndMerge = { source, target ->
+        if ([List, Map].any { source in it }) {
+            source.each { sourceElement ->
+                log.debug("Inspecting...")
+                log.debug("...source: " + new JsonBuilder(source))
+                log.debug("...target: " + new JsonBuilder(target))
+                if (target in List) {
+                    stepIntoList(target, sourceElement)
+                } else if ([source, target].every { it in Map }) {
+                    stepIntoMap(target, sourceElement)
+                } else {
+                    showError(ITERATE_ERROR)
+                }
             }
         }
         return target
-    }
-
-    private def addToTarget = { target, sourceElement ->
-        target.add(sourceElement)
-    }
-
-    private def putInTarget = { target, sourceKey, sourceValue ->
-        target.put(sourceKey, sourceValue)
     }
 
     private def showError = { String message ->
@@ -176,42 +191,47 @@ class MergeConfig {
     }
 
     /**
-     *  Updates json array target. If:
-     *  <ul>
-     *  <li> we have reached the limit of the target array, add it to target </li>
-     *  <li> not: </li>
-     *  <ul>
-     *    <li> if JSONAware: will continue recursion </li>
-     *    <li> not: and element is new, adds to array </li>
-     *    </ul>
-     *    </ul>
-     *  This behaviour can be changed to simply clobber one array with another array in {@link #checkAndMerge(source, target, expando checkAndMerge } method.
-            *
-            * @param target : the JsonArray to update
-            * @param sourceElement : the element, from the update source, to add
-            * @param i : the index, from the update source, to add
-            * @param expando : Expando which holds the calling function and the updateFunction
+     *  Updates list target if there is a contained list or map not in the target.
+     *  Does not add new elements from source if it has array in common with target.
+     *  Will continue recursion into contained lists or maps in common with source.
+     *  //TODO : tidy-up this method.
+     *
+     * @param target : the array to update
+     * @param sourceElement : the element, from the update source, to add
+     * @param i : the index, from the update source, to add
+     * @param expando : Expando which holds the calling function and the updateFunction
      */
-    private def stepIntoJsonArray(JSONArray target, sourceElement, i, Expando expando) {
-        if (i < target.size()) {
-            if (sourceElement instanceof JSONAware) {
-                expando.parentFunction(sourceElement, target.get(i), expando)
-            } else if (!target.contains(sourceElement)) {
-                expando.updateFunction(target, sourceElement)
+    private def stepIntoList(List target, sourceElement) {
+
+        // if source is deeper, check if target has same list or map
+        def sourceDeepType = [List, Map].find { sourceElement in it }
+        def nextDeepTarget
+        if (sourceDeepType) {
+            nextDeepTarget = target.find { it in sourceDeepType }
+            if (nextDeepTarget) {
+                checkAndMerge(sourceElement, nextDeepTarget)
+            } else {
+                target.add(sourceElement)
             }
-        } else {
-            expando.updateFunction(target, sourceElement)
         }
     }
 
-    private def stepIntoJsonObject(JSONObject target, sourceElement, Expando expando) {
+    /**
+     * All map.entries that are not in target are added from source.
+     * If target has map.entry in common, the target value remains.
+     * @param target : the Map to update
+     * @param sourceElement : the element, from the update source, to put
+     * @param expando : Expando which holds the calling function and the updateFunction
+     */
+    private def stepIntoMap(Map target, sourceElement) {
         def sourceKey = sourceElement.key
         def sourceValue = sourceElement.value
 
-        if (target.containsKey(sourceKey) && (sourceValue instanceof JSONAware)) {
-            expando.parentFunction(sourceValue, target[sourceKey], expando)
+        if (!target.containsKey(sourceKey)) {
+            target.put(sourceKey, sourceValue)
         } else {
-            expando.updateFunction(target, sourceKey, sourceValue)
+            checkAndMerge(sourceValue, target[sourceKey])
         }
     }
+
 }
