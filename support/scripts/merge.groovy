@@ -63,7 +63,7 @@ switch (args.size()) {
 DownloadGithubConfig downloadConfig = new DownloadGithubConfig(downloadUrl)
 
 //to avoid api-github limit being reached, comment-out this method once files have been downloaded.
-//downloadConfig.downloadFiles()
+downloadConfig.downloadFiles()
 
 //TODO : target is always clobbered - change this as existing config should overwrite downloaded versions
 downloadConfig.configDir.eachFileRecurse { File file ->
