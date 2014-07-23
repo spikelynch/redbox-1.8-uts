@@ -17,14 +17,23 @@
 */
 
 @GrabConfig(systemClassLoader=true)
-@Grab(group = 'ch.qos.logback', module = 'logback-core', version = '0.9.29')
-@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '0.9.29')
-@Grab(group='org.slf4j', module='slf4j-api', version='1.6.1')
+@Grab(group = 'log4j', module = 'log4j', version = '1.2.12')
 import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper
-import groovy.util.logging.Slf4j
+import groovy.util.logging.Log4j
+import org.apache.log4j.PropertyConfigurator
 
+def setUpLoggingConfig = {
+    def fileList = new FileNameFinder().getFileNames('./', "**/log4j.groovy")
+    if (!fileList || fileList.size != 1) {
+        throw new FileNotFoundException("Could not find unique logging config in recursive search.")
+    }
+    def file = new File(fileList?.get(0))
+    def config = new ConfigSlurper().parse(file.toURI().toURL())
+    PropertyConfigurator.configure(config.toProperties())
+}
 
+setUpLoggingConfig()
 /**
  * Tested against groovy version: 2.3.4
  * @version
@@ -83,7 +92,7 @@ downloadConfig.configDir.eachFileRecurse { File file ->
 File configResult = new File("system-config-result.json")
 configResult.text = target
 
-@Slf4j
+@Log4j
 class Logger {
     def info = {
         log.info(it)
@@ -94,7 +103,7 @@ class Logger {
     }
 }
 
-@Slf4j
+@Log4j
 /**
  * With a github api url to instantiate class, this uses the api, no-authentication to recursively download files contained.
  * The files are downloaded to the current script location under a folder created using the last '/'-separated path suffix in url name.
@@ -155,7 +164,7 @@ class DownloadGithubConfig {
     }
 }
 
-@Slf4j
+@Log4j
 class MergeConfig {
     /**
      * This is a deep merge function for 2 json documents. The source is used to add data to the target.
