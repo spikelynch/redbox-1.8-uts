@@ -16,6 +16,10 @@
 *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
+@GrabConfig(systemClassLoader=true)
+@Grab(group = 'ch.qos.logback', module = 'logback-core', version = '0.9.29')
+@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '0.9.29')
+@Grab(group='org.slf4j', module='slf4j-api', version='1.6.1')
 import groovy.json.JsonBuilder
 import groovy.json.JsonSlurper
 import groovy.util.logging.Slf4j
@@ -26,9 +30,10 @@ import groovy.util.logging.Slf4j
  * @version
  * @author <a href="matt@redboxresearchdata.com.au">Matt Mulholland</a>
  */
-def log = new Logger()
+
 def downloadUrl = "https://api.github.com/repos/redbox-mint/redbox-build-distro/contents/src/main/config/home/config-include"
-def target = "{}"
+def target
+def log = new Logger()
 
 def getInputTargetText = {
     def parentDir = new File(getClass().protectionDomain.codeSource.location.path).parent
@@ -50,6 +55,11 @@ switch (args.size()) {
         }
         break
     case 0:
+        try {
+            target = getInputTargetText('system-config.json') ?: "{}"
+        } catch (FileNotFoundException e) {
+            target = "{}"
+        }
         log.info("Using default arguments for script:...")
         log.info("...downloadUrl : ${downloadUrl}")
         log.info("...target : ${target}")
@@ -63,7 +73,7 @@ switch (args.size()) {
 DownloadGithubConfig downloadConfig = new DownloadGithubConfig(downloadUrl)
 
 //to avoid api-github limit being reached, comment-out this method once files have been downloaded.
-downloadConfig.downloadFiles()
+//downloadConfig.downloadFiles()
 
 //TODO : target is always clobbered - change this as existing config should overwrite downloaded versions
 downloadConfig.configDir.eachFileRecurse { File file ->

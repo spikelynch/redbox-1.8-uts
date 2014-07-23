@@ -8,6 +8,7 @@ target/
 /logs/
 .idea/
 logs/
+system-config-result.json
 support/scripts/logs/
 support/scripts/config-include/
 support/scripts/backup
