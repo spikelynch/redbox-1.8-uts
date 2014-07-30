@@ -23,6 +23,26 @@ import groovy.json.JsonSlurper
 import groovy.util.logging.Log4j
 import org.apache.log4j.PropertyConfigurator
 
+/**
+ * To run this script:
+ * - navigate to support/scripts directory
+ * - copy your system-config to the directory
+ * - groovy merge.groovy system-config.json
+ * The script will:
+ * - download latest config-include files to support/scripts/config-include
+ * (needed as git api has request limit per hour for anonymous access - can comment out method call once this is completed.)
+ * - merge config-include files into the target 'system-config.json' supplied
+ * - writes out result to support/scripts/system-config-result.json
+ * Tested against groovy version: 2.3.4
+ * TODO : investigate possible issue with logging dependency and config
+ * (to use latest groovy, and avoid clashes, have needed to update gmaven (which is no longer supported anyway) to gmaven-plus in redbox and mint builds)
+ * Solution for this (yet to test) : use log4 for script logging so no clashes on classpath with slf4j and logback.
+ * TODO : update pom so support/scripts (if not already) correctly copies script and logging support needed in installation.
+ * @version
+ * @author <a href="matt@redboxresearchdata.com.au">Matt Mulholland</a>
+ */
+
+
 def setUpLoggingConfig = {
     def fileList = new FileNameFinder().getFileNames('./', "**/log4j.groovy")
     if (!fileList || fileList.size != 1) {
@@ -34,11 +54,7 @@ def setUpLoggingConfig = {
 }
 
 setUpLoggingConfig()
-/**
- * Tested against groovy version: 2.3.4
- * @version
- * @author <a href="matt@redboxresearchdata.com.au">Matt Mulholland</a>
- */
+
 
 def downloadUrl = "https://api.github.com/repos/redbox-mint/redbox-build-distro/contents/src/main/config/home/config-include"
 def target
