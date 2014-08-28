@@ -1,0 +1,11 @@
+{
+	"authserver": {
+		"redboxAdmin": {
+			"name":"ReDBox PaaS Admin",
+			"sharedKey":"Please Change Key - This is very insecure.",
+			"aud":"http://localhost:1337/security/login",
+			"iss":"htp://localhost:9000/redbox",
+			"expiry":60
+		}
+	}
+}
