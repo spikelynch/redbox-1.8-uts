@@ -29,7 +29,7 @@ from java.net import URLDecoder, URLEncoder
 # Optional configuration:
 #    - Support only HTTPS
 
-class GetjwsData():
+class JwsData():
     def __init__(self):
         pass
     
@@ -58,6 +58,12 @@ class GetjwsData():
         self.aud = self.systemConfig.getString(None, "authserver", self.appId, "aud")
         self.iss = self.systemConfig.getString(None, "authserver", self.appId, "iss")
         self.expiry = self.systemConfig.getInteger(None, "authserver", self.appId, "expiry")
+        self.logoutUrl = self.systemConfig.getString(None, "authserver", self.appId, "logoutUrl")
+        logout = self.request.getParameter("logout")
+        if logout == "1":
+            self.session.invalidate()
+            self.response.sendRedirect(self.logoutUrl)
+            return
         if not self.consumerName:
             self.msg = "Invalid configuration, no app name"
             self.log.error(self.msg)
@@ -84,7 +90,7 @@ class GetjwsData():
         isAdmin = self.vc("page").authentication.is_admin()
         # Admin only... 
         if not isAdmin:
-            self.msg = "Attempted to sign to an admin-only page"
+            self.msg = "Sorry, this page is only for administrators."
             self.log.error(self.msg)
             return
         # Get the roles...
