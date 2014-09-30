@@ -233,8 +233,6 @@ class MergeConfig {
      *
      * @param target : the array to update
      * @param sourceElement : the element, from the update source, to add
-     * @param i : the index, from the update source, to add
-     * @param expando : Expando which holds the calling function and the updateFunction
      */
     private def stepIntoList(List target, sourceElement) {
 
@@ -256,7 +254,6 @@ class MergeConfig {
      * If target has map.entry in common, the target value remains.
      * @param target : the Map to update
      * @param sourceElement : the element, from the update source, to put
-     * @param expando : Expando which holds the calling function and the updateFunction
      */
     private def stepIntoMap(Map target, sourceElement) {
         def sourceKey = sourceElement.key
