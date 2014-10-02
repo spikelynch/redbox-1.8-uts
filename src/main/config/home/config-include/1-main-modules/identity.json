@@ -1,7 +1,7 @@
 {
-	"redbox.identity": {
+	"identity": {
         "institution": "University of Examples",
-        "RIF-CS Group": "The University of Examples, Australia",
+        "RIF_CSGroup": "The University of Examples, Australia",
         "internalGrantString": "urn:uoe:internal"
     }
 }

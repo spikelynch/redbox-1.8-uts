@@ -38,6 +38,8 @@ import org.apache.log4j.PropertyConfigurator
  * (to use latest groovy, and avoid clashes, have needed to update gmaven (which is no longer supported anyway) to gmaven-plus in redbox and mint builds)
  * Solution for this (yet to test) : use log4 for script logging so no clashes on classpath with slf4j and logback.
  * TODO : update pom so support/scripts (if not already) correctly copies script and logging support needed in installation.
+ * TODO: 'redbox.identity' should remapped into 'identity'
+ * TODO: 'RIF-CS Group' should be remapped into 'RIF_CSGroup'
  * @version
  * @author <a href="matt@redboxresearchdata.com.au">Matt Mulholland</a>
  */
