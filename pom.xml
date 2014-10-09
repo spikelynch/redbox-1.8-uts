@@ -22,7 +22,7 @@
 		<server.port>9000</server.port>
 		<amq.port>9101</amq.port>
 		<amq.stomp.port>9102</amq.stomp.port>
-		<server.url.base>http://${ip.address}:${server.port}/redbox/</server.url.base>
+		<server.url.base></server.url.base>
 		<mint.proxy.server>http://localhost:9001</mint.proxy.server>
 		<mint.amq.broker>tcp://localhost:9201</mint.amq.broker>
 		<dir.home>${project.home}/home</dir.home>
@@ -79,7 +79,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-digester</groupId>
 			<artifactId>commons-digester</artifactId>
@@ -96,11 +96,26 @@
 			<artifactId>plugin-transformer-local</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-transformer-basicVersioning</artifactId>
 			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.the-fascinator.plugins</groupId>
+			<artifactId>plugin-transformer-scripting</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ivy</groupId>
+			<artifactId>ivy</artifactId>
+			<version>2.4.0-rc1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.redbox-mint</groupId>
+			<artifactId>redbox-vital-transformer-fedora3</artifactId>
+			<version>1.8-SNAPSHOT</version>
 		</dependency>
 		<!-- new velocity plugins -->
 		<dependency>
@@ -130,6 +145,21 @@
 			<groupId>com.nimbusds</groupId>
 			<artifactId>nimbus-jose-jwt</artifactId>
 			<version>2.22.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.the-fascinator.plugins</groupId>
+			<artifactId>plugin-authentication-ldap</artifactId>
+			<version>1.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.the-fascinator.plugins</groupId>
+			<artifactId>plugin-roles-ldap</artifactId>
+			<version>1.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>au.com.redboxresearchdata</groupId>
+			<artifactId>fascinator-shibboleth</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<profiles>
