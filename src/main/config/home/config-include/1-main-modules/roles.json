@@ -1,6 +1,6 @@
 {
 	"roles": {
-        "type": "internal",
+        "plugins": ["internal"],
         "internal": {
             "path": "${fascinator.home}/security/roles.properties",
             "defaultRoles":["guest"]
