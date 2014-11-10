@@ -7,25 +7,25 @@ pageOrder: 2
 
 A key feature of ReDBox and Mint is the ability to harvest records from external sources. This functionality is delivered by the [ReDBox Harvester tool](harvesterTool) and is capable of consuming data from a variety of sources (such as a relational database and message queue). The most common method used is to harvest CSV files from the file system. With the addition of the [Administration Interface](adminInterface) in ReDBox 1.8, the ability to submit the CSV files via a user interface or a REST API is also possible.
 
-### Harvesting in Mint
+## Harvesting in Mint
 
 The default configuration for the Mint harvester is to monitor a directory on the file system and to process the CSV files that are placed there.
 
-####Business Rules
+###Business Rules
 
-**CSV Format**
+####CSV Format
 
 CSV files should adhere to the [RFC4180](http://tools.ietf.org/html/rfc4180) standard
 
-**CSV Filename**
+####CSV Filename
 
 The harvester utilises the CSV filename to determine the type of record by the filename. For example, to harvest party records, the filename must be Party_People.csv. Any other filename will cause the harvester to fail as the record type will not be recognised. The filenames required or each record type is outlined below in the record details section.
 
-**Adding and updating records**
+####Adding and updating records
 
 The Mint harvester requires utilises an identifier column to identify whether a record already exists in storage and requires updating or is new and requires adding. As this is column is being used an identifier, there is a requirement that each record is unique. The field can be a string of any format though numeric identifiers are often used.
 
-**Deleting a record**
+####Deleting a record
 
 You _**cannot**_ delete a record in Mint via the CSV harvest. This rule is implemented for the following reasons:
 * In some situations, the data feed from the central system (source of truth) is not reliable and records go "missing". For example, the HR system or research management system may not publish information about staff that left.
@@ -36,9 +36,9 @@ As Mint is in charge of publishing records to services (such as the National Lib
 It is however possible to delete a record via the Mint user interface by logging in as an administrator. This is of course strongly discouraged and you must make sure that you aren't breaking any relationships with other objects (in Mint or ReDBox) or feeds to other services.
 
 
-####Record types
+###Record types
 
-**Parties**
+####Parties
 
 Parties data is used to record researcher information.
 
@@ -72,7 +72,7 @@ Parties data is used to record researcher information.
 |           | Staff_Profile_Homepage | The researcher's webpage within the institutional web presence                                                      | http://staffprofiles.edu.au/mjones                      |
 |           | Description            | A brief bio or overview of the researcher                                                                           | Mike has been investigating the effects of loud noises. |
 
-**Groups**
+####Groups
 
 Groups are any organisational unit that relates to research. This could be formal groups such as faculties or informal such as an arts collective.
 Typically, this data is provided in a hierarchical model. For example, the University is named as the top-level group with faculties and institutes below and then schools below them:
@@ -94,9 +94,9 @@ Typically, this data is provided in a hierarchical model. For example, the Unive
 |           | Phone           | A phone number for contacting the group |                          | 07 3456 7654               |
 |           | Parent_Group_ID |                                         | Link to the parent group | UoE                        |
 |           | Homepage        | The group's website                     |                          | http://www.fos.uni.edu.au/ |
-|           | Description     | A brief description of the group        |                          |                            |
+|           | Description     | A brief description of the group        |                          |                            | |
 
-**Activities**
+####Activities
 
 Activities data is used to record research activities that are not funded via the ARC or the NHMRC.
 
@@ -121,12 +121,12 @@ Activities data is used to record research activities that are not funded via th
 |           | Investigators           | A semi-colon (;) separated list of IDs for other researchers related to the activity. These IDs must match records in the Parties-People data |
 |           | Website                 | A website for the activity                                                                                                                    |
 |           | ANZSRC_FOR_1            | The 2, 4 or 6 digit Field of Research code as designated by the Australian Bureau of Statistics under ANZSRC (2008)                           |
-|           | ANZSRC_FOR_2            |                                                                                                                                               |
-|           | ANZSRC_FOR_3            |                                                                                                                                               |
+|           | ANZSRC_FOR_2            |                                                                        |
+|           | ANZSRC_FOR_3            |                                                                                                   | |
 
 
 
-####Pre-loaded data
+###Pre-loaded data
 
 As well as the following data sets that contain institution specific there are other vocabularies that Mint stores. These are either:
 * Standard vocabularies used by the ReDBox to enhance it's forms (e.g. language codes)
