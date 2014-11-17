@@ -4,14 +4,19 @@
 	"id": "http://qcif.edu.au",
 	"required":false,
 	"properties":{
-		"@banner-background-color": {
+		"@banner-background-colour": {
 			"type":"string",
-			"id": "http://qcif.edu.au/@banner-background-color",
+			"id": "http://qcif.edu.au/@banner-background-colour",
 			"required":false
 		},
 		"@title-background-colour": {
 			"type":"string",
 			"id": "http://qcif.edu.au/@title-background-colour",
+			"required":false 
+		},
+		"@menu-background-colour": {
+			"type":"string",
+			"id": "http://qcif.edu.au/@menu-background-colour",
 			"required":false 
 		}
 	}
