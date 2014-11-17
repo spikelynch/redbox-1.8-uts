@@ -1,0 +1,18 @@
+{
+	"type":"object",
+	"$schema": "http://json-schema.org/draft-03/schema",
+	"id": "http://qcif.edu.au",
+	"required":false,
+	"properties":{
+		"@banner-background-color": {
+			"type":"string",
+			"id": "http://qcif.edu.au/@banner-background-color",
+			"required":false
+		},
+		"@title-background-colour": {
+			"type":"string",
+			"id": "http://qcif.edu.au/@title-background-colour",
+			"required":false 
+		}
+	}
+}
