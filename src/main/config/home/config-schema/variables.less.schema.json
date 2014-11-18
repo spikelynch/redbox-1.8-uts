@@ -7,17 +7,20 @@
 		"@banner-background-colour": {
 			"type":"string",
 			"id": "http://qcif.edu.au/@banner-background-colour",
-			"required":false
+			"required":false,
+            "format":"color"
 		},
 		"@title-background-colour": {
 			"type":"string",
 			"id": "http://qcif.edu.au/@title-background-colour",
-			"required":false 
+			"required":false,
+            "format":"color"
 		},
 		"@menu-background-colour": {
 			"type":"string",
 			"id": "http://qcif.edu.au/@menu-background-colour",
-			"required":false 
+			"required":false,
+            "format":"color"
 		}
 	}
 }
