@@ -3,13 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.redbox-mint</groupId>
 	<artifactId>redbox-distro</artifactId>
-	<version>1.8</version>
+	<version>1.9-SNAPSHOT</version>
 	<packaging>${packaging}</packaging>
 	<name>ReDBox - Distribution</name>
 	<parent>
 		<groupId>com.googlecode.redbox-mint</groupId>
 		<artifactId>redbox</artifactId>
-		<version>1.8</version>
+		<version>1.9-SNAPSHOT</version>
 	</parent>
 	<properties>
 		<!-- Used in build -->
@@ -44,33 +44,33 @@
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox-project</artifactId>
 			<type>pom</type>
-			<version>1.8</version>
+			<version>1.9-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox</artifactId>
 			<type>pom</type>
-			<version>1.8</version>
+			<version>1.9-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox-config</artifactId>
-			<version>1.8</version>
+			<version>1.9-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox-secure-api</artifactId>
-			<version>1.8</version>
+			<version>1.9-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>plugin-transaction-external-curation</artifactId>
-			<version>1.0</version>
+			<version>1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-storage-filesystem</artifactId>
-			<version>1.3</version>
+			<version>1.4-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
@@ -114,7 +114,7 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-storage-fedora36</artifactId>
-			<version>1.0</version>
+			<version>1.1-SNAPSHOT</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.activemq</groupId>
@@ -157,7 +157,7 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-transformer-scripting</artifactId>
-			<version>1.0</version>
+			<version>1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.ivy</groupId>
@@ -169,24 +169,24 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-transformer-jsonVelocity</artifactId>
-			<version>1.2.2</version>
+			<version>1.2.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-transformer-jsonVelocity-pdf</artifactId>
-			<version>1.1</version>
+			<version>1.2-SNAPSHOT</version>
 		</dependency>
 		<!-- JSON harvester plugin -->
 		<dependency>
 			<groupId>au.com.redboxresearchdata.fascinator</groupId>
 			<artifactId>plugin-harvester-json</artifactId>
-			<version>1.3</version>
+			<version>1.4-SNAPSHOT</version>
 		</dependency>
 		<!-- Rapid AAF SSO plugin -->
 		<dependency>
 			<groupId>au.com.redboxresearchdata.fascinator</groupId>
 			<artifactId>plugin-sso-rapidaaf</artifactId>
-			<version>1.2</version>
+			<version>1.3-SNAPSHOT</version>
 		</dependency>
 		<!-- Adding JWT specific dependency -->
 		<dependency>
@@ -197,17 +197,17 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-authentication-ldap</artifactId>
-			<version>1.1</version>
+			<version>1.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-roles-ldap</artifactId>
-			<version>1.1</version>
+			<version>1.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>au.com.redboxresearchdata</groupId>
 			<artifactId>fascinator-shibboleth</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
@@ -243,7 +243,7 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
 			<artifactId>fascinator-vocabulary</artifactId>
-			<version>1.3</version>
+			<version>1.4-SNAPSHOT</version>
        <exclusions>
         <exclusion>
           <groupId>org.apache.felix.commons</groupId>
