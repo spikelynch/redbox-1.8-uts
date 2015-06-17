@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.redbox-mint</groupId>
 	<artifactId>redbox-distro</artifactId>
-	<version>1.8-SNAPSHOT</version>
+	<version>1.8</version>
 	<packaging>${packaging}</packaging>
 	<name>ReDBox - Distribution</name>
 	<parent>
 		<groupId>com.googlecode.redbox-mint</groupId>
 		<artifactId>redbox</artifactId>
-		<version>1.8-SNAPSHOT</version>
+		<version>1.8</version>
 	</parent>
 	<properties>
 		<!-- Used in build -->
@@ -22,7 +21,7 @@
 		<server.port>9000</server.port>
 		<amq.port>9101</amq.port>
 		<amq.stomp.port>9102</amq.stomp.port>
-		<server.url.base></server.url.base>
+		<server.url.base />
 		<mint.proxy.server>http://localhost:9001</mint.proxy.server>
 		<mint.amq.broker>tcp://localhost:9201</mint.amq.broker>
 		<dir.home>${project.home}/home</dir.home>
@@ -45,33 +44,33 @@
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox-project</artifactId>
 			<type>pom</type>
-			<version>1.8-SNAPSHOT</version>
+			<version>1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox</artifactId>
 			<type>pom</type>
-			<version>1.8-SNAPSHOT</version>
+			<version>1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox-config</artifactId>
-			<version>1.8-SNAPSHOT</version>
+			<version>1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>redbox-secure-api</artifactId>
-			<version>1.8-SNAPSHOT</version>
+			<version>1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
 			<artifactId>plugin-transaction-external-curation</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-storage-filesystem</artifactId>
-			<version>1.3-SNAPSHOT</version>
+			<version>1.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
@@ -115,7 +114,7 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-storage-fedora36</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.apache.activemq</groupId>
@@ -158,7 +157,7 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-transformer-scripting</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.ivy</groupId>
@@ -170,24 +169,24 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-transformer-jsonVelocity</artifactId>
-			<version>1.2.2-SNAPSHOT</version>
+			<version>1.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-transformer-jsonVelocity-pdf</artifactId>
-			<version>1.1-SNAPSHOT</version>
+			<version>1.1</version>
 		</dependency>
 		<!-- JSON harvester plugin -->
 		<dependency>
 			<groupId>au.com.redboxresearchdata.fascinator</groupId>
 			<artifactId>plugin-harvester-json</artifactId>
-			<version>1.2-SNAPSHOT</version>
+			<version>1.3</version>
 		</dependency>
 		<!-- Rapid AAF SSO plugin -->
 		<dependency>
 			<groupId>au.com.redboxresearchdata.fascinator</groupId>
 			<artifactId>plugin-sso-rapidaaf</artifactId>
-			<version>1.2-SNAPSHOT</version>
+			<version>1.2</version>
 		</dependency>
 		<!-- Adding JWT specific dependency -->
 		<dependency>
@@ -198,17 +197,17 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-authentication-ldap</artifactId>
-			<version>1.1-SNAPSHOT</version>
+			<version>1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator.plugins</groupId>
 			<artifactId>plugin-roles-ldap</artifactId>
-			<version>1.1-SNAPSHOT</version>
+			<version>1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>au.com.redboxresearchdata</groupId>
 			<artifactId>fascinator-shibboleth</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
@@ -244,7 +243,7 @@
 		<dependency>
 			<groupId>com.googlecode.the-fascinator</groupId>
 			<artifactId>fascinator-vocabulary</artifactId>
-			<version>1.3-SNAPSHOT</version>
+			<version>1.3</version>
        <exclusions>
         <exclusion>
           <groupId>org.apache.felix.commons</groupId>
@@ -406,7 +405,7 @@
 						</executions>
 						<configuration>
 							<copyright>GPLv2</copyright>
-							<distribution></distribution>
+							<distribution />
 							<group>Application/Internet</group>
 							<name>redbox-distro</name>
 							<mappings>
