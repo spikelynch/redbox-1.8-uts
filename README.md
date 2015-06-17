@@ -11,4 +11,4 @@ RPMS are available in our YUM repository:
 * [Release (currently v1.8)](http://dev.redboxresearchdata.com.au/yum/releases/)
 * [Development Snapshot] (http://dev.redboxresearchdata.com.au/yum/snapshots/)
 
-*  Please refer to http://www.redboxresearchdata.com.au/documentation/installguide for installation instructions
+Please refer to http://www.redboxresearchdata.com.au/documentation/installguide for installation instructions
