@@ -1,0 +1,14 @@
+#parse($page.getTemplate('layout/header-right.vm'))
+
+<div class="header">
+  <h1 id="branding">
+    <a href="$portalPath/home">
+	  <img alt="Stash Logo" src="$portalPath/images/logo_stash.gif" style="float: left; margin-left: 20px;" />
+	</a>
+	<a href="http://uts.edu.au">
+		<img id="banner" alt="UTS Logo" src="$portalPath/images/white-UTS-logo.png" style="float: right; padding: 17px 17px 0 0; height: 38px; margin-right: 4px;" />
+	</a>
+  </h1>
+</div>
+
+<div class="clear"></div>

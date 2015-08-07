@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<modelVersion>4.0.0</modelVersion>
 	<groupId>com.googlecode.redbox-mint</groupId>
 	<artifactId>redbox-distro</artifactId>
 	<version>1.9-SNAPSHOT</version>
@@ -32,13 +32,13 @@
 		<smtp.host>localhost</smtp.host>
 		<admin.email>admin@localhost</admin.email>
 		<packaging>pom</packaging>
-		<!-- Control scripts try to auto-detect proxy. Use this value if you want 
+		<!-- Control scripts try to auto-detect proxy. Use this value if you want
 			Java to specifically exclude certain hosts from proxying. -->
 		<non.proxy.hosts>localhost</non.proxy.hosts>
 	</properties>
 	<dependencies>
-		<!-- ReDBox Core - We want to explicitly define versions here because ReDBox 
-			is listed as both a dependency and a parent. Some odd consequences of using 
+		<!-- ReDBox Core - We want to explicitly define versions here because ReDBox
+			is listed as both a dependency and a parent. Some odd consequences of using
 			${project.version} can result -->
 		<dependency>
 			<groupId>com.googlecode.redbox-mint</groupId>
@@ -251,7 +251,7 @@
         </exclusion>
       </exclusions>
 		</dependency>
-		
+
 		<dependency>
           <groupId>com.googlecode.the-fascinator</groupId>
           <artifactId>fascinator-portal</artifactId>
@@ -695,7 +695,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -800,7 +800,8 @@
 		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
-		<snapshotRepository>
+
+    <snapshotRepository>
 			<id>redbox-nexus-snapshots</id>
 			<name>Redbox Nexus Snapshots</name>
 			<url>http://dev.redboxresearchdata.com.au/nexus/content/repositories/snapshots/</url>

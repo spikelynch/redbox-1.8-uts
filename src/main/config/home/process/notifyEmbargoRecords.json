@@ -1,0 +1,3 @@
+{
+	"query": "date_embargoed:[NOW/DAY TO NOW/DAY+30DAY]"
+}

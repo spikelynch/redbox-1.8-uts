@@ -1,0 +1,120 @@
+#sectionHeading("Management")
+<div class="meta">
+    <dl>
+        <dt>Identifier</dt>
+        <div class="group">
+            #set($origin = $self.getFirst("dc:identifier.redbox:origin"))
+            #if($origin == "internal")
+                <i>Using this record's ID.</i>
+            #else
+                #displayFirst("dc:identifier.rdf:PlainLiteral" "Identifier")
+                #displayFirst("dc:identifier.dc:type.skos:prefLabel" "Type of Identifier")
+            #end
+        </div>
+        <dt>Location</dt>
+        <div class="group">
+
+			<table>
+				<thead>
+					<tr>
+						<th>Privacy</th>
+						<th>Type</th>
+						<th>Location</th>
+						<th>Notes</th>
+					</tr>
+				</thead>
+				<tbody>
+					#set($locationList = $self.getList("bibo:DataLocation"))
+					#foreach($key in $locationList.keySet())
+						#set($locationValue = $locationList.get($key))
+						#set($privacy = $locationValue.get("dc:privacy"))
+						#set($type = $locationValue.get("dc:type"))
+						#set($location = $locationValue.get("dc:location"))
+						#set($note = $locationValue.get("dc:notes"))
+
+						#if ("$!privacy" == "public" ||
+						("$!privacy" == "private" && ($page.authentication.is_admin() || $page.authentication.is_reviewer() || $page.authentication.is_librarian()) ))
+							<tr>
+								<td> <label>$privacy</label> </td>
+								<td> <label>$type</label> </td>
+								<td> <label>$location</label> </td>
+								<td> <label>$note</label> </td>
+							</tr>
+						#end
+					#end
+
+				</tbody>
+			</table>
+        </div>
+
+        #displayFirst("redbox:retentionPeriod" "Retention Period")
+        #displayFirst("dc:extent" "Extent or Quantity")
+        #displayFirst("redbox:disposalDate" "Disposal Date")
+        <dt>Data Owner (IP)</dt>
+        #set($ownerList = $self.getList("locrel:own.foaf:Agent"))
+        #if ($ownerList.isEmpty())
+        <dd>
+        #noInformation()
+        </dd>
+        #else
+        <dd>
+            <ol>
+            #foreach($entry in $ownerList)
+                #set($owner = $entry.get("foaf:name"))
+                #if("$!owner"!="")
+                    <li>$self.escapeHtml($owner)</li>
+                #end
+            #end
+            </ol>
+        </dd>
+        #end
+
+        #displayFirst("locrel:dtm.foaf:Agent.foaf:name" "Data Custodian")
+        #displayFirst("foaf:Organization.skos:prefLabel" "Data Affiliation")
+
+		<dt>Funding Body/s</dt>
+		<dd>
+		    #set($fundingBodyList = $self.getList("foaf:fundedBy.foaf:Agent"))
+			<ol>
+			    #foreach($key in $fundingBodyList.keySet())
+				    #set($fundingBody = $fundingBodyList.get($key))
+					<li>
+						#set($fundingBodyLabel = $fundingBody.get("skos:prefLabel"))
+						$fundingBodyLabel
+					</li>
+			    #end
+			</ol>
+		</dd>
+
+        <dt>Grant Numbers</dt>
+        <dd>
+            #set($grantList = $self.getList("foaf:fundedBy.vivo:Grant"))
+            <ol>
+            #foreach($key in $grantList.keySet())
+                #set($grant = $grantList.get($key))
+                #set($internal = $grant.get("redbox:internalGrant"))
+                <li>
+                    #set($grantId = $grant.get("redbox:grantNumber"))
+                    #if("$!grantId"!="")
+                        $self.escapeHtml($grantId),
+                    #end
+                    #set($grantName = $grant.get("skos:prefLabel"))
+                    #if("$!grantName"!="")
+                        $self.escapeHtml($grantName),
+                    #end
+                    #if("$!internal"!="")<em>(Internal)</em>#end
+                </li>
+            #end
+            </ol>
+        </dd>
+
+        #displayFirst("swrc:ResearchProject.dc:title" "Project Title")
+        #displayFirst("locrel:dpt.foaf:Person.foaf:name" "Depositor")
+        #displayFirst("dc:SizeOrDuration" "Data Size")
+        #displayFirst("dc:Policy" "Institutional Data Management Policy")
+        <div class="group">
+            #displayFirst("redbox:ManagementPlan.redbox:hasPlan" "Data Management Plan")
+            #displayFirst("redbox:ManagementPlan.skos:note" "Notes")
+        </div>
+    </dl>
+</div>

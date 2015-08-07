@@ -25,6 +25,9 @@ export FASCINATOR_HOME="$TF_HOME"
 export CLASSPATH="plugins/*:lib/*"
 
 # jvm memory settings
+# all config start from -Xdebug is only used by developers for debugging.
+#JVM_OPTS="-XX:MaxPermSize=512m -Xmx512m -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=n"
+
 JVM_OPTS="-XX:MaxPermSize=512m -Xmx512m"
 
 # logging directories

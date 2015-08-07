@@ -1,0 +1,8 @@
+{
+    "steps": {
+	    "Data collection and analysis": {
+		    "Next": "Data Storage",
+		    "Back": "People"
+	    }
+    }
+}
