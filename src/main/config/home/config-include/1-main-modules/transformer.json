@@ -29,6 +29,16 @@
             "clearPropertyOnTransform": "true",
             "transformSource": "true"
         },
+        "selfSubToSelfSub": {
+            "id": "jsonVelocity",
+            "sourcePayload": ".tfpackage",
+            "templatesPath": "${fascinator.home}/templates/self-submission/selfSubClone.vm",
+            "checkForTFMETAProperty": "true",
+            "TFMETAPropertyName": "copyTFPackage",
+            "TFMETAPropertyValue": "selfSubToSelfSub",
+            "clearPropertyOnTransform": "true",
+            "transformSource": "true"
+	      },
         "selfSubtoDataset": {
             "id": "jsonVelocity",
             "sourcePayload": ".tfpackage",
@@ -38,12 +48,14 @@
             "TFMETAPropertyValue": "true",
             "clearPropertyOnTransform": "true",
             "transformSource": "true"
-        },"basicVersioning": {
-		    "id": "extensionBasicVersioning",
-		    "sourcePayload": ".tfpackage"
-		},"extensionBasicVersioning": {
-		    "id": "extensionBasicVersioning",
-		    "sourcePayload": ".tfpackage.parked"
-		}
+        },
+        "basicVersioning": {
+            "id": "extensionBasicVersioning",
+            "sourcePayload": ".tfpackage"
+        },
+        "extensionBasicVersioning": {
+            "id": "extensionBasicVersioning",
+            "sourcePayload": ".tfpackage.parked"
+        }
     }
 }

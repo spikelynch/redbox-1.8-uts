@@ -4,11 +4,7 @@
     "file-system": {
       "home": "${storage.home}"
     },
-    "fedora3": {
-      "url": "http://localhost:8080/fedora",
-      "username": "fedoraAdmin",
-      "password": "fedoraAdmin",
-      "namespace": "uuid"
-    }
   }
-}	
+}
+
+

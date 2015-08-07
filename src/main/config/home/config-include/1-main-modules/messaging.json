@@ -40,7 +40,7 @@
                 "config": {
                     "name": "solrwrapper"
                 }
-            }            
+            }
         ]
     }
 }

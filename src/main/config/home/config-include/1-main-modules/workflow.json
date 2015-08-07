@@ -1,5 +1,5 @@
 {
-	"transitionWorkflow": {
+    "transitionWorkflow": {
         "transitions": [
             {
                 "name": "Researcher Record",
@@ -9,7 +9,7 @@
                 "to-workflow-stage": "metadata-review",
                 "to-workflow-page-title": "Metadata Record",
          		"to-workflow-label": "Metadata Review"
-            }           
+            }
         ]
-    }
+    },
 }

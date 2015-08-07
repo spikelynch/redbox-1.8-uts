@@ -8,6 +8,7 @@
         "skins": {
             "default": "default",
             "order": [
+                "uts",
                 "local",
                 "dashboard",
                 "redbox"
@@ -122,13 +123,26 @@
                         "url": "http://localhost:${jetty.port}/redbox/default/process/launch.script?processingSet=notifyNewRecords",
                         "timing": "0 0/15 * * * ?"
                     },
+	                {
+		                "name": "process-set-notifyEmbargoRecords",
+		                "type": "external",
+		                "url": "${server.url.base}default/process/launch.script?processingSet=notifyEmbargoRecords",
+		                "timing": "0 0/15 * * * ?"
+	                },
+	                {
+		                "name": "process-set-notifyDOIRecords",
+		                "type": "external",
+		                "url": "${server.url.base}default/process/launch.script?processingSet=notifyDOIRecords",
+		                "timing": "0 0/15 * * * ?"
+	                }
+
                     {
        					"name": "external-curation-status",
         				"type": "processingSet",
         				"configFile": "${fascinator.home}/process/external-curation-status.json",
         				"setId": "",
         				"timing": "0 0/10 * * * ?"
-      				}                
+      				}
 				 ]
             }
         },

@@ -1,34 +1,50 @@
 {
-  "Shibboleth": {
-    "use_headers": "true",
-    "username_attribute": "displayname",
-    "cn_attribute": "displayname",
-    "session_attribute": "Shib-Session-ID",
-    "idp_attribute": "Shib-Identity-Provider",
-    "attributes": [
-      "sharedtoken",
-      "displayname"
-    ],
-    "delimiter": ";",
-    "rolePlugins": [
-      "SimpleShibbolethRoleManager"
-    ],
-    "SimpleShibbolethRoleManager": {
-      "system": [
-
-      ],
-      "admin": [
-       
-      ],
-      "reviewer": [
-
-      ],
-      "librarian": [
-
-      ],
-      "guest": [
-        
-      ]
-    }
-  }
+	"Shibboleth":{
+		"use_headers":"false",
+		"username_attribute":"mail",
+		"cn_attribute":"displayName",
+		"session_attribute":"Shib-Session-ID",
+		"idp_attribute":"Shib-Identity-Provider",
+		"attributes":["eduPersonAffiliation", "commonName"],
+		"delimiter":";",
+		"rolePlugins":["SimpleShibbolethRoleManager"],
+		"SimpleShibbolethRoleManager":{
+			"admin":[
+				[
+					["mail", "is", "Sharyn.Wise@uts.edu.au"]
+				]
+				,
+				[
+					["mail", "is", "Michael.Lynch@uts.edu.au"]
+				]
+			],
+			"reviewer":[
+				[
+					["mail", "is", "Sharyn.Wise@uts.edu.au"]
+				]
+				,
+				[
+					["mail", "is", "Michael.Lynch@uts.edu.au"]
+				]
+			],
+			"librarian":[
+				[
+					["mail", "is", "Sharyn.Wise@uts.edu.au"]
+				]
+				,
+				[
+					["mail", "is", "Michael.Lynch@uts.edu.au"]
+				]
+			],
+			"researcher":[
+				[
+					["Shib-Identity-Provider", "is", "https://aaf-login.uts.edu.au/idp/shibboleth"],
+					["eduPersonAffiliation", "is", "staff"]
+				]
+			],
+			"guest":[
+				[]
+			]
+		}
+	}
 }

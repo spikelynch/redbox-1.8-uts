@@ -15,3 +15,4 @@
         "Countries_Detail": "${mint.proxy.url}/default/api/query.script?callType=countries&func=detail"
     }
 }
+
