@@ -2,10 +2,7 @@
 
 import unittest
 from selenium import webdriver
-
-REDBOX_URL = 'http://redboxvm:9000/redbox/'
-
-REDBOX_VERSION = 'verNum1.9-UTS'
+import rbtests
 
 LINKS = {
     'Home': '/default/home',
@@ -15,7 +12,7 @@ LINKS = {
 
 
 def absUrl(rel):
-    return REDBOX_URL + REDBOX_VERSION + rel
+    return rbtests.REDBOX_URL + rbtests.REDBOX_VERSION + rel
 
 
 
@@ -26,7 +23,7 @@ class ReDBoxIsUp(unittest.TestCase):
 
     def test_for_redbox(self):
         driver = self.driver
-        driver.get(REDBOX_URL)
+        driver.get(rbtests.REDBOX_URL)
         self.assertIn("UTS Research Data Catalogue", driver.title)
         elts = driver.find_elements_by_xpath("//ul[@class='nav main']/li/a")
         self.assertIsNotNone(elts)
