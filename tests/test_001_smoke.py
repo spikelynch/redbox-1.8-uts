@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import unittest
+import nose.tools as nt
 from selenium import webdriver
 import rbtests
 
@@ -16,22 +17,22 @@ def absUrl(rel):
 
 
 
-class ReDBoxIsUp(unittest.TestCase):
+class TestReDBoxIsUp(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
 
-    def test_for_redbox(self):
+    def test(self):
         driver = self.driver
         driver.get(rbtests.REDBOX_URL)
-        self.assertIn("UTS Research Data Catalogue", driver.title)
+        assert("UTS Research Data Catalogue" in driver.title)
         elts = driver.find_elements_by_xpath("//ul[@class='nav main']/li/a")
-        self.assertIsNotNone(elts)
+        assert(elts)
         for elt in elts:
             text = elt.text
             href = elt.get_attribute('href')
             if text in LINKS:
-                self.assertEqual(href, absUrl(LINKS[text]))
+                nt.eq_(href, absUrl(LINKS[text]))
 #             if elt:
 #                 href = elt.get_attribute('href')
 #                 self.assertEqual(href, url)
@@ -42,4 +43,4 @@ class ReDBoxIsUp(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    nose.main()
