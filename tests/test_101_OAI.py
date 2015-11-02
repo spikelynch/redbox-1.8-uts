@@ -1,16 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import unittest
-from selenium import webdriver
-from sickle import Sickle
-
-import rbtests
-
-
-class OaiCase(unittest.TestCase):
-
-    def setUp(self):
-        self.oai = Sickle(rbtests.OAIPMH_URL)
+from rbtests import OaiCase
 
 
 
@@ -24,7 +15,7 @@ class UpOaiPmh(OaiCase):
 
 class GetRecords(OaiCase):
 
-    def test_identity(self):
+    def test_records(self):
         records = self.oai.ListRecords(metadataPrefix = 'oai_dc')
         self.assertIsNotNone(records)
 

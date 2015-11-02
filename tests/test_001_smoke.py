@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
+
+import rbtests
 import unittest
 import nose.tools as nt
 from selenium import webdriver
-import rbtests
 
 LINKS = {
     'Home': '/default/home',
@@ -21,6 +22,7 @@ class TestReDBoxIsUp(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
+
 
     def test(self):
         driver = self.driver
