@@ -1,3 +1,4 @@
+.gitignore
 target/
 .project
 .settings
@@ -19,3 +20,5 @@ support/scripts/system-config-result.json
 *.iml
 *.ipr
 *.iws
+*.pyc
+__pycache__
