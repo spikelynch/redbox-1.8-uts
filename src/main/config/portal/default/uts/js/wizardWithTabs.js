@@ -11,7 +11,8 @@ function formSubmit(transitionAction, objectMetaParams,closeURL) {
 		if(closeURL) {
 			closeUrl = closeURL;
 		}
-		var validationPassed = validateTab(); 
+                // changed this from validateTab() (1.6 -> 1.8)
+		var validationPassed = doValidation(); 
 		if(validationPassed) {
 			// We do not want jaffa to validate data again: we have done it by validateTab()
 			jaffa.form.save(true);
