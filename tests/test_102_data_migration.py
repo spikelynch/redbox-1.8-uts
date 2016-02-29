@@ -14,10 +14,6 @@ from rbtests import OaiCase, search_url
 RESULT_STR="Showing 1 to 1 of 1 items"
 
     
-
-
-
-
 class FindRecords(OaiCase):
 
     def setUp(self):
@@ -30,7 +26,6 @@ class FindRecords(OaiCase):
         if count_elts:
             count_elt = count_elts[0]
             assert(RESULT_STR in count_elt.text)
-
 
     def test_find_records(self):
         records = self.oai.ListRecords(metadataPrefix = 'oai_dc')

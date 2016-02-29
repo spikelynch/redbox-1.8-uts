@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
 
-import rbtests
+import redbox
 import unittest
 import nose.tools as nt
-from selenium import webdriver
 
 LINKS = {
     'Home': '/default/home',
@@ -12,21 +11,14 @@ LINKS = {
     'Browse': '/default/search'
 }
 
-
-def absUrl(rel):
-    return rbtests.REDBOX_URL + rbtests.REDBOX_VERSION + rel
+TARGET = 'Test'
 
 
-
-class TestReDBoxIsUp(unittest.TestCase):
-
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-
+class TestReDBoxIsUp(redbox.RedboxTestCase):
 
     def test(self):
         driver = self.driver
-        driver.get(rbtests.REDBOX_URL)
+        driver.get(self.url(TARGET))
         assert("UTS Research Data Catalogue" in driver.title)
         elts = driver.find_elements_by_xpath("//ul[@class='nav main']/li/a")
         assert(elts)
@@ -34,15 +26,7 @@ class TestReDBoxIsUp(unittest.TestCase):
             text = elt.text
             href = elt.get_attribute('href')
             if text in LINKS:
-                nt.eq_(href, absUrl(LINKS[text]))
-#             if elt:
-#                 href = elt.get_attribute('href')
-#                 self.assertEqual(href, url)
-
-
-    def tearDown(self):
-        self.driver.close()
-
+                nt.eq_(href, self.url(TARGET, LINKS[text]))
 
 if __name__ == "__main__":
     nose.main()
