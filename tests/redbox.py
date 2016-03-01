@@ -33,7 +33,8 @@ class RedboxTestCase(unittest.TestCase):
             print("Unknown server %s" % server)
             sys.exit(-1)
         return self.cf['Servers'][server]
-        
+
+    # Standard URLs
         
     def url(self, server, *args):
         s = self.server(server)
@@ -42,6 +43,8 @@ class RedboxTestCase(unittest.TestCase):
         else:
             return s['base'] + self.cf['Paths']['home']
 
+    # Special URLs 
+        
     def search(self, server, id):
         """Note: search doesn't use the version in the path"""
         s = self.server(server)
@@ -54,3 +57,33 @@ class RedboxTestCase(unittest.TestCase):
         url = s['base'] + self.cf['Paths']['oai_pmh']
         self.oai_sickle = Sickle(url)
         return self.oai_sickle(request)
+
+    # User passwords
+
+    def identity(self, server, username):
+        if server not in self.cf['Identities']:
+            print("Server %s doesn't have an entry in Identities" % server)
+            sys.exit(-1)
+        users = self.cf['Identities'][server]
+        if username not in users:
+            print("User %s not listed in Identities for %s" % ( username, server))
+            sys.exit(-1)
+        return users[username]
+
+    # Common UI actions
+
+    def log_in(self, server, uname, passwd):
+        driver = self.driver
+        driver.get(self.url(server))
+        print("Logging in as %s / %s" % ( uname, passwd ) )
+        user_info = driver.find_element_by_id("user-info")
+        login_link = user_info.find_element_by_class_name("login-now")
+        assert(login_link)
+        login_link.click()
+        uname_field = driver.find_element_by_id("username")
+        passwd_field = driver.find_element_by_id("password")
+        submit_btn = driver.find_element_by_id("login-submit")
+        assert(uname_field and passwd_field and submit_btn)
+        uname_field.send_keys(uname)
+        passwd_field.send_keys(passwd)
+        submit_btn.click()
