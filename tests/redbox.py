@@ -37,11 +37,10 @@ class RedboxTestCase(unittest.TestCase):
         
     def url(self, server, *args):
         s = self.server(server)
-        urlbase = s['base'] + s['version']
         if args:
-            return urlbase + args[0]
+            return s['base'] + s['version'] + args[0]
         else:
-            return urlbase
+            return s['base'] + self.cf['Paths']['home']
 
     def search(self, server, id):
         """Note: search doesn't use the version in the path"""

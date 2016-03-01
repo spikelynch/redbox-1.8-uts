@@ -18,6 +18,8 @@ class TestReDBoxIsUp(redbox.RedboxTestCase):
 
     def test(self):
         driver = self.driver
+        url = self.url(TARGET)
+        print("Trying server home page %s" % url)
         driver.get(self.url(TARGET))
         assert("UTS Research Data Catalogue" in driver.title)
         elts = driver.find_elements_by_xpath("//ul[@class='nav main']/li/a")
