@@ -48,7 +48,16 @@ class RedboxTestCase(unittest.TestCase):
             return s['base'] + self.cf['Paths']['home']
 
     # Special URLs 
+
+    def home(self, server):
+        s = self.server(server)
+        return s['base'] + self.cf['Paths']['home']
         
+    def dashboard(self, server):
+        s = self.server(server)
+        return s['base'] + self.cf['Paths']['dashboard']
+
+            
     def search(self, server, id):
         """Note: search doesn't use the version in the path"""
         s = self.server(server)
