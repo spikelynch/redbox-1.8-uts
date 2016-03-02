@@ -2,23 +2,22 @@ var wizard_def; // used for holding steps of a wizard
 var wizardTabIdentifier;
 
 function formSubmit(transitionAction, objectMetaParams,closeURL) {
-	if (transitionAction) {
-		action = transitionAction;
-		if(objectMetaParams) {
-			objectMetadataParams = objectMetaParams;
-		}
-		// go to portal home
-		if(closeURL) {
-			closeUrl = closeURL;
-		}
-		var validationPassed = validateTab(); 
-		if(validationPassed) {
-			// We do not want jaffa to validate data again: we have done it by validateTab()
-			jaffa.form.save(true);
-		}
-		
-		return validationPassed;
-	}	
+    if (transitionAction) {
+	action = transitionAction;
+	if(objectMetaParams) {
+	    objectMetadataParams = objectMetaParams;
+	}
+	// go to portal home
+	if(closeURL) {
+	    closeUrl = closeURL;
+	}
+	var validationPassed = validateTab(); 
+	if(validationPass) {// We do not want jaffa to validate data again: we have done it by validateTab()
+	    jaffa.form.save(true);
+	}
+	
+	return validationPassed;
+    }	
 }
 
 function wizard_init(content_selector, tab_heading_selector, json_url, tabIdentifier) {

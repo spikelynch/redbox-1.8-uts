@@ -2,6 +2,10 @@
 
 import unittest, yaml
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import selenium.common.exceptions
 from sickle import Sickle
 from urllib.parse import quote
 
@@ -73,6 +77,15 @@ class RedboxTestCase(unittest.TestCase):
     # Common UI actions
 
     def log_in(self, server, uname, passwd):
+        """This waits for the dialog box to go away"""
+        self.log_in_no_check(server, uname, passwd)
+        wait = WebDriverWait(self.driver, 10)
+        elt = wait.until(EC.invisibility_of_element_located((By.XPATH, '//div[@aria-describedby="login-form"]')))
+        return True
+
+    
+    def log_in_no_check(self, server, uname, passwd):
+        """Version which doesn't check for success"""
         driver = self.driver
         driver.get(self.url(server))
         print("Logging in as %s / %s" % ( uname, passwd ) )
@@ -87,3 +100,12 @@ class RedboxTestCase(unittest.TestCase):
         uname_field.send_keys(uname)
         passwd_field.send_keys(passwd)
         submit_btn.click()
+
+    def log_out_no_check(self, server):
+        """Version which doesn't check for success"""
+        driver = self.driver
+        driver.get(self.url(server))
+        #user_info = driver.find_element_by_id("user-info")
+        logout_link = driver.find_element_by_id("logout-now")
+        assert(logout_link)
+        logout_link.click()

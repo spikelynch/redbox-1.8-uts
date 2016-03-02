@@ -16,10 +16,16 @@ class TestGoodLogin(redbox.RedboxTestCase):
     def test(self):
         passwd = self.identity(TARGET, LOGIN)
         assert(passwd)
-        self.log_in(TARGET, LOGIN, passwd)
+        self.log_in_no_check(TARGET, LOGIN, passwd)
         wait = WebDriverWait(self.driver, 10)
         elt = wait.until(EC.invisibility_of_element_located((By.XPATH, '//div[@aria-describedby="login-form"]')))
         assert(True)
+        self.log_out_no_check(TARGET)
+#        wait = WebDriverWait(self.driver, 10)
+#        user_info = wait.until(lambda: not EC.staleness_of((By.ID, 'user-info')))
+        #ogin_link = user_info.find_elements_by_class_name("login-now")
+        #assert(login_link)
+
 
 
 class TestBadLogin(redbox.RedboxTestCase):
@@ -28,7 +34,7 @@ class TestBadLogin(redbox.RedboxTestCase):
         passwd = self.identity(TARGET, LOGIN)
         assert(passwd)
         passwd += "bad"
-        self.log_in(TARGET, LOGIN, passwd)
+        self.log_in_no_check(TARGET, LOGIN, passwd)
         dialog_gone = True
         try:
             wait = WebDriverWait(self.driver, 10)
@@ -41,5 +47,7 @@ class TestBadLogin(redbox.RedboxTestCase):
         assert(not dialog_gone)
 
 
+
+        
 if __name__ == "__main__":
     nose.main()
