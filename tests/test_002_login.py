@@ -21,10 +21,9 @@ class TestGoodLogin(redbox.RedboxTestCase):
         elt = wait.until(EC.invisibility_of_element_located((By.XPATH, '//div[@aria-describedby="login-form"]')))
         assert(True)
         self.log_out_no_check(TARGET)
-#        wait = WebDriverWait(self.driver, 10)
-#        user_info = wait.until(lambda: not EC.staleness_of((By.ID, 'user-info')))
-        #ogin_link = user_info.find_elements_by_class_name("login-now")
-        #assert(login_link)
+        self.driver.implicitly_wait(1)
+        login_link = self.driver.find_elements_by_class_name("login-now")
+        assert(login_link)
 
 
 
