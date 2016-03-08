@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import selenium.common.exceptions
+import time
 
 TARGET = 'Test'
 LOGIN = 'researcher'
@@ -22,10 +23,18 @@ class TestCreateDMP(redbox.RedboxTestCase):
         new_dmpt = driver.find_element_by_id('new-dmpt')
         new_dmpt.click()
         wait = WebDriverWait(self.driver, 10)
-        next_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@id="tab-1"]//button')))
+        next_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[@transition-name="Next"]')))
         next_btn.click()
-
-
+        time.sleep(5)
+        dmpt_form = self.load_form('dmpt')
+        for tab in dmpt_form.tabs:
+            for field in tab.fields:
+                field.fill(driver)
+            next_btn = None
+            next_btn = driver.find_element_by_xpath('//button[@transition-name="Next"]')
+            next_btn.click()
+            time.sleep(5)
+            # need to confirm the tab moved on here
 
         
 if __name__ == "__main__":

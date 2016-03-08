@@ -1,6 +1,6 @@
 # shared code and config stuff
 
-import unittest, yaml
+import sys, unittest, yaml, json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,8 +8,23 @@ from selenium.webdriver.support import expected_conditions as EC
 import selenium.common.exceptions
 from sickle import Sickle
 from urllib.parse import quote
+from forms import RedboxForm, RedboxTab
 
 CONFIG = 'config.yml'
+
+# json config which define the form pages and fields
+# for automatically generating fixtures
+
+FORMS = {
+    'dmpt': 'fixtures/dmptform.json',
+    'dataset': 'fixtures/self-submissionform.json'
+}
+
+FORM_STAGES = {
+    'dmpt': 'dmpt-draft',
+    'dataset': 'dataset-draft'
+}
+
 
 class RedboxTestCase(unittest.TestCase):
     """Test case with common methods for ReDBox tests, urls, etc"""
@@ -28,7 +43,23 @@ class RedboxTestCase(unittest.TestCase):
         if not self.cf:
             print("Config error")
             sys.exit(-1)
+        self.forms = {}
 
+    def load_form(self, section):
+        if section not in self.forms:
+            form_js = None
+            with open(FORMS[section]) as form_f:
+                try:
+                    form_js = json.load(form_f)
+                except Exception as exc:
+                    print("%s parse error: %s" % ( FORMS[section], exc ))
+            if not form_js:
+                sys.exit(-1)
+            divs = form_js["stages"][FORM_STAGES[section]]["divs"]
+            self.forms[section] = RedboxForm(divs)
+        return self.forms[section]
+
+    
     def tearDown(self):
         self.driver.close()
 
@@ -118,3 +149,11 @@ class RedboxTestCase(unittest.TestCase):
         logout_link = driver.find_element_by_id("logout-now")
         assert(logout_link)
         logout_link.click()
+
+    def type_in_field(self, elt_id, content):
+        """Wait until an element is visible, then type something in it"""
+        driver = self.driver
+        print("Waiting to type value '%s' to field with id %s" % ( content, elt_id ))
+        wait = WebDriverWait(driver, 10)
+        elt = wait.until(EC.visibility_of_element_located((By.ID, elt_id)))
+        elt.send_keys(content)
