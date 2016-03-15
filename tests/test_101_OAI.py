@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 
-import unittest
-from redbox import RedboxCase
+import redbox
+import nose.tools as nt
+
+TARGET = 'Test'
 
 
+class TestOaiPmhUp(redbox.RedboxTestCase):
+
+    def test(self):
+        response = self.oai(TARGET).Identify()
+        assert(response)
 
 
-class UpOaiPmh(RedboxCase):
+class TestGetRecords(redbox.RedboxTestCase):
 
-    def test_identify(self):
-        response = self.oai.Identify()
-        self.assertIsNotNone(response)
-
-
-class GetRecords(RedboxCase):
-
-    def test_records(self):
-        records = self.oai.ListRecords(metadataPrefix = 'oai_dc')
-        self.assertIsNotNone(records)
+    def test(self):
+        records = self.oai(TARGET).ListRecords(metadataPrefix = 'oai_dc')
+        assert(records)
 
 
 if __name__ == "__main__":
-    unittest.main()
+    nose.main()

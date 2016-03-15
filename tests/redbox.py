@@ -1,6 +1,6 @@
 # shared code and config stuff
 
-import sys, unittest, yaml, json
+import sys, unittest, yaml, json, time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,6 +9,7 @@ import selenium.common.exceptions
 from sickle import Sickle
 from urllib.parse import quote
 from forms import RedboxForm, RedboxTab
+
 
 CONFIG = 'config.yml'
 
@@ -26,11 +27,12 @@ FORM_STAGES = {
 }
 
 
+
+
 class RedboxTestCase(unittest.TestCase):
     """Test case with common methods for ReDBox tests, urls, etc"""
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
         self.cf = None
         with open(CONFIG) as conf_f:
             try:
@@ -43,7 +45,23 @@ class RedboxTestCase(unittest.TestCase):
         if not self.cf:
             print("Config error")
             sys.exit(-1)
+        browser = self.cf['Selenium']['browser']
+        if browser == 'Chrome':
+            self.driver = webdriver.Chrome(self.cf['Selenium']['chromedriver'])
+        else:
+            self.driver = webdriver.Firefox()
+        self.timeout = int(self.cf['Selenium']['timeout'])
+        self.pause = int(self.cf['Selenium']['pause'])
+        self.xpaths = self.cf['XPaths']
         self.forms = {}
+
+    def xpath(self, name):
+        if name in self.xpaths:
+            return self.xpaths[name]
+        else:
+            print("Unknown xpath %s" % name)
+            sys.exit(-1)
+            
 
     def load_form(self, section):
         if section not in self.forms:
@@ -95,12 +113,12 @@ class RedboxTestCase(unittest.TestCase):
         return s['base'] + self.cf['Paths']['search'] % quote(id)
     
 
-    def oai(self, server, request):
-        """Note: oai doesn't use the version in the path"""
+    def oai(self, server):
+        """This returns a Sickle object initiated at the server's URL"""
         s = self.server(server)
         url = s['base'] + self.cf['Paths']['oai_pmh']
-        self.oai_sickle = Sickle(url)
-        return self.oai_sickle(request)
+        self.sickle = Sickle(url)
+        return self.sickle
 
     # User passwords
 
@@ -150,10 +168,26 @@ class RedboxTestCase(unittest.TestCase):
         assert(logout_link)
         logout_link.click()
 
-    def type_in_field(self, elt_id, content):
-        """Wait until an element is visible, then type something in it"""
-        driver = self.driver
-        print("Waiting to type value '%s' to field with id %s" % ( content, elt_id ))
-        wait = WebDriverWait(driver, 10)
-        elt = wait.until(EC.visibility_of_element_located((By.ID, elt_id)))
-        elt.send_keys(content)
+
+        
+# code for doing commonly-needed Selenium boilerplate
+
+    def next_tab(self, i):
+        self._diagnose_next(i)
+        xp = self.xpath('next_btn').format(i)
+        print("Trying next_btn {}: {}".format(i, xp))
+        wait = WebDriverWait(self.driver, self.timeout)
+        next_btn = wait.until(EC.element_to_be_clickable((By.XPATH, xp)))
+        next_btn.click()
+        print("Clicked next_btn")
+        print("Waiting for {}".format(self.pause))
+        time.sleep(self.pause)
+
+    def _diagnose_next(self, i):
+        xp = self.xpath('next_btn').format(i)
+        elts = self.driver.find_elements_by_xpath(xp)
+        print("Looking for %s, found %d matches" % ( xp, len(elts)))
+        for elt in elts:
+            print(elt, elt.getLocation())    
+
+        
