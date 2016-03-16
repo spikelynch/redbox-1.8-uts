@@ -16,7 +16,6 @@ class TestCreateDMP(redbox.RedboxTestCase):
     
     def test(self):
         passwd = self.identity(TARGET, LOGIN)
-        assert(passwd)
         self.log_in(TARGET, LOGIN, passwd)
         driver = self.driver
         driver.get(self.dashboard(TARGET))
@@ -30,7 +29,7 @@ class TestCreateDMP(redbox.RedboxTestCase):
                     field.fill(driver)
             self.next_tab(i)
             i += 1
-        assert(False)
+        assert False 
 
         
 if __name__ == "__main__":

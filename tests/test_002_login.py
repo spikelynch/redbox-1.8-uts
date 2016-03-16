@@ -15,15 +15,14 @@ class TestGoodLogin(redbox.RedboxTestCase):
 
     def test(self):
         passwd = self.identity(TARGET, LOGIN)
-        assert(passwd)
+        assert passwd, "Found identity for {} {}".format(TARGET, LOGIN)
         self.log_in_no_check(TARGET, LOGIN, passwd)
         wait = WebDriverWait(self.driver, 10)
         elt = wait.until(EC.invisibility_of_element_located((By.XPATH, '//div[@aria-describedby="login-form"]')))
-        assert(True)
         self.log_out_no_check(TARGET)
         self.driver.implicitly_wait(1)
         login_link = self.driver.find_elements_by_class_name("login-now")
-        assert(login_link)
+        assert login_link, "We've logged out"
 
 
 
@@ -31,7 +30,7 @@ class TestBadLogin(redbox.RedboxTestCase):
 
     def test(self):
         passwd = self.identity(TARGET, LOGIN)
-        assert(passwd)
+        assert passwd, "Found identity for {} {}".format(TARGET, LOGIN)
         passwd += "bad"
         self.log_in_no_check(TARGET, LOGIN, passwd)
         dialog_gone = True
@@ -39,11 +38,10 @@ class TestBadLogin(redbox.RedboxTestCase):
             wait = WebDriverWait(self.driver, 10)
             elt = wait.until(EC.invisibility_of_element_located((By.XPATH, '//div[@aria-describedby="login-form"]')))
         except selenium.common.exceptions.TimeoutException as e:
-            assert(True)
             dialog_gone = False
         except Exception:
             assert(False)
-        assert(not dialog_gone)
+        assert not dialog_gone, "Login with bad credentials failed"
 
 
 

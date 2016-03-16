@@ -24,7 +24,7 @@ up in another (TARGET)
 """ 
         records = self.oai(self.source).ListRecords(metadataPrefix = 'oai_dc')
         for record in records:
-            assert('identifier' in record.metadata, msg="Found identifier")
+            assert 'identifier' in record.metadata, "Found identifier in metadata"
             titles = record.metadata['title']
             identifiers = record.metadata['identifier']
             if titles and identifiers:
@@ -41,10 +41,10 @@ Looks in the ReDBox search results page and checks that the 'results-total'
 element has the text in RESULT_STR
 """
         count_elts = self.driver.find_elements_by_class_name('results-total')
-        assert(count_elts, msg="Search for {}".format(message))
+        assert count_elts, "Search for {}".format(message)
         if count_elts:
             count_elt = count_elts[0]
-            assert(self.results_str in count_elt.text, msg="Got one search result for {}".format(message))
+            assert self.results_str in count_elt.text, "Got one search result for {}".format(message)
 
                 
 if __name__ == "__main__":
