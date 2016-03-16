@@ -5,41 +5,47 @@ import unittest
 from selenium import webdriver
 from sickle import Sickle
 
-from rbtests import OaiCase, search_url
-
-# Data migration tester - fetch a list of identifiers from the old
-# ReDBox and try to look them up in the new one.
-
-
-RESULT_STR="Showing 1 to 1 of 1 items"
+import redbox
 
     
-class FindRecords(OaiCase):
+class TestFindRecords(redbox.RedboxTestCase):
 
     def setUp(self):
-        super(FindRecords, self).setUp()
-        self.driver = webdriver.Firefox()
+        super(TestFindRecords, self).setUp()
+        cf = self.cf['test_102_data_migration']
+        self.source = cf['source']
+        self.target = cf['target']
+        self.results_str = cf['results_str']
 
-    def check_results(self):
-        count_elts = self.driver.find_elements_by_class_name('results-total')
-        assert(count_elts)
-        if count_elts:
-            count_elt = count_elts[0]
-            assert(RESULT_STR in count_elt.text)
-
-    def test_find_records(self):
-        records = self.oai.ListRecords(metadataPrefix = 'oai_dc')
+    def test(self):
+        """
+Fetches all the public records in one ReDBox instance (SOURCE) and looks them
+up in another (TARGET)
+""" 
+        records = self.oai(self.source).ListRecords(metadataPrefix = 'oai_dc')
         for record in records:
-            assert('identifier' in record.metadata)
+            assert('identifier' in record.metadata, msg="Found identifier")
             titles = record.metadata['title']
             identifiers = record.metadata['identifier']
             if titles and identifiers:
                 title = titles[0]
                 identifier = identifiers[0]
-                url = search_url(identifier)
+                url = self.search(self.target, identifier)
                 self.driver.get(url)
-                self.check_results()
+                self.check_results("Search for '{}' {}".format(title, identifier))
                 
 
+    def check_results(self, message):
+        """
+Looks in the ReDBox search results page and checks that the 'results-total'
+element has the text in RESULT_STR
+"""
+        count_elts = self.driver.find_elements_by_class_name('results-total')
+        assert(count_elts, msg="Search for {}".format(message))
+        if count_elts:
+            count_elt = count_elts[0]
+            assert(self.results_str in count_elt.text, msg="Got one search result for {}".format(message))
+
+                
 if __name__ == "__main__":
-    unittest.main()
+    nosetests.main()
