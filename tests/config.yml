@@ -1,0 +1,49 @@
+# Configuration for ReDBox tests
+
+# sets up base urls and version numbers for production, development and test
+# servers
+
+Selenium:
+    browser: Firefox
+    chromedriver: /Users/mike/bin/chromedriver
+    timeout: 10
+    pause: 5
+
+Servers:
+    Production:
+        base: https://redbox.research.uts.edu.au/redbox/
+        version: verNum1.6.2
+
+    Development:
+        base: http://localhost:9000/redbox/
+        version: verNum1.8-UTS
+
+    Test:
+        base: http://localhost:9000/redbox/
+        version: verNum1.8-UTS
+
+# note that some paths don't need the version - the module takes care of that
+
+Paths:
+    home: default/home
+    dashboard: dashboard/home
+    search: default/search?query=%s
+    oai_pmh: published/feed/oai
+
+# identities are username: password hashes.
+
+Identities:
+    Test:
+        admin: rbadmin
+        researcher: researcher
+        researcher2: researcher2
+
+XPaths:
+    next_btn: //div[@id="tab-{}"]//button[@transition-name="Next"]
+
+# config values which are specific to one test script
+
+test_102_data_migration:
+    source: Production
+    target: Test
+    results_str: Showing 1 to 1 of 1 items
